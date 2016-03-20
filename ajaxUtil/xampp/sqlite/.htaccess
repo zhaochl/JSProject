@@ -1,0 +1,4 @@
+# nobody should be able to access this directory by http (oswald, 31oct03)
+AuthName "impossible"
+AuthType Basic
+require valid-user

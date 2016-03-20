@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<stocks>
+  <hot>
+    <stock>AAPL</stock>
+    <stock>LUV</stock>
+    <stock>GOOG</stock>
+    <stock>FDX</stock>
+    <stock>TM</stock>
+  </hot>
+  <cold>
+    <stock>HSY</stock>
+    <stock>WIN</stock>
+    <stock>MRK</stock>
+    <stock>AMGN</stock>
+    <stock>BBY</stock>
+  </cold>
+  <safe>
+    <stock>KO</stock>
+    <stock>CAT</stock>
+    <stock>DIS</stock>
+    <stock>GE</stock>
+    <stock>MSFT</stock>
+  </safe>
+</stocks>

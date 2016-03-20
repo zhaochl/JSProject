@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+
+<script type="text/javascript" src="phprpc_client.js"></script>
+<script type="text/javascript" src="RPCUtil.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+/*
+//声明要使用的函数
+var brpcFun = ['tt','aCustomer','uCustomer','dCustomer','aTag','uTag','dTag','aRCustomerTag','uRCustomerTag','dRCustomerTag','aCommunication','uCommunication','dCommunication','aCalendar','uCalendar','dCalendar'];
+var client = new PHPRPC_Client('http://localhost/oak0.5.5/index.php?m=Sync&a=rpc',brpcFun);
+
+//设置密钥长度(可选)
+client.setKeyLength(256);  
+//设置加密类型(可选)
+//client.setEncryptMode(3);  
+function test (p1,p2) {
+	//前面的参数为原函数的参数,最后一个参数为回调函数，
+	//回调函数参数依次为:
+	//第一个参数 result 是服务器端方法（函数）的返回值，它可以是任意类型。
+	//第二个参数 args 是方法调用的参数，如果这个调用是一个引用参数传递的调用，参数也有可能被修改，这时候，你可以通过 args 来获得修改后的参数，关于引用参数传递的调用我们后面会做进一步说明。
+	//第三个参数 output 是服务器端输出的内容，它是字符串类型的。
+	//第四个参数 warning 是服务器端发生的警告错误（目前只有 PHP 服务器会产生警告错误），一般只调试过程中可能会用到。
+	//使用PHP的MD5函数
+
+	client.tt(p1,p2,function(result, args, output, warning){
+		console.log('result:'+result);
+	});
+}
+test('a','b');
+*/
+RPCUtil.tt('a','b');
+var fa_id = 43;
+var data = "{\"customer_name\":\"樊雪闻\",\"phone\":\"18604267636\",\"email\":\"\",\"city\":\" 上海\",\"qq\":\"\",\"weixin\":\"\",\"description\":\"\",\"customer_id\":\"14868\",\"update_time\":1419477736}";
+RPCUtil.aCustomer(data,fa_id);
+</script>
+<h2>Hi,js-rpc ><~~</h2>
+<p>run success!</p>
+</body>
+</html>

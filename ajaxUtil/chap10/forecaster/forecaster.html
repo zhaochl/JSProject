@@ -1,0 +1,43 @@
+<html>
+  <head>
+    <title>Forecaster</title>
+
+    <link rel="stylesheet" type="text/css" href="infowinkit.css" />
+    <script type="text/javascript" src="ajaxkit.js"> </script>
+    <script type="text/javascript" src="domkit.js"> </script>
+    <script type="text/javascript" src="infowinkit.js"> </script>
+  </head>
+
+  <body onload="initInfoWindow(300, 240)">
+    <div id="ajaxState" style="display:none"></div>
+    <br />
+    <h2>Forecaster - Traveling the U.S.</h2>
+    <p>A great way to get the full cultural experience of traveling is to hit
+      the road and cover as much terrain as possible. Within the U.S., it is
+      possible to experience the full range of climates, which can often make
+      planning difficult in terms of preparing for different kinds of weather.
+      For example, let's say you start your trip in <a href="#" class="info"
+      onclick="return showInfoWindow('forecaster.php?zipCode=10001', event)">
+      New York City</a> with the plan of crossing the country and finishing in
+      <a href="#" class="info"
+      onclick="return showInfoWindow('forecaster.php?zipCode=94129', event)">
+      San Francisco</a>. Depending upon the time of year, you will experience
+      quite a variety of different weather. If your trip cuts deep into the
+      south, you'll come to understand why <a href="#" class="info"
+      onclick="return showInfoWindow('forecaster.php?zipCode=30301', event)">
+      Atlanta</a> is affectionately known as Hotlanta. Cruising west, you'll
+      need to keep your eyes peeled for tornadoes as you pass through
+      <a href="#" class="info"
+      onclick="return showInfoWindow('forecaster.php?zipCode=73101', event)">
+      Oklahoma City</a>. If you thought Atlanta was hot, your stop off in
+      <a href="#" class="info"
+      onclick="return showInfoWindow('forecaster.php?zipCode=85003', event)">
+      Phoenix</a> will quickly let you know why they call it the Valley of
+      the Sun. Traveling northward to get a break from the heat, a stop off
+      in <a href="#" class="info"
+      onclick="return showInfoWindow('forecaster.php?zipCode=80012', event)">
+      Denver</a> at the foot of the Rockies is sure to energize you for the
+      final push toward California.
+    </p>
+  </body>
+</html>

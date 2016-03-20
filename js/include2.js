@@ -1,0 +1,1 @@
+alert('include2.js');

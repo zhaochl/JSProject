@@ -1,0 +1,1 @@
+var a = (function(t){alert(t);})('2');

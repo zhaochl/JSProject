@@ -1,0 +1,1 @@
+persistence.js 是一个异步的 JavaScript 对象数据库映射(ORM)框架。拥有数据库无关的独立抽象层，可轻松支持新的数据库。该软件最开始是为浏览器设计的，利用 HTML5 的 WebSQL 数据库。而后 persistence.js 被扩展以便支持各种 JavaScript 环境，包括服务器端的 JavaScript 环境，如 node.js 和 RingoJS.

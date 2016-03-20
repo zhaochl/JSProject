@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <META http-equiv=Content-Type content="text/html; charset=utf-8">
+    <title>js-mvc-handlebars</title>
+    <script type="text/javascript" src="js/jquery.js"></script>
+        <!--插件引用-->
+    <!--<script type="text/javascript" src="js/base.js"></script>-->
+    
+
+    <script src="persistence.js"></script>
+    <script src="persistence.store.sql.js"></script>
+    <script src="persistence.store.websql.js"></script>
+
+
+    <!--<script type="text/javascript" src="js/app.js"></script>-->
+	<script type="text/javascript">
+var persistencejs = function() {
+	persistence.store.websql.config(persistence, 'todo', 'todo database', 5*1024*1024);
+	//persistenceStore.config(persistence, 'localhost', 3306, 'nodejs_mysql', 'root', 'root');
+	//var session=persistenceStore.getSession();
+	
+	var Todo = persistence.define('todo', {
+		content: 'TEXT',
+		done: 'BOOL'
+	});
+	persistence.schemaSync();
+	return {
+		add: function(item){
+			var t = new Todo();
+			t.content = item;
+			t.done = false;
+			console.log(t);
+			persistence.add(t);
+			persistence.flush();
+		},
+		
+		edit: function(startContent, endContent){
+			Todo.all().filter('content','=',startContent).one(function(item){
+				item.content = endContent;
+				persistence.flush();
+			});
+		},
+		editByID: function(id,endContent){
+			Todo.all().filter('id','=',id).one(function(item){
+				item.content = endContent;
+				persistence.flush();
+			});
+		},
+		
+		changeStatus: function(item){
+			Todo.all().filter('content','=',item.content).one(function(todo){
+				todo.done = item.done;
+				persistence.flush();
+			});
+		},
+		
+		clearCompletedItems: function(){
+			Todo.all().filter('done','=',true).destroyAll();
+		},
+		
+		remove: function(item){
+			//Todo.all().filter('content','=',item.content).destroyAll(); //persistencejs().remove({'id':'313DA4F79C2E45F3859A36E7B4C53783','content':'abc4'});
+			Todo.all().filter('content','=',item).destroyAll();
+		},
+		
+		fetchAll: function(controller){
+			Todo.all().list(function(items){
+				var itemCount = items.length;
+				var todos = [];
+				items.forEach(function(item){
+					todos.push({
+						content: item.content,
+						done: item.done,
+						editing: false
+					});
+					/*
+					if(--itemCount == 0){
+						controller.todos = todos;
+						controller.refresh();
+					}
+					*/
+				});
+			});
+		},
+	};
+};
+/*
+persistencejs().add('abc1');
+persistencejs().add('abc2');
+persistencejs().add('abc3');
+persistencejs().add('abc4');
+*/
+//persistencejs().edit('abc','ABC2');
+persistencejs().editByID('719A41C8507249918663C9192C071F85','update');
+//var del_to = new Todo();
+//del_to.content = 'abc4';
+//persistencejs().remove(del_to);
+persistencejs().remove('abc1');
+var controller = {};
+persistencejs().fetchAll(controller);
+console.log(controller);
+	</script>
+  </head>
+  <body>
+    <h1>persistence</h1>
+
+
+<!--//------------------------------------------------------------------------------------//ss-->
+<hr>
+<h1>add new</h1>
+<h2><a href="index.html">Return to index</a></h2>
+<h2><a href="coresmart persistencejs.html">docx</a></h2>
+
+    <input type='text' name="new_name" id="new_name" value="ming" />
+    <input type='text' name="new_sex" id="new_sex" value="boy" />
+    <input type='text' name="new_age" id="new_age" value="12" />
+    <input type='button' value="add" id="addBtn"/>
+<h2>userTable.table</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>姓名</th>
+          <th>性别</th>
+          <th>年龄</th>
+          <td>编辑</td>
+          <td>删除</td>
+        </tr>
+      </thead>
+      <tbody id="userlistView">
+        
+      </tbody>
+    </table>
+    <script id="userVolistTemplate" type="text/x-handlebars-template">
+      {{#this}}
+        <tr>
+          <td>{{name}}</td>
+          <td>{{sex}}</td>
+          <td>{{age}}</td>
+          <td><a class='edit' rel='{{id}}'>编辑</a></td>
+          <td><a class='del' rel='{{id}}'>删除</a></td>
+        </tr> 
+      {{/this}}
+    </script>
+	
+
+
+  </body>
+</html>

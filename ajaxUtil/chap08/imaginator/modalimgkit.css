@@ -1,0 +1,26 @@
+/* Apply the transparent gray background image effect */
+#modalwin {
+  position : absolute;
+  left : 0px;
+  top : 0px;
+  width : 100%;
+  background-image : url(modalimgkit_gray.png);
+  z-index : 1001;
+}
+
+/* Apply an IE-specific filter to optimize the transparent gray background image effect in IE */
+* html #modalwin {
+  background-image : none;
+  filter : progid:DXImageTransform.Microsoft.AlphaImageLoader(src="modalimgkit_gray.png", sizingMethod="scale");
+}
+
+/* Dress up the content area containing the image */
+#modalcontent {
+  position : absolute;
+  background-color : #EEEEEE;
+  padding : 10px;
+  border : 2px outset #333333;
+  cursor : pointer;
+  z-index : 1002;
+}
+

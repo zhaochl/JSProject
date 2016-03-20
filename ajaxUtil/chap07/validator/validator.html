@@ -1,0 +1,80 @@
+<html>
+  <head>
+    <title>Validator</title>
+
+    <style type="text/css">
+      div { padding-bottom:5px; }
+      span.help { color:#AA0000; font-style:italic; }
+    </style>
+
+    <script type="text/javascript" src="ajaxkit.js"> </script>
+    <script type="text/javascript" src="domkit.js"> </script>
+    <script type="text/javascript" src="validatekit.js"> </script>
+    <script type="text/javascript">
+      function handleCityStateRequest() {
+        if (request.readyState == 4 && request.status == 200) {
+          // Store the XML response data
+          var xmlData = request.responseXML;
+
+          // Display the city/state results
+          if (xmlData != null && getText(xmlData.getElementsByTagName("CITY")[0]) != "")
+            document.getElementById("zipcode_help").innerHTML = "<span style='font-weight:bold'>" +
+              getText(xmlData.getElementsByTagName("CITY")[0]) + ", " +
+              getText(xmlData.getElementsByTagName("STATE")[0]) + "</span>";
+          else
+            document.getElementById("zipcode_help").innerHTML = "Could not find the ZIP code.";
+        }
+        ajaxUpdateState();
+      }
+
+      function getCityState(zipCode) {
+        // Display the wait image
+        document.getElementById("zipcode_help").innerHTML = "<img src='wait.gif' alt='Looking up ZIP code...' />";
+
+        // Send the Ajax request to load the city/state
+        ajaxSendRequest("GET", "ziplookup.php?zipCode=" + zipCode, handleCityStateRequest);
+      }
+    </script>
+  </head>
+
+  <body onload="document.getElementById('something').focus()">
+    <div id="ajaxState" style="display:none; font-style:italic"></div>
+    <br />
+    <div>
+      Enter something:
+      <input id="something" type="text" size="32" onblur="validateNonEmpty(this, document.getElementById('something_help'))" />
+      <span id="something_help" class="help"></span>
+    </div>
+    <div>
+      Enter an integer:
+      <input id="integer" type="text" size="32" onblur="validateInteger(this, document.getElementById('integer_help'))" />
+      <span id="integer_help" class="help"></span>
+    </div>
+    <div>
+      Enter a number:
+      <input id="number" type="text" size="32" onblur="validateNumber(this, document.getElementById('number_help'))" />
+      <span id="number_help" class="help"></span>
+    </div>
+    <div>
+      Enter a phone number:
+      <input id="phone" type="text" size="32" onblur="validatePhone(this, document.getElementById('phone_help'))" />
+      <span id="phone_help" class="help"></span>
+    </div>
+    <div>
+      Enter an email address:
+      <input id="email" type="text" size="32" onblur="validateEmail(this, document.getElementById('email_help'))" />
+      <span id="email_help" class="help"></span>
+    </div>
+    <div>
+      Enter a date:
+      <input id="date" type="text" size="32" onblur="validateDate(this, document.getElementById('date_help'))" />
+      <span id="date_help" class="help"></span>
+    </div>
+    <div>
+      Enter a ZIP code:
+      <input id="zipcode" type="text" size="16"
+        onblur="if (validateZipCode(this, document.getElementById('zipcode_help'))) getCityState(this.value);" />
+      <span id="zipcode_help" class="help"></span>
+    </div>
+  </body>
+</html>

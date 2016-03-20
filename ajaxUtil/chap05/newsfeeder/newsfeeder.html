@@ -1,0 +1,78 @@
+<html>
+  <head>
+    <title>News Feeder</title>
+
+    <link rel="stylesheet" type="text/css" href="newsfeeder.css" />
+    <script type="text/javascript" src="ajaxkit.js"> </script>
+    <script type="text/javascript" src="domkit.js"> </script>
+    <script type="text/javascript">
+      function handleFeedRequest() {
+        if (request.readyState == 4 && request.status == 200) {
+          // Store the XML response data
+          var xmlData = request.responseXML;
+
+          // Generate the feed content by starting with the feed title
+          var feedContent = "";
+          var channelElem = xmlData.getElementsByTagName("channel")[0];
+          feedContent += "<div class='feedtitle'><a href='" +
+            getText(channelElem.getElementsByTagName("link")[0]) +
+            "'>" + getText(channelElem.getElementsByTagName("title")[0]) +
+            "</a></div>";
+
+          // Now generate the list of feed items as an unordered list
+          feedContent += "<ul>";
+          var feedItems = channelElem.getElementsByTagName("item");
+          for (var i = 0; i < feedItems.length; i++) {
+            var itemTitle = getText(feedItems[i].getElementsByTagName("title")[0]);
+            var itemLink = getText(feedItems[i].getElementsByTagName("link")[0]);
+            var itemPubDate = getText(feedItems[i].getElementsByTagName("pubDate")[0]);
+            if (itemPubDate == "")
+              itemPubDate = getText(feedItems[i].getElementsByTagName("date")[0]);
+            if (itemPubDate == "")
+              feedContent += "<li><a href='" + itemLink + "'>" + itemTitle + "</a></li>";
+            else
+              feedContent += "<li><a href='" + itemLink + "'>" + itemTitle +
+                " <span class='itemdate'>(" + itemPubDate + ")</span></a></li>";
+          }
+          feedContent += "</ul>";
+
+          // Display the feed content
+          document.getElementById("feedcontent").innerHTML = feedContent;
+        }
+        ajaxUpdateState();
+      }
+
+      function loadFeed() {
+        // Clear the previous feed content
+        document.getElementById("feedcontent").innerHTML = "<img src='wait.gif' alt='Loading...' />";
+
+        // Send the Ajax request to load the new feed content
+        ajaxSendRequest("GET", "newsfeeder.php?rssurl=" +
+          encodeURIComponent(document.getElementById('feed').options[document.getElementById('feed').selectedIndex].value),
+          handleFeedRequest);
+      }
+
+      // Preload the wait image
+      var waitImage = new Image();
+      waitImage.src = "wait.gif";
+    </script>
+  </head>
+
+  <body onload="loadFeed()">
+    <div id="ajaxState" style="display:none"></div>
+    <br />
+    <div>Choose your news: 
+      <select id="feed" onchange="loadFeed()">
+        <option value="http://feeds.wired.com/wired/topheadlines">Wired News</option>
+        <option value="http://feeds.engadget.com/weblogsinc/engadget">Engadget</option>
+        <option value="http://feeds.ziffdavis.com/ziffdavis/extremetech">ExtremeTech</option>
+        <option value="http://feeds.feedburner.com/ajaxian">Ajaxian</option>
+        <option value="http://www.sciam.com/xml/sciam.xml">Scientific American</option>
+        <option value="http://news.google.com/?output=rss">Google News</option>
+        <option value="http://www.michaelmorrison.com/mambo/index2.php?option=com_rss&feed=RSS2.0&no_html=1">Michael Morrison's Blog</option>
+      </select>
+    </div>
+    <br />
+    <div id="feedcontent"></div>
+  </body>
+</html>

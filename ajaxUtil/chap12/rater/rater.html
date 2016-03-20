@@ -1,0 +1,106 @@
+<html>
+  <head>
+    <title>Rater</title>
+
+    <link rel="stylesheet" type="text/css" href="ratingkit.css" />
+
+    <script type="text/javascript" src="ajaxkit.js"> </script>
+    <script type="text/javascript" src="domkit.js"> </script>
+    <script type="text/javascript" src="ratingkit.js"> </script>
+  </head>
+
+
+  <body onload="initRatings()">
+    <div id="ajaxState" style="display:none"></div>
+    <br />
+    <div>A banker is a fellow who lends you his umbrella when the sun is shining,
+      but wants it back the minute it begins to rain.<br />
+      - Mark Twain</div>
+    <div>
+      <span class="rating-label-small">Rating:</span>
+      <span class="inline-rating">
+        <ul class="star-rating small-star">
+          <li id="twain-rating" class="current-rating" style="width:0%">Rating</li>
+          <li><a href="javascript:setRating('twain', 1);" class="one-star">1</a></li>
+          <li><a href="javascript:setRating('twain', 2);" class="two-stars">2</a></li>
+          <li><a href="javascript:setRating('twain', 3);" class="three-stars">3</a></li>
+          <li><a href="javascript:setRating('twain', 4);" class="four-stars">4</a></li>
+          <li><a href="javascript:setRating('twain', 5);" class="five-stars">5</a></li>
+        </ul>
+      </span>
+      <span id="twain-info" class="rating-info-small">(click to vote)</span>
+    </div>
+    <hr />
+    <div>Learn from yesterday, live for today, hope for tomorrow. The important
+      thing is not to stop questioning.<br />
+      - Albert Einstein</div>
+    <div>
+      <span class="rating-label-small">Rating:</span>
+      <span class="inline-rating">
+        <ul class="star-rating small-star">
+          <li id="einstein-rating" class="current-rating" style="width:0%">Rating</li>
+          <li><a href="javascript:setRating('einstein', 1);" class="one-star">1</a></li>
+          <li><a href="javascript:setRating('einstein', 2);" class="two-stars">2</a></li>
+          <li><a href="javascript:setRating('einstein', 3);" class="three-stars">3</a></li>
+          <li><a href="javascript:setRating('einstein', 4);" class="four-stars">4</a></li>
+          <li><a href="javascript:setRating('einstein', 5);" class="five-stars">5</a></li>
+        </ul>
+      </span>
+      <span id="einstein-info" class="rating-info-small">(click to vote)</span>
+    </div>
+    <hr />
+    <div>I'm so fast that last night I turned off the light switch in my hotel
+      room and was in bed before the room was dark.<br />
+      - Muhammad Ali</div>
+    <div>
+      <span class="rating-label">Rating:</span>
+      <span class="inline-rating">
+        <ul class="star-rating">
+          <li id="ali-rating" class="current-rating" style="width:0%">Rating</li>
+          <li><a href="javascript:setRating('ali', 1);" class="one-star">1</a></li>
+          <li><a href="javascript:setRating('ali', 2);" class="two-stars">2</a></li>
+          <li><a href="javascript:setRating('ali', 3);" class="three-stars">3</a></li>
+          <li><a href="javascript:setRating('ali', 4);" class="four-stars">4</a></li>
+          <li><a href="javascript:setRating('ali', 5);" class="five-stars">5</a></li>
+        </ul>
+      </span>
+      <span id="ali-info" class="rating-info">(click to vote)</span>
+    </div>
+    <hr />
+    <div>A long habit of not thinking a thing wrong gives it a superficial
+      appearance of being right.<br />
+      - Thomas Paine</div>
+    <div>
+      <span class="rating-label-small">Rating:</span>
+      <span class="inline-rating">
+        <ul class="star-rating small-star">
+          <li id="paine-rating" class="current-rating" style="width:0%">Rating</li>
+          <li><a href="javascript:setRating('paine', 1);" class="one-star">1</a></li>
+          <li><a href="javascript:setRating('paine', 2);" class="two-stars">2</a></li>
+          <li><a href="javascript:setRating('paine', 3);" class="three-stars">3</a></li>
+          <li><a href="javascript:setRating('paine', 4);" class="four-stars">4</a></li>
+          <li><a href="javascript:setRating('paine', 5);" class="five-stars">5</a></li>
+        </ul>
+      </span>
+      <span id="paine-info" class="rating-info-small">(click to vote)</span>
+    </div>
+    <hr />
+    <div>A government that robs Peter to pay Paul can always depend on the
+      support of Paul.<br />
+      - George Bernard Shaw</div>
+    <div>
+      <span class="rating-label-small">Rating:</span>
+      <span class="inline-rating">
+        <ul class="star-rating small-star">
+          <li id="shaw-rating" class="current-rating" style="width:0%">Rating</li>
+          <li><a href="javascript:setRating('shaw', 1);" class="one-star">1</a></li>
+          <li><a href="javascript:setRating('shaw', 2);" class="two-stars">2</a></li>
+          <li><a href="javascript:setRating('shaw', 3);" class="three-stars">3</a></li>
+          <li><a href="javascript:setRating('shaw', 4);" class="four-stars">4</a></li>
+          <li><a href="javascript:setRating('shaw', 5);" class="five-stars">5</a></li>
+        </ul>
+      </span>
+      <span id="shaw-info" class="rating-info-small">(click to vote)</span>
+    </div>
+  </body>
+</html>

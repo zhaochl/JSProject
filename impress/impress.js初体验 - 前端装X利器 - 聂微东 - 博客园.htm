@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="utf-8"/>
+<title>impress.js初体验 - 前端装X利器 - 聂微东 - 博客园</title>
+<link type="text/css" rel="stylesheet" href="/bundles/blog-common.css?v=PVlpEa7kxw-43T5n1eOmYdmL9Mox_qn3_NuHDlIaRpM1"/>
+<link id="MainCss" type="text/css" rel="stylesheet" href="/skins/Minyx2_Lite/bundle-Minyx2_Lite.css?v=box8Dmmj5G0VFMZyypCbLIqNJsuu5lz6TpJ4OOK0WkE1"/>
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/Darren_code/rss"/>
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/Darren_code/rsd.xml"/>
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/Darren_code/wlwmanifest.xml"/>
+<script src="http://common.cnblogs.com/script/jquery.js" type="text/javascript"></script>  
+<script type="text/javascript">var currentBlogApp = 'Darren_code', cb_enable_mathjax=false;</script>
+<script src="/bundles/blog-common.js?v=TDjb9m6FE9B_Rb2ek2gV9hQh81E1APElX3ezmoSrLHU1" type="text/javascript"></script>
+<script src="/skins/Minyx2_Lite/bundle-Minyx2_Lite.js?v=dAK2Rw4GyogXqBvhMZEW0IkYD2kjtuL3y_BKRj-vp4g1" language="javascript" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+<!--PageBeginHtml Block Begin-->
+<link href="http://files.cnblogs.com/Darren_code/cnblogs.css" rel="stylesheet" type="text/css" media="screen" />
+<!--PageBeginHtml Block End-->
+
+
+<div id="container">
+    <a class="minyx" href="http://www.cnblogs.com/">代码改变世界</a>
+    <ul id="topMnu">
+        <!-- 统计数据 -->
+        <li>
+            
+                
+Posts - 30, 
+Articles - 0, 
+Comments - 1487
+<!---->
+            
+        </li>
+        <!-- 这边可以增加一些链接 -->
+        <!-- 博客园 -->
+        <li><a href="http://www.cnblogs.com">Cnblogs</a></li>
+        <!-- 管理 -->
+        <li id="topMnu-dashboard">
+            <a id="lnkDashboard" href="http://www.cnblogs.com/Darren_code/admin/EditPosts.aspx">Dashboard</a></li>
+        <li>
+            <a id="lnkLogin" href="http://passport.cnblogs.com/logout.aspx?ReturnUrl=http://www.cnblogs.com/Darren_code/archive/2013/01/04/impressjs.html">Logout</a></li>
+    </ul>
+
+    <script type="text/javascript">
+        var m = window.__blog.topMenuRendered;
+        if (m) { m(__$("topMnu")); }
+    </script>
+
+    <div id="header">
+        <ul id="menu">
+            <!-- 首页，当前section加上current类 -->
+            <li id="menu-home" class="current">
+                <a id="lnkHome" href="http://www.cnblogs.com/Darren_code/">Home</a></li>
+            <!-- 联系 -->
+            <li id="menu-contact">
+                <a id="lnkContact" href="http://space.cnblogs.com/msg/send/%e8%81%82%e5%be%ae%e4%b8%9c">Contact</a></li>
+            <!-- 相册 -->
+            <li id="menu-gallary">
+                <a id="lnkGallery" href="http://www.cnblogs.com/Darren_code/gallery.html">Gallery</a></li>
+            <!-- Rss订阅 -->
+            <li id="rss">
+                <a id="lnkRss" href="http://www.cnblogs.com/Darren_code/rss">RSS</a></li>
+        </ul>
+        <div id="newmsg"></div>
+        <h1>
+            <!-- 主标题 -->
+            <a id="lnkBlogTitle" href="http://www.cnblogs.com/Darren_code/">Darren_聂微东 - 关注前端技术</a>
+            <!-- 子标题 -->
+            <small>
+                完成《前端攻略系列》仅仅是第一步...</small>
+        </h1>
+    </div>
+
+    <script type="text/javascript">
+        var m = window.__blog.headerRendered;
+        if (m) { m(__$("header")); }
+    </script>
+
+    <div id="wrapper">
+        <div id="content">
+            <script type="text/javascript">
+                var m = window.__blog.preRenderPosts;
+                if (m) { m(); }
+            </script>
+            
+
+<div class="post" id="post">
+    <a name="top"></a>
+    <h2><a id="cb_post_title_url" href="http://www.cnblogs.com/Darren_code/archive/2013/01/04/impressjs.html">impress.js初体验 - 前端装X利器</a></h2>
+    <small>2013-01-04 08:24 by 聂微东, <span id="post_view_count">...</span> 阅读, <span id="post_comment_count">...</span> 评论, <a href="#" onclick="AddToWz({0});return false;">收藏</a>,  <a href ="http://i.cnblogs.com/EditPosts.aspx?postid=2843190" rel="nofollow">编辑</a></small>
+    <div class="entry">
+        <div id="cnblogs_post_body"><p>　　博客一歇就是半年，略惭愧...元旦假期各种惬意：打打Dota(悲催的输多赢少)、滑滑雪；吃吃东西、逛逛街。转眼儿今天就得上班了，5点早早起床(最近坚持早睡早起)，忍不住分享下前段时间发现的前端工程师装X的利器，所以这新年第一篇博文诞生了:)</p>
+<p>　　你希望别人看到你的<span>演示文稿</span>会发出&ldquo;wow&rdquo;吗？你希望使用华丽的效果来震惊你的观众吗？ 那咱们往下看</p>
+<p>&nbsp;</p>
+<p><span style="color: #c0c0c0;"><em><span style="background-color: #ffffff;"><span style="color: #c0c0c0;"><em><span style="background-color: #ffffff;">------</span></em></span><span style="color: #c0c0c0;"><em><span style="background-color: #ffffff;">------</span></em></span><span style="color: #c0c0c0;"><em><span style="background-color: #ffffff;">------</span></em></span>正文分割线</span></em></span><span style="color: #c0c0c0;"><em><span style="background-color: #ffffff;"><span style="color: #c0c0c0;"><em><span style="background-color: #ffffff;">------</span></em></span><span style="color: #c0c0c0;"><em><span style="background-color: #ffffff;">------</span></em></span><span style="color: #c0c0c0;"><em><span style="background-color: #ffffff;">------</span></em></span></span></em></span></p>
+<p>&nbsp;</p>
+<h1>概述</h1>
+<p>　　如果你已经厌烦了使用PowerPoint制作PPT，那么impress.js是一个非常好的选择，用它做的PPT更加直观，效果也非常的不错。装X是需要一定代价的，不过如果你是个前端爱好者那么一切就没问题了。当然如果你能勉强明白HTML和CSS也没问题，看看这篇文章 + 一点点实践（把官网上的例子拿来改改）即可...</p>
+<p>　　impress.js 是国外一位开发者受 Prezi 启发，采用 CSS3 与 JavaScript 语言完成的一个可供开发者使用的表现层框架(<strong>演示工具</strong>)。现在普通开发者可以利用 impress.js 自己开发出类似效果的演示工具，但性能比基于 FLASH 的 Prezi 更优。其功能包括画布的无限旋转与缩放，任意角度放置任意大小的文字，CSS3 3D 效果支持等。同时，也支持传统 PowerPoint 形式的幻灯演示。</p>
+<p>　　目前 impress.js 是基于 webkit 浏览器（Chrome、Safari）开发，而在其它基于非 webkit 引擎，但支持 CSS3 3D 的浏览器也能正常运行。</p>
+<p>　　impreess源码已经发布在GitHub上，地址：<a href="https://github.com/bartaz/impress.js/" target="_blank">https://github.com/bartaz/impress.js</a></p>
+<p>　　官方demo地址：<a href="http://bartaz.github.com/impress.js">http://bartaz.github.com/impress.js</a></p>
+<p>　　因为在其项目网页中却没有找到说明文档&amp;使用文档，所以这篇文章将一步一步创建一个较初级的演示文稿，我们接着往下走。</p>
+<p><span style="background-color: #ffff99;">　　请准备好现代浏览器：Google Chrome(效果最佳)、Safari或FF.</span><br /><span style="background-color: #ffff99;">　　*我的IE10不支持，不知道为什么很多资料上写着IE10也能支持，背了个催</span>。</p>
+<p>&nbsp;</p>
+<h1>配置</h1>
+<ol>
+<li>html5页面结构先准备就绪</li>
+<li>创建一个id="impress"的wrapper(载体)，直接div就好，其他标签同样也可以</li>
+<li>在body标签结束前引入impress.js文件并且调用</li>
+<li>class="impress-not-supported"是当浏览器不支持时显示给用户的提示信息，降级处理你懂的，不多解释哈</li>
+
+
+
+
+
+
+
+
+
+
+
+</ol>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">&lt;!</span><span style="color: #ff00ff;">doctype html</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">html</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">head</span><span style="color: #0000ff;">&gt;</span>
+　　<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">title</span><span style="color: #0000ff;">&gt;</span>darren - Impress demo<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">title</span><span style="color: #0000ff;">&gt;</span>
+　　<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">meta </span><span style="color: #0000ff;">charset="utf-8" /</span><span style="color: #0000ff;">&gt;</span>
+　　<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">link </span><span style="color: #ff0000;">href</span><span style="color: #0000ff;">="http://bartaz.github.com/impress.js/css/impress-demo.css"</span><span style="color: #ff0000;"> rel</span><span style="color: #0000ff;">="stylesheet"</span> <span style="color: #0000ff;">/&gt;</span>
+<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">head</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">body</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">div </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="impress-not-supported"</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">div</span><span style="color: #0000ff;">&gt;</span>
+　　<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">div </span><span style="color: #ff0000;">id</span><span style="color: #0000ff;">="impress"</span><span style="color: #0000ff;">&gt;</span>
+　　<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">div</span><span style="color: #0000ff;">&gt;</span>
+　　<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">script </span><span style="color: #ff0000;">src</span><span style="color: #0000ff;">="http://bartaz.github.com/impress.js/js/impress.js"</span><span style="color: #0000ff;">&gt;&lt;/</span><span style="color: #800000;">script</span><span style="color: #0000ff;">&gt;</span>
+　　<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">script</span><span style="color: #0000ff;">&gt;</span>impress().init();<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">script</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">body</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">html</span><span style="color: #0000ff;">&gt;</span></pre>
+</div>
+<p>&nbsp;</p>
+<ul>
+<li>在wrapper内创建一个幻灯片只需要新建一个class="step"的&lt;div&gt;即可。&lt;div&gt;的id可有可无，当有id时url中的hash变化是随着id走；反之就是step-[num]，如<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMcAAAAfCAIAAADcCk7TAAAEz0lEQVR4nO1c25WjMAxVXRREPfRgaqAHaIEy9sSSz3ywH5bfD0wmTCYMOtnFWJJ1JV9jk+xZIEIiQkIibmohIkQygkiIhISIaByMln2NMxuylbljD9QmhOxmw3CnPwx3ojVmA/JgsZ8XkqF6+XhNpdTX15dSikgZIVJEihQRkSKlFDmt7lC62xqylbljD9ImitiNTBju9IfhTrLGbKA8WOznhWSo3HbweFgiG+7dqQF6QtggTUbOlhmyPxaVFKW+/KiU9355ahvAH/wkZcrPGiAiSolSIkopEVHyBSVKKaWns1ftKlGyGTtJNB9ticZNu2oXrbF27GhCI7elaSPqcGYIi85qPUCMGO0AJ6a2AVw1tdKsbQCNqYFM5CHlI+11ykZ51NqPh5QP050f8+H9KY/9SLsqMF+Y2gaQeF0ktVJ7A2hMDcwaQMs+Y8D8t230nNGqnN40vGWrqWvXEy8TiW5ADP15ZVhIHhAPh1ubbsWiH9L3Pyk1XrhXTK00a3ohtaQG4ziOYhyFuYpxHIXpEaMWwd3cKYQYxRj0CTGa7lGwv+BRhR5GeBFGL6KNJGy3F9jAiTrsyCJ2CW9PS20DuGpqpVnbABpTg+2W5wT+XumaU/57pXmV3KyqGJ4K48pys6pieCqMK8vNqorhqTCuLDerKobR/dQDdMP6ajy/UKYeoJ+e9y+U+MoFPMqqdegA+klfr1qUUH6OVevQcaSpzxXXFP8tsg4dWNmZ+YOsemteB+S7TGgeqyFQO6umnsdah+4ZUr0y63Roh2j3kXKMVevQfcYD6iNZZWfOPbN82S/+iazKRKpgOcQqf6y43U/uEdkNa/DEdJmyl/809cqgtZNWWtC+cWbLiFXBkxriFZYbZ+ozWEK1n52xygZKS7EB1EqRDpQFH09kjPlo1vWJ2JUXsioYKmaVvbNAGeXUe4i5GBFjIq2fXhAzfPJWVOmqLRqHSQ2ZSgXZ6btyoLQUW6UUMbkr+19pRfuY27PemYgdeeUOGGIuZhkVL8O/ALt/WEi0yVbgdoGKakvqWzZuOChG2YUeOVaFpdgAWooW7H95Upk4RczNWe9NRE00/+pbcTuroqDpDphVhbkUjqjZ58ZW3Br6qapKEdWMja5cpsxc1VkVlmIDqJfCbWaRRNtYmk+MuT3r+kQUzwprdDgpSTuruvKiPJVV+eWzs7Iy9a0tQ1vGXL3OZpW1LH6pkMWfwXwg6/pE5ITjNW2S7axKX1ieZFV5688dNUqJ1mtQR1RxylTtR1hV2/9qL3/JUa0x6/pEFOybX/8PPKvKzD7IqmhSwrswTHyIXIcuOF3kVaW9NGO8Dn2w1N2bXGmuUlbFb2pPsMpxyT6zSuUsYT6S9d5EJNK2LK0cOFele/izO+BUeJ/NYq98p1v7utecVrJfUCTvFjnbJlbFgZ7eAYuSs8thPp51eSJiyR/Ryuh/+Nflg5y/hHzv1+Xk24LXyLkTcbPqdPkOq077hexm1YfLr/yXMDerPlxuVlUMTwJwffmVrDpXbladLjerKobLMi/zsizzsszzPC+LbpsL95hO38JqWKX/Mu15NjfRiGZYE1QrZt2eF+c1B36zD9T0+hBmTiHEfFpqG8BVUyvN2gbQmBr8u+Upeft/pPGWT2Nx/gOWeqFbBwA7NAAAAABJRU5ErkJggg==" alt="" /></li>
+</ul>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">&lt;</span><span style="color: #800000;">div </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="step"</span><span style="color: #0000ff;">&gt;</span><span style="color: #000000;">
+    first slide
+</span><span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">div</span><span style="color: #0000ff;">&gt;</span></pre>
+</div>
+<p>&nbsp;</p>
+<ul>
+<li>&nbsp;<span style="font-size: 16px;"><strong>数据属性</strong></span>：用来描述幻灯片大小，切换等效果。</li>
+</ul>
+<p>　　data-x = 幻灯片的x坐标</p>
+<p>　　data-y = 幻灯片的y坐标</p>
+<p>　　data-scale = 通过指定一个值来进行缩放，data-scale为5则将会在你幻灯片原始尺寸基础放大5倍</p>
+<p>　　data-rotate = 通过一个数字度数来确定旋转你的幻灯片</p>
+<p>　　data-rotate-x = 为3D用，这个数字度数是它应该相对x轴旋转多少度。（前倾/后仰）</p>
+<p>　　data-rotate-y = 为3D用，这个数字度数是它应该相对y轴旋转多少度。 （左摆/右摆）</p>
+<p>　　data-rotate-z = 为3D用，这个数字度数是它应该相对z轴旋转多少度。</p>
+<p>&nbsp;</p>
+<h1>创建</h1>
+<p>　　数据属性那段是你接下来需要重点打交道的，接下来开始step by step创建一个演示文稿。</p>
+<p>　　从一个初始的幻灯片开始，这个幻灯片已将它data-x和data-y数据属性设置为0，所以会出现在页面的中间。</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">&lt;</span><span style="color: #800000;">div </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="step"</span><span style="color: #ff0000;"> data-x</span><span style="color: #0000ff;">="0"</span><span style="color: #ff0000;"> data-y</span><span style="color: #0000ff;">="0"</span><span style="color: #0000ff;">&gt;</span><span style="color: #000000;">
+    This is slide 1 - 【标题】
+</span><span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">div</span><span style="color: #0000ff;">&gt;</span></pre>
+</div>
+<p>　　第二个幻灯片的data-x值为500、data-y值为0，活动的时候它将会向左平移(滑动)500px的地方。</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">&lt;</span><span style="color: #800000;">div </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="step"</span><span style="color: #ff0000;"> data-x</span><span style="color: #0000ff;">="500"</span><span style="color: #ff0000;"> data-y</span><span style="color: #0000ff;">="-400"</span><span style="color: #0000ff;">&gt;</span><span style="color: #000000;">
+    This is slide 2
+</span><span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">div</span><span style="color: #0000ff;">&gt;</span></pre>
+</div>
+<p>　　第三张幻灯片其data-x值不变，data-y位置为-400，这将会是从顶部400px处滑入屏幕。　　</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">&lt;</span><span style="color: #800000;">div </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="step"</span><span style="color: #ff0000;"> data-x</span><span style="color: #0000ff;">="500"</span><span style="color: #ff0000;"> data-y</span><span style="color: #0000ff;">="-400"</span><span style="color: #0000ff;">&gt;</span><span style="color: #000000;">
+    This is slide 3
+</span><span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">div</span><span style="color: #0000ff;">&gt;</span></pre>
+</div>
+<p>　　第四张幻灯片来个新花样，使用data-scale的值控制其缩放大小。data-scale="0.5"表示着它应该是一半的尺寸，当它变成活动的演示时将通过必需的倍数调节所有幻灯片的缩放尺寸，从这一步绚丽开始起步</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">&lt;</span><span style="color: #800000;">div </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="step"</span><span style="color: #ff0000;"> data-x</span><span style="color: #0000ff;">="500"</span><span style="color: #ff0000;"> data-y</span><span style="color: #0000ff;">="-800"</span><span style="color: #ff0000;"> data-scale</span><span style="color: #0000ff;">="0.5"</span><span style="color: #0000ff;">&gt;</span><span style="color: #000000;">
+    This is slide 4
+</span><span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">div</span><span style="color: #0000ff;">&gt;</span></pre>
+</div>
+<p>　　第五张幻灯片旋转属性允许你旋转一个幻灯片到当前视图，幻灯片5被设置旋转90度，视觉效果微叼哈</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">&lt;</span><span style="color: #800000;">div </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="step"</span><span style="color: #ff0000;"> data-x</span><span style="color: #0000ff;">="0"</span><span style="color: #ff0000;"> data-y</span><span style="color: #0000ff;">="-800"</span><span style="color: #ff0000;"> data-rotate</span><span style="color: #0000ff;">="90"</span><span style="color: #0000ff;">&gt;</span><span style="color: #000000;">
+    This is slide 5
+</span><span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">div</span><span style="color: #0000ff;">&gt;</span></pre>
+</div>
+<p>　　第六张幻灯片开始3D style，可为每个维度的轴指定旋转属性(x,y,z)。x轴是横轴，意思是你可使事物倾斜(正值)或向后(负值)，y轴是竖轴，所以你可使事物向左摇摆(负值)或向右(正值)，z轴是纵轴，这将是旋转的东西向上（负值）和向下（正值）。</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">&lt;</span><span style="color: #800000;">div </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="step"</span><span style="color: #ff0000;"> data-x</span><span style="color: #0000ff;">="-1200"</span><span style="color: #ff0000;"> data-y</span><span style="color: #0000ff;">="0"</span><span style="color: #ff0000;"> 
+    data-rotate-x</span><span style="color: #0000ff;">="30"</span><span style="color: #ff0000;"> data-rotate-y</span><span style="color: #0000ff;">="-30"</span><span style="color: #ff0000;"> data-rotate-z</span><span style="color: #0000ff;">="90"</span><span style="color: #ff0000;"> data-scale</span><span style="color: #0000ff;">="4"</span><span style="color: #0000ff;">&gt;</span><span style="color: #000000;">
+　　This is slide 6
+</span><span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">div</span><span style="color: #0000ff;">&gt;</span></pre>
+</div>
+<p>　　</p>
+<p>　　以上6张幻灯片把数据属性内的值都过了一遍，一张略high的演示文稿就呈现在我们眼前。你可以以你的想象力用不可思议的和令人惊奇的方式合并这些效果来创建你自己的幻灯片展示风格。</p>
+<p>&nbsp;</p>
+<ul>
+<li><span style="font-size: 18pt; background-color: #ccffcc;"><strong>全局预览</strong></span></li>
+</ul>
+<p>　　个人超赞这个视觉体验，把所有的幻灯片都平行的展示，排列的合理会非常帅气，使用方式就是在幻灯片6后面插入一段html.</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">&lt;</span><span style="color: #800000;">div </span><span style="color: #ff0000;">id</span><span style="color: #0000ff;">="overview"</span><span style="color: #ff0000;"> class</span><span style="color: #0000ff;">="step"</span><span style="color: #ff0000;"> data-x</span><span style="color: #0000ff;">="-200"</span><span style="color: #ff0000;"> data-y</span><span style="color: #0000ff;">="-500"</span><span style="color: #ff0000;"> data-scale</span><span style="color: #0000ff;">="3"</span><span style="color: #0000ff;">&gt;&lt;/</span><span style="color: #800000;">div</span><span style="color: #0000ff;">&gt;</span></pre>
+</div>
+<p>　　随着你幻灯片位置的不同所以全局预览的值也会不一样，拿着结尾处的demo一点一点调整找感觉，希望你会喜欢！</p>
+<p>　　完成后请记住它，用它做的不只局限于此，<span style="font-size: 18px;"><strong>唯一的限制是你的创造力</strong>！</span></p>
+<p>&nbsp;</p>
+<h1>个人体会</h1>
+<p>　　正因为我们是前端，所以用前端技术做做各种尝试没什么不好，impress更可以让我们的<span>演示文稿</span>更有新意，所以简单了解下绝对是值得的，<strong><span style="font-size: 18px;">学习是最好的投资</span></strong>。</p>
+<p>　　优点：</p>
+<ol>
+<li>个人非常喜欢overview的功能</li>
+<li>因为HTML+CSS都需要自己完成，位置和效果都得自己经手，视觉效果都由自己掌控</li>
+<li>在我用过的同类产品中视觉效果最绚，CSS3+3D效果，直接给观众看晕:)</li>
+</ol>
+<p>　　缺点：</p>
+<ol>
+<li>impress在视觉表现上确实非常强大，比起同样做<span>演示文稿的</span> html5slides 和 deck.js， impress.js的复杂度上高了不少，而且如果想把演示文稿排版的好看可能需要花掉大量的时间.<br />*如果闲impress麻烦的朋友可以去看看 html5slides 和 deck.js的资料，视觉效果会稍差一些，不过上手会简单不少。</li>
+<li>不要把3D和旋转用得太花哨、太绚，看的人会晕，恰当就好哈</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ol>
+<p>　　</p>
+<p>　　<span style="background-color: #ffff99;">以下是demo代码，初学者自己动手多改改感觉就好了</span>。</p>
+<div class="cnblogs_code" onclick="cnblogs_code_show('7eae9e96-7379-44cf-acb0-74bffdcffb77')"><img id="code_img_closed_7eae9e96-7379-44cf-acb0-74bffdcffb77" class="code_img_closed" src="http://images.cnblogs.com/OutliningIndicators/ContractedBlock.gif" alt="" /><img id="code_img_opened_7eae9e96-7379-44cf-acb0-74bffdcffb77" class="code_img_opened" style="display: none;" onclick="cnblogs_code_hide('7eae9e96-7379-44cf-acb0-74bffdcffb77',event)" src="http://images.cnblogs.com/OutliningIndicators/ExpandedBlockStart.gif" alt="" /><span class="cnblogs_code_collapse">View Code </span>
+<div id="cnblogs_code_open_7eae9e96-7379-44cf-acb0-74bffdcffb77" class="cnblogs_code_hide">
+<pre><span style="color: #0000ff;">&lt;!</span><span style="color: #ff00ff;">doctype html</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">html</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">head</span><span style="color: #0000ff;">&gt;</span>
+        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">title</span><span style="color: #0000ff;">&gt;</span>darren - Impress demo<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">title</span><span style="color: #0000ff;">&gt;</span>
+        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">meta </span><span style="color: #ff0000;">charset</span><span style="color: #0000ff;">="utf-8"</span> <span style="color: #0000ff;">/&gt;</span>
+        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">link </span><span style="color: #ff0000;">href</span><span style="color: #0000ff;">="http://bartaz.github.com/impress.js/css/impress-demo.css"</span><span style="color: #ff0000;"> rel</span><span style="color: #0000ff;">="stylesheet"</span> <span style="color: #0000ff;">/&gt;</span>
+    <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">head</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">body</span><span style="color: #0000ff;">&gt;</span>
+        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">div </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="impress-not-supported"</span><span style="color: #0000ff;">&gt;</span>
+            <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">div </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="fallback-message"</span><span style="color: #0000ff;">&gt;</span>
+                <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">p</span><span style="color: #0000ff;">&gt;</span>你的浏览器<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">b</span><span style="color: #0000ff;">&gt;</span>不支持<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">b</span><span style="color: #0000ff;">&gt;</span> impress.js, 所以当前展示的是简化版。<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">p</span><span style="color: #0000ff;">&gt;</span>
+                <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">p</span><span style="color: #0000ff;">&gt;</span>为了获得更好的体验，请使用最新的 <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">b</span><span style="color: #0000ff;">&gt;</span>Chrome<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">b</span><span style="color: #0000ff;">&gt;</span>, <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">b</span><span style="color: #0000ff;">&gt;</span>Safari<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">b</span><span style="color: #0000ff;">&gt;</span> 或者 <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">b</span><span style="color: #0000ff;">&gt;</span>Firefox<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">b</span><span style="color: #0000ff;">&gt;</span> 浏览器。<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">p</span><span style="color: #0000ff;">&gt;</span>
+            <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">div</span><span style="color: #0000ff;">&gt;</span>
+        <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">div</span><span style="color: #0000ff;">&gt;</span>
+        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">div </span><span style="color: #ff0000;">id</span><span style="color: #0000ff;">="impress"</span><span style="color: #0000ff;">&gt;</span>
+            <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">div </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="step"</span><span style="color: #ff0000;"> data-x</span><span style="color: #0000ff;">="0"</span><span style="color: #ff0000;"> data-y</span><span style="color: #0000ff;">="0"</span><span style="color: #0000ff;">&gt;</span><span style="color: #000000;">
+                Darren code - [标题]
+            </span><span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">div</span><span style="color: #0000ff;">&gt;</span>
+            <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">div </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="step"</span><span style="color: #ff0000;"> data-x</span><span style="color: #0000ff;">="500"</span><span style="color: #ff0000;"> data-y</span><span style="color: #0000ff;">="0"</span><span style="color: #0000ff;">&gt;</span><span style="color: #000000;">
+                This is slide 2
+            </span><span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">div</span><span style="color: #0000ff;">&gt;</span>
+            <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">div </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="step"</span><span style="color: #ff0000;"> data-x</span><span style="color: #0000ff;">="500"</span><span style="color: #ff0000;"> data-y</span><span style="color: #0000ff;">="-400"</span><span style="color: #0000ff;">&gt;</span><span style="color: #000000;">
+                This is slide 3
+            </span><span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">div</span><span style="color: #0000ff;">&gt;</span>
+            <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">div </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="step"</span><span style="color: #ff0000;"> data-x</span><span style="color: #0000ff;">="500"</span><span style="color: #ff0000;"> data-y</span><span style="color: #0000ff;">="-800"</span><span style="color: #ff0000;"> data-scale</span><span style="color: #0000ff;">="0.5"</span><span style="color: #0000ff;">&gt;</span><span style="color: #000000;">
+                This is slide 4
+            </span><span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">div</span><span style="color: #0000ff;">&gt;</span>
+            <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">div </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="step"</span><span style="color: #ff0000;"> data-x</span><span style="color: #0000ff;">="0"</span><span style="color: #ff0000;"> data-y</span><span style="color: #0000ff;">="-800"</span><span style="color: #ff0000;"> data-rotate</span><span style="color: #0000ff;">="90"</span><span style="color: #0000ff;">&gt;</span><span style="color: #000000;">
+                This is slide 5
+            </span><span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">div</span><span style="color: #0000ff;">&gt;</span>
+            <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">div </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="step"</span><span style="color: #ff0000;"> data-x</span><span style="color: #0000ff;">="-1200"</span><span style="color: #ff0000;"> data-y</span><span style="color: #0000ff;">="0"</span><span style="color: #ff0000;"> data-rotate-x</span><span style="color: #0000ff;">="30"</span><span style="color: #ff0000;"> data-rotate-y</span><span style="color: #0000ff;">="-30"</span><span style="color: #ff0000;"> data-rotate-z</span><span style="color: #0000ff;">="90"</span><span style="color: #ff0000;"> data-scale</span><span style="color: #0000ff;">="4"</span><span style="color: #0000ff;">&gt;</span><span style="color: #000000;">
+                This is slide 6
+            </span><span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">div</span><span style="color: #0000ff;">&gt;</span>
+            <span style="color: #008000;">&lt;!--</span><span style="color: #008000;"> darren code </span><span style="color: #008000;">--&gt;</span>
+            <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">div </span><span style="color: #ff0000;">id</span><span style="color: #0000ff;">="overview"</span><span style="color: #ff0000;"> class</span><span style="color: #0000ff;">="step"</span><span style="color: #ff0000;"> data-x</span><span style="color: #0000ff;">="-200"</span><span style="color: #ff0000;"> data-y</span><span style="color: #0000ff;">="-500"</span><span style="color: #ff0000;"> data-scale</span><span style="color: #0000ff;">="3"</span><span style="color: #0000ff;">&gt;&lt;/</span><span style="color: #800000;">div</span><span style="color: #0000ff;">&gt;</span>
+        <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">div</span><span style="color: #0000ff;">&gt;</span>
+        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">script </span><span style="color: #ff0000;">src</span><span style="color: #0000ff;">="http://bartaz.github.com/impress.js/js/impress.js"</span><span style="color: #0000ff;">&gt;&lt;/</span><span style="color: #800000;">script</span><span style="color: #0000ff;">&gt;</span>
+        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">script</span><span style="color: #0000ff;">&gt;</span>impress().init();<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">script</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">body</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">html</span><span style="color: #0000ff;">&gt;</span></pre>
+</div>
+</div>
+<p>&nbsp;</p>
+<p>　　突然想起一句话作为文章总结吧：&ldquo;<span style="font-size: 18px;"><strong>当你有把锤子的时候,你看什么都像钉子</strong></span>&rdquo;。</p>
+<p>　　<strong>如果觉得这文章也算用心，请劳驾点右下角的推荐。</strong></p>
+<p>　　今天是2013.1.4，一个很amazing的日子，不知道今天会有多少人会去登记哈，表示 羡慕ing&amp;祝福ing...我也加把劲，hoho</p>
+<p>　　祝大家2013年快乐、顺利.</p></div><div id="MySignature"></div>
+        <div class="clear"></div>
+        <div id="blog_post_info_block">
+        <div id="blog_post_info">
+        </div>
+        <div class="clear"></div>
+        <div id="post_next_prev"></div>
+    </div>
+</div>
+    <ul class="postmetadata">
+        <li class="icon_cat" id="BlogPostCategory"></li>
+        <li class="icon_bullet" id="EntryTag"></li>
+    </ul>
+</div>
+<script type="text/javascript">var allowComments=true,isLogined=true,cb_blogId=79919,cb_entryId=2843190,cb_blogApp=currentBlogApp,cb_blogUserGuid='f01032b1-febf-df11-ac81-842b2b196315',cb_entryCreatedDate='2013/1/4 8:24:00';loadViewCount(cb_entryId);</script>
+<script type="text/javascript">
+    var m = window.__blog.postRendered;
+    if (m) { m(__$("post")); }
+</script>
+<script type="text/javascript">
+    var m = window.__blog.postRenderPosts;
+    if (m) { m(); }
+</script>
+<a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" id="lnk_RefreshComments" onclick="return RefreshCommentList();">刷新评论</a><a href="#" onclick="return RefreshPage();">刷新页面</a><a href="#top">返回顶部</a></div>
+<div id="comment_form_container"></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="site_nav_under"><a href="http://www.cnblogs.com/" target="_blank" title="开发者的网上家园">博客园首页</a><a href="http://q.cnblogs.com/" target="_blank" title="程序员问答社区">博问</a><a href="http://news.cnblogs.com/" target="_blank" title="IT新闻">新闻</a><a href="http://home.cnblogs.com/ing/" target="_blank">闪存</a><a href="http://job.cnblogs.com/" target="_blank">程序员招聘</a><a href="http://kb.cnblogs.com/" target="_blank">知识库</a></div>
+<div id="opt_under_post"></div>
+<script type="text/javascript">
+    var enableGoogleAd = canShowAdsense(); var googletag = googletag || {}; googletag.cmd = googletag.cmd || [];
+    fixPostBodyFormat();
+</script>
+<div id="ad_under_post_holder">
+<script type='text/javascript'>
+    var googletag = googletag || {};
+    googletag.cmd = googletag.cmd || [];
+    (function () {
+        if (enableGoogleAd) {
+            var gads = document.createElement('script');
+            gads.async = true;
+            gads.type = 'text/javascript';
+            var useSSL = 'https:' == document.location.protocol;
+            gads.src = (useSSL ? 'https:' : 'http:') + '//www.googletagservices.com/tag/js/gpt.js';
+            var node = document.getElementsByTagName('script')[0];
+            node.parentNode.insertBefore(gads, node);
+        }
+    })();
+</script>
+<script type='text/javascript'>
+    try {
+        if (enableGoogleAd) {
+            googletag.cmd.push(function () {
+                googletag.defineSlot('/1090369/cnblogs_blogpost_C1_sitehome', [300, 250], 'div-gpt-ad-1346480159711-0').addService(googletag.pubads());
+                googletag.pubads().enableSingleRequest();
+                googletag.enableServices();
+            });
+        };
+    } catch (e) { }
+</script>
+<div id="google_ad_c1" class="c_ad_block">
+    <div id='div-gpt-ad-1346480159711-0' style='width:300px; height:250px;'>
+    <script type='text/javascript'>
+        try {
+            if (enableGoogleAd) {
+                googletag.cmd.push(function () { googletag.display('div-gpt-ad-1346480159711-0'); });            
+            } else {
+                $('#div-gpt-ad-1346480159711-0').hide();
+            }
+    } catch (e) { }
+    </script>
+    </div>
+</div>
+</div>
+<div id="blog_news_kb"></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+$(function () {
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 200);
+});
+</script>
+</div>
+
+        </div>
+
+        <script type="text/javascript">
+            var m = window.__blog.contentRendered;
+            if (m) { m(__$("content")); }
+        </script>
+
+        <div id="sidebar">
+            
+<div id="about">
+<div>
+<h2 id="about_title">About</h2>
+<div id="about_body">
+<div id="blog-news"></div>
+<script type="text/javascript">loadBlogNews();</script>
+</div>
+</div>
+</div>
+
+            <script type="text/javascript">
+                var m = window.__blog.aboutRendered;
+                if (m) { m(__$("about")); }
+            </script>
+            
+<div id="mySearchWrapper">
+    <div id="mySearch">
+        <input type="image" src="/skins/Minyx2_Lite/images/btnsearch.gif" id="btnZzk"  class="submit" onclick="zzk_go();return false;"/>
+        <label class="lb_search"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="keyword" /></label>
+    </div>
+</div>
+
+            <script type="text/javascript">
+                var m = window.__blog.searchFormRendered;
+                if (m) { m(__$("searchform")); }
+            </script>
+            <div id="sideMain">
+            </div>
+            <div id="sideRight">
+            </div>
+            <div id="sideLeft">
+            </div>
+            
+                <div id="sideContainer">
+                </div>
+                <script type="text/javascript">
+                    $.ajax({
+                        url: '/' + currentBlogApp + '/mvc/blog/Minyx2_Lite_SideColumn.aspx',
+                        data: '{}',
+                        type: 'post',
+                        dataType: 'text',
+                        contentType: 'application/json; charset=utf-8',
+                        success: function (data) {
+                            if (data) {
+                                $("#sideContainer").html(data);
+                                loadBlogDefaultCalendar();
+                                loadBlogSideBlocks();
+                                var m = window.__blog.sideContainerRendered;
+                                if (m) { m(__$("sideContainer")); }
+                                window.__blog.sidebar.__layout();
+                            }
+                        }
+                    });
+
+                </script>
+            
+        </div>
+
+        <script type="text/javascript">
+            var m = window.__blog.sidebarRendered;
+            if (m) { m(__$("sidebar")); }
+        </script>
+
+        <div id="footer">
+            
+<p id="logoFoot">
+    <a href="http://www.spiga.com.mx/" title="Agencia Interactiva Spiga">www.spiga.com.mx</a>
+</p>
+<div class="footText">
+<p>
+Copyright &copy;2014 聂微东
+</p>
+<p>
+<a href="http://www.cnblogs.com">博客园</a>
+</p>
+</div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        var m = window.__blog.wrapperRendered;
+        if (m) { m(__$("wrapper")); }
+    </script>
+
+</div>
+<script type="text/javascript">
+    var m = window.__blog.containerRendered;
+    if (m) { m(__$("container")); }
+</script>
+<!--PageEndHtml Block Begin-->
+<script type="text/javascript" src="http://files.cnblogs.com/Darren_code/DarrenBlogs.js"></script>
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F196bcef6c26648057004232a5cb002be' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cdiv id='cnzz_stat_icon_1000042812'%3E%3C/div%3E%3Cscript src='" + cnzz_protocol + "s22.cnzz.com/z_stat.php%3Fid%3D1000042812%26show%3Dpic2' type='text/javascript'%3E%3C/script%3E"));</script>
+
+<!--<script type="text/javascript" src='http://files.cnblogs.com/123.asp/joke.js'></script>-->
+<!--PageEndHtml Block End-->
+</body>
+</html>

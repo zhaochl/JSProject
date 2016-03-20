@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+
+<script type="text/javascript" src="js/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="js/lib.js"></script>
+
+</head>
+<body>
+<h2>这是一个js空文件</h2>
+<h2>测试on-trigger链(类似于url路由框架)</h2>
+<p>on表示添加触发器，trigger表示手工触发该触发器</p>
+<p>xx.click(function){}表示静态绑定函数(html静态输出后绑定)</p>
+<p>xx.bind表示动态绑定事件，表示xx动态输出后绑定</p>
+<p>on函数支持以上两种模式</p>
+
+<script type="text/javascript"><!--
+$(function(){
+	
+	$('#btn').click(function(){
+		var i = $(this);
+		AddTag( i.val() );
+		//AddTag(this.value+"button")
+	});
+});
+function AddTag(content){
+	alert(content);
+	var t = $("<span></span>")
+	.text(content )
+	.addClass("oak-tag-added");
+	var c = $("<i></i>")
+			.addClass("oak-tag-close")
+			.addClass("icon-remove")
+			.bind("click",function(){
+				//$(this).parent(".oak-tag-added").remove();
+				//$(".oak-tag-holder").trigger("tagclose",[$(this).parent(".oak-tag-added").text()]);
+			})
+			.appendTo(t);
+	//alert(t);
+	$(".oak-tag-holder").append(t);
+	
+	$(".oak-tag-holder").trigger("tagadd");
+}
+//异步添加标签触发器
+$(".oak-tag-holder").on("tagadd",function(){
+	alert('tagadd on happend');
+/*
+	var url = "{:U('FaSystem/editCustomer')}";
+	var j = {};
+	$(".oak-tag-added").each(function(i){
+		var tname = 'tag'+i;
+		j[tname] = $(this).text();
+	});
+	
+	$.post(url,{
+		customer_id : $("#customer_id").val(),
+		phone : $("#phone").val(),
+		email : $("#email").val(),
+		city : $("#city").val(),
+		qq : $("#qq").val(),
+		weixin : $("#weixin").val(),
+		description: $("#description").val(),
+		tag_json : JSON.stringify(j)
+	},function(){});
+*/
+});
+--></script>
+<input type="button" value="click" id="btn"/>
+<div id="wrap" class="oak-tag-holder">
+	
+</div>
+
+
+</body>
+</html>

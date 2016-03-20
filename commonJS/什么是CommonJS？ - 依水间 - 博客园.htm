@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="utf-8"/>
+<title>什么是CommonJS？ - 依水间 - 博客园</title>
+<link type="text/css" rel="stylesheet" href="/bundles/blog-common.css?v=PVlpEa7kxw-43T5n1eOmYdmL9Mox_qn3_NuHDlIaRpM1"/>
+<link id="MainCss" type="text/css" rel="stylesheet" href="/skins/Minyx2_Lite/bundle-Minyx2_Lite.css?v=box8Dmmj5G0VFMZyypCbLIqNJsuu5lz6TpJ4OOK0WkE1"/>
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/fullhouse/rss"/>
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/fullhouse/rsd.xml"/>
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/fullhouse/wlwmanifest.xml"/>
+<script src="http://common.cnblogs.com/script/jquery.js" type="text/javascript"></script>  
+<script type="text/javascript">var currentBlogApp = 'fullhouse', cb_enable_mathjax=false;</script>
+<script src="/bundles/blog-common.js?v=TDjb9m6FE9B_Rb2ek2gV9hQh81E1APElX3ezmoSrLHU1" type="text/javascript"></script>
+<script src="/skins/Minyx2_Lite/bundle-Minyx2_Lite.js?v=dAK2Rw4GyogXqBvhMZEW0IkYD2kjtuL3y_BKRj-vp4g1" language="javascript" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+
+<div id="container">
+    <a class="minyx" href="http://www.cnblogs.com/">代码改变世界</a>
+    <ul id="topMnu">
+        <!-- 统计数据 -->
+        <li>
+            
+                
+Posts - 135, 
+Articles - 0, 
+Comments - 21
+<!---->
+            
+        </li>
+        <!-- 这边可以增加一些链接 -->
+        <!-- 博客园 -->
+        <li><a href="http://www.cnblogs.com">Cnblogs</a></li>
+        <!-- 管理 -->
+        <li id="topMnu-dashboard">
+            <a id="lnkDashboard" href="http://www.cnblogs.com/fullhouse/admin/EditPosts.aspx">Dashboard</a></li>
+        <li>
+            <a id="lnkLogin" href="http://passport.cnblogs.com/logout.aspx?ReturnUrl=http://www.cnblogs.com/fullhouse/archive/2011/07/15/2107416.html">Logout</a></li>
+    </ul>
+
+    <script type="text/javascript">
+        var m = window.__blog.topMenuRendered;
+        if (m) { m(__$("topMnu")); }
+    </script>
+
+    <div id="header">
+        <ul id="menu">
+            <!-- 首页，当前section加上current类 -->
+            <li id="menu-home" class="current">
+                <a id="lnkHome" href="http://www.cnblogs.com/fullhouse/">Home</a></li>
+            <!-- 联系 -->
+            <li id="menu-contact">
+                <a id="lnkContact" href="http://space.cnblogs.com/msg/send/%e4%be%9d%e6%b0%b4%e9%97%b4">Contact</a></li>
+            <!-- 相册 -->
+            <li id="menu-gallary">
+                <a id="lnkGallery" href="http://www.cnblogs.com/fullhouse/gallery.html">Gallery</a></li>
+            <!-- Rss订阅 -->
+            <li id="rss">
+                <a id="lnkRss" href="http://www.cnblogs.com/fullhouse/rss">RSS</a></li>
+        </ul>
+        <div id="newmsg"></div>
+        <h1>
+            <!-- 主标题 -->
+            <a id="lnkBlogTitle" href="http://www.cnblogs.com/fullhouse/">依水间</a>
+            <!-- 子标题 -->
+            <small>
+                </small>
+        </h1>
+    </div>
+
+    <script type="text/javascript">
+        var m = window.__blog.headerRendered;
+        if (m) { m(__$("header")); }
+    </script>
+
+    <div id="wrapper">
+        <div id="content">
+            <script type="text/javascript">
+                var m = window.__blog.preRenderPosts;
+                if (m) { m(); }
+            </script>
+            
+
+<div class="post" id="post">
+    <a name="top"></a>
+    <h2><a id="cb_post_title_url" href="http://www.cnblogs.com/fullhouse/archive/2011/07/15/2107416.html">什么是CommonJS？</a></h2>
+    <small>2011-07-15 14:45 by 依水间, <span id="post_view_count">...</span> 阅读, <span id="post_comment_count">...</span> 评论, <a href="#" onclick="AddToWz({0});return false;">收藏</a>,  <a href ="http://i.cnblogs.com/EditPosts.aspx?postid=2107416" rel="nofollow">编辑</a></small>
+    <div class="entry">
+        <div id="cnblogs_post_body"><p style="margin: 0px 0px 1.38462em; padding: 0px; border-width: 0px; font-weight: inherit; font-style: inherit; font-size: 1em; font-family: inherit; vertical-align: baseline; line-height: 1.8em; word-spacing: 2px;">今天看到一个关于commonJs和nodeJs的简介~</p>
+<p style="margin: 0px 0px 1.38462em; padding: 0px; border-width: 0px; font-weight: inherit; font-style: inherit; font-size: 1em; font-family: inherit; vertical-align: baseline; line-height: 1.8em; word-spacing: 2px;">前言：<br />早就听说有用于本地编程的JavaScript框架，但总觉得是小打小闹不成气候，也没有什么实用价值。但自从CommonJS和NodeJS两个项目的出现，JavaScript作为本地编程语言的这种特殊应用形式，才开始进入进入大众的视野。 本文翻译CommonJS首页的介绍，说明什么是CommonJS。 另外随着并行计算的普及，像JavaScript这种函数式语言，由于其固有的易于进行并行计算的特性，将有更广阔的应用前景。</p>
+<p style="margin: 0px 0px 1.38462em; padding: 0px; border-width: 0px; font-weight: inherit; font-style: inherit; font-size: 1em; font-family: inherit; vertical-align: baseline; line-height: 1.8em; word-spacing: 2px;">正文：<br />JavaScript是一个强大面向对象语言，它有很多快速高效的解释器。官方JavaScript标准定义的API是为了构建基于浏览器的应用程序。然而，并没有定于一个用于更广泛的应用程序的标准库。</p>
+<p style="margin: 0px 0px 1.38462em; padding: 0px; border-width: 0px; font-weight: inherit; font-style: inherit; font-size: 1em; font-family: inherit; vertical-align: baseline; line-height: 1.8em; word-spacing: 2px;">CommonJS API定义很多普通应用程序（主要指非浏览器的应用）使用的API，从而填补了这个空白。它的终极目标是提供一个类似Python，Ruby和Java标准库。这样的话，开发者可以使用CommonJS API编写应用程序，然后这些应用可以运行在不同的JavaScript解释器和不同的主机环境中。在兼容CommonJS的系统中，你可以实用JavaScript程序开发：</p>
+<p style="margin: 0px 0px 1.38462em; padding: 0px; border-width: 0px; font-weight: inherit; font-style: inherit; font-size: 1em; font-family: inherit; vertical-align: baseline; line-height: 1.8em; word-spacing: 2px;">服务器端JavaScript应用程序<br />命令行工具<br />图形界面应用程序<br />混合应用程序（如，Titanium或Adobe AIR）</p>
+<p style="margin: 0px 0px 1.38462em; padding: 0px; border-width: 0px; font-weight: inherit; font-style: inherit; font-size: 1em; font-family: inherit; vertical-align: baseline; line-height: 1.8em; word-spacing: 2px;"><strong style="font-weight: bold;">NodeJS和CommonJS之间的关系</strong></p>
+<div style="margin: 0px; padding: 0px; border-width: 0px; font-weight: inherit; font-style: inherit; font-size: 13px; font-family: inherit; vertical-align: baseline;">CommonJS是一种规范，NodeJS是这种规范的实现。CommonJS是一 个不断发展的规范，计划将要包括如下部分：</div>
+<ul style="margin: 0px 1.5em 1.5em; padding: 0px; border-width: 0px; font-weight: inherit; font-style: inherit; font-size: 13px; font-family: inherit; vertical-align: baseline; list-style-type: disc;">
+<li style="margin: 0px; padding: 0px; border-width: 0px; font-weight: inherit; font-style: inherit; font-size: 13px; font-family: inherit; vertical-align: baseline;"><span style="margin: 0px; padding: 0px; border-width: 0px; font-weight: inherit; font-style: inherit; font-size: 13px; font-family: arial,helvetica,sans-serif; vertical-align: baseline;"><span style="margin: 0px; padding: 0px; border-width: 0px; font-weight: inherit; font-style: inherit; font-size: 13px; font-family: inherit; vertical-align: baseline; color: #333333;"><a href="http://wiki.commonjs.org/wiki/Modules" style="margin: 0px; padding: 0px; border-width: 0px; font-weight: inherit; font-style: inherit; font-size: 13px; font-family: inherit; vertical-align: baseline; color: #3a859a; text-decoration: none;">Modules</a></span></span></li>
+<li style="margin: 0px; padding: 0px; border-width: 0px; font-weight: inherit; font-style: inherit; font-size: 13px; font-family: inherit; vertical-align: baseline;"><span style="margin: 0px; padding: 0px; border-width: 0px; font-weight: inherit; font-style: inherit; font-size: 13px; font-family: arial,helvetica,sans-serif; vertical-align: baseline;"><span style="margin: 0px; padding: 0px; border-width: 0px; font-weight: inherit; font-style: inherit; font-size: 13px; font-family: inherit; vertical-align: baseline; color: #333333;"><a href="http://wiki.commonjs.org/wiki/Binary" style="margin: 0px; padding: 0px; border-width: 0px; font-weight: inherit; font-style: inherit; font-size: 13px; font-family: inherit; vertical-align: baseline; color: #3a859a; text-decoration: none;">Binary</a><span class="Apple-converted-space">&nbsp;</span>strings and buffers</span></span></li>
+<li style="margin: 0px; padding: 0px; border-width: 0px; font-weight: inherit; font-style: inherit; font-size: 13px; font-family: inherit; vertical-align: baseline;"><span style="margin: 0px; padding: 0px; border-width: 0px; font-weight: inherit; font-style: inherit; font-size: 13px; font-family: arial,helvetica,sans-serif; vertical-align: baseline;"><span style="margin: 0px; padding: 0px; border-width: 0px; font-weight: inherit; font-style: inherit; font-size: 13px; font-family: inherit; vertical-align: baseline; color: #333333;">Charset&nbsp;<a href="http://wiki.commonjs.org/wiki/Encodings" style="margin: 0px; padding: 0px; border-width: 0px; font-weight: inherit; font-style: inherit; font-size: 13px; font-family: inherit; vertical-align: baseline; color: #3a859a; text-decoration: none;">encodings</a></span></span></li>
+<li style="margin: 0px; padding: 0px; border-width: 0px; font-weight: inherit; font-style: inherit; font-size: 13px; font-family: inherit; vertical-align: baseline;"><span style="margin: 0px; padding: 0px; border-width: 0px; font-weight: inherit; font-style: inherit; font-size: 13px; font-family: arial,helvetica,sans-serif; vertical-align: baseline;"><span style="margin: 0px; padding: 0px; border-width: 0px; font-weight: inherit; font-style: inherit; font-size: 13px; font-family: inherit; vertical-align: baseline; color: #333333;">Binary, buffered, and textual input and output (<a href="http://wiki.commonjs.org/wiki/IO" style="margin: 0px; padding: 0px; border-width: 0px; font-weight: inherit; font-style: inherit; font-size: 13px; font-family: inherit; vertical-align: baseline; color: #3a859a; text-decoration: none;">io</a>) streams</span></span></li>
+<li style="margin: 0px; padding: 0px; border-width: 0px; font-weight: inherit; font-style: inherit; font-size: 13px; font-family: inherit; vertical-align: baseline;"><span style="margin: 0px; padding: 0px; border-width: 0px; font-weight: inherit; font-style: inherit; font-size: 13px; font-family: arial,helvetica,sans-serif; vertical-align: baseline;"><span style="margin: 0px; padding: 0px; border-width: 0px; font-weight: inherit; font-style: inherit; font-size: 13px; font-family: inherit; vertical-align: baseline; color: #333333;"><a href="http://wiki.commonjs.org/wiki/System" style="margin: 0px; padding: 0px; border-width: 0px; font-weight: inherit; font-style: inherit; font-size: 13px; font-family: inherit; vertical-align: baseline; color: #3a859a; text-decoration: none;">System</a><span class="Apple-converted-space">&nbsp;</span>process arguments, environment, and streams</span></span></li>
+<li style="margin: 0px; padding: 0px; border-width: 0px; font-weight: inherit; font-style: inherit; font-size: 13px; font-family: inherit; vertical-align: baseline;"><span style="margin: 0px; padding: 0px; border-width: 0px; font-weight: inherit; font-style: inherit; font-size: 13px; font-family: arial,helvetica,sans-serif; vertical-align: baseline;"><span style="margin: 0px; padding: 0px; border-width: 0px; font-weight: inherit; font-style: inherit; font-size: 13px; font-family: inherit; vertical-align: baseline; color: #333333;"><a href="http://wiki.commonjs.org/wiki/Filesystem" style="margin: 0px; padding: 0px; border-width: 0px; font-weight: inherit; font-style: inherit; font-size: 13px; font-family: inherit; vertical-align: baseline; color: #3a859a; text-decoration: none;">File system</a><span class="Apple-converted-space">&nbsp;</span>interface</span></span></li>
+<li style="margin: 0px; padding: 0px; border-width: 0px; font-weight: inherit; font-style: inherit; font-size: 13px; font-family: inherit; vertical-align: baseline;"><span style="margin: 0px; padding: 0px; border-width: 0px; font-weight: inherit; font-style: inherit; font-size: 13px; font-family: arial,helvetica,sans-serif; vertical-align: baseline;"><span style="margin: 0px; padding: 0px; border-width: 0px; font-weight: inherit; font-style: inherit; font-size: 13px; font-family: inherit; vertical-align: baseline; color: #333333;"><a href="http://wiki.commonjs.org/wiki/Sockets" style="margin: 0px; padding: 0px; border-width: 0px; font-weight: inherit; font-style: inherit; font-size: 13px; font-family: inherit; vertical-align: baseline; color: #3a859a; text-decoration: none;">Socket</a><span class="Apple-converted-space">&nbsp;</span>streams</span></span></li>
+<li style="margin: 0px; padding: 0px; border-width: 0px; font-weight: inherit; font-style: inherit; font-size: 13px; font-family: inherit; vertical-align: baseline;"><span style="margin: 0px; padding: 0px; border-width: 0px; font-weight: inherit; font-style: inherit; font-size: 13px; font-family: arial,helvetica,sans-serif; vertical-align: baseline;"><span style="margin: 0px; padding: 0px; border-width: 0px; font-weight: inherit; font-style: inherit; font-size: 13px; font-family: inherit; vertical-align: baseline; color: #333333;"><a href="http://wiki.commonjs.org/wiki/Unit_Testing" style="margin: 0px; padding: 0px; border-width: 0px; font-weight: inherit; font-style: inherit; font-size: 13px; font-family: inherit; vertical-align: baseline; color: #3a859a; text-decoration: none;">Unit test</a><span class="Apple-converted-space">&nbsp;</span>assertions, running, and reporting</span></span></li>
+<li style="margin: 0px; padding: 0px; border-width: 0px; font-weight: inherit; font-style: inherit; font-size: 13px; font-family: inherit; vertical-align: baseline;"><span style="margin: 0px; padding: 0px; border-width: 0px; font-weight: inherit; font-style: inherit; font-size: 13px; font-family: arial,helvetica,sans-serif; vertical-align: baseline;"><span style="margin: 0px; padding: 0px; border-width: 0px; font-weight: inherit; font-style: inherit; font-size: 13px; font-family: inherit; vertical-align: baseline; color: #333333;">Web server gateway interface,&nbsp;<a href="http://wiki.commonjs.org/wiki/JSGI" style="margin: 0px; padding: 0px; border-width: 0px; font-weight: inherit; font-style: inherit; font-size: 13px; font-family: inherit; vertical-align: baseline; color: #3a859a; text-decoration: none;">JSGI</a></span></span></li>
+<li style="margin: 0px; padding: 0px; border-width: 0px; font-weight: inherit; font-style: inherit; font-size: 13px; font-family: inherit; vertical-align: baseline;"><span style="margin: 0px; padding: 0px; border-width: 0px; font-weight: inherit; font-style: inherit; font-size: 13px; font-family: arial,helvetica,sans-serif; vertical-align: baseline;"><span style="margin: 0px; padding: 0px; border-width: 0px; font-weight: inherit; font-style: inherit; font-size: 13px; font-family: inherit; vertical-align: baseline; color: #333333;">Local and remote&nbsp;<a href="http://wiki.commonjs.org/wiki/Packages" style="margin: 0px; padding: 0px; border-width: 0px; font-weight: inherit; font-style: inherit; font-size: 13px; font-family: inherit; vertical-align: baseline; color: #3a859a; text-decoration: none;">packages</a><span class="Apple-converted-space">&nbsp;</span>and package management</span></span></li>
+</ul>
+<p style="margin: 0px 0px 1.38462em; padding: 0px; border-width: 0px; font-weight: inherit; font-style: inherit; font-size: 1em; font-family: inherit; vertical-align: baseline; line-height: 1.8em; word-spacing: 2px;">具体每个子规范的定制进度请查看官方网站的说明：<a href="http://commonjs.org/specs/" style="margin: 0px; padding: 0px; border-width: 0px; font-weight: inherit; font-style: inherit; font-size: 13px; font-family: inherit; vertical-align: baseline; color: #3a859a; text-decoration: none;">http://commonjs.org/specs/</a></p>
+<div style="margin: 0px; padding: 0px; border-width: 0px; font-weight: inherit; font-style: inherit; font-size: 13px; font-family: inherit; vertical-align: baseline;">CommonJS有很多实现，其中不乏很多大名鼎鼎的项目，比如 说：Apache的<a id="nl9:" title="CouchDB" href="http://couchdb.apache.org/" style="margin: 0px; padding: 0px; border-width: 0px; font-weight: inherit; font-style: inherit; font-size: 13px; font-family: inherit; vertical-align: baseline; color: #3a859a; text-decoration: none;">CouchDB</a>和<a id="ry3p" title="node.js" href="http://nodejs.org/" style="margin: 0px; padding: 0px; border-width: 0px; font-weight: inherit; font-style: inherit; font-size: 13px; font-family: inherit; vertical-align: baseline; color: #3a859a; text-decoration: none;">node.js</a>等。但这些项目大 部分只实现了CommonJS的部分规范。具体的项目和实现部分参见官方网站的说明：<a id="b0r3" title="http://commonjs.org/impl/" href="http://commonjs.org/impl/" style="margin: 0px; padding: 0px; border-width: 0px; font-weight: inherit; font-style: inherit; font-size: 13px; font-family: inherit; vertical-align: baseline; color: #3a859a; text-decoration: none;">http://commonjs.org/impl/</a></div>
+<p style="margin: 0px 0px 1.38462em; padding: 0px; border-width: 0px; font-weight: inherit; font-style: inherit; font-size: 1em; font-family: inherit; vertical-align: baseline; line-height: 1.8em; word-spacing: 2px;"></p>
+<div style="margin: 0px; padding: 0px; border-width: 0px; font-weight: inherit; font-style: inherit; font-size: 13px; font-family: inherit; vertical-align: baseline;">编者：千万别小看作为后台应用的JavaScript，Palm的WebOS的开发计划中就曾提到CommonJS和其扩展的JS API，另外几乎所有的平台（包括智能手机平台和计算机平台都开始流程）都开始引入Web技术：比如说S60中的WRT，IPhone中的 WebWidget，Android平台上的WebWidget，还有Firefox直接用XML和CSS作界面用Javascript控制逻辑，甚至 Google的ChromeOS直接就是一个浏览器操作系统。 &nbsp;我做个技术上的赌注：动态语言和静态语言混合编程将会很流行（比如Android和PalmWebOS同时引入两种SDK，QT直至 QTScript）。</div></div><div id="MySignature"></div>
+        <div class="clear"></div>
+        <div id="blog_post_info_block">
+        <div id="blog_post_info">
+        </div>
+        <div class="clear"></div>
+        <div id="post_next_prev"></div>
+    </div>
+</div>
+    <ul class="postmetadata">
+        <li class="icon_cat" id="BlogPostCategory"></li>
+        <li class="icon_bullet" id="EntryTag"></li>
+    </ul>
+</div>
+<script type="text/javascript">var allowComments=true,isLogined=true,cb_blogId=92729,cb_entryId=2107416,cb_blogApp=currentBlogApp,cb_blogUserGuid='7c38cde6-9c05-df11-ba8f-001cf0cd104b',cb_entryCreatedDate='2011/7/15 14:45:00';loadViewCount(cb_entryId);</script>
+<script type="text/javascript">
+    var m = window.__blog.postRendered;
+    if (m) { m(__$("post")); }
+</script>
+<script type="text/javascript">
+    var m = window.__blog.postRenderPosts;
+    if (m) { m(); }
+</script>
+<a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" id="lnk_RefreshComments" onclick="return RefreshCommentList();">刷新评论</a><a href="#" onclick="return RefreshPage();">刷新页面</a><a href="#top">返回顶部</a></div>
+<div id="comment_form_container"></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="site_nav_under"><a href="http://www.cnblogs.com/" target="_blank" title="开发者的网上家园">博客园首页</a><a href="http://q.cnblogs.com/" target="_blank" title="程序员问答社区">博问</a><a href="http://news.cnblogs.com/" target="_blank" title="IT新闻">新闻</a><a href="http://home.cnblogs.com/ing/" target="_blank">闪存</a><a href="http://job.cnblogs.com/" target="_blank">程序员招聘</a><a href="http://kb.cnblogs.com/" target="_blank">知识库</a></div>
+<div id="opt_under_post"></div>
+<script type="text/javascript">
+    var enableGoogleAd = canShowAdsense(); var googletag = googletag || {}; googletag.cmd = googletag.cmd || [];
+    fixPostBodyFormat();
+</script>
+<div id="ad_under_post_holder">
+<script type='text/javascript'>
+    var googletag = googletag || {};
+    googletag.cmd = googletag.cmd || [];
+    (function () {
+        if (enableGoogleAd) {
+            var gads = document.createElement('script');
+            gads.async = true;
+            gads.type = 'text/javascript';
+            var useSSL = 'https:' == document.location.protocol;
+            gads.src = (useSSL ? 'https:' : 'http:') + '//www.googletagservices.com/tag/js/gpt.js';
+            var node = document.getElementsByTagName('script')[0];
+            node.parentNode.insertBefore(gads, node);
+        }
+    })();
+</script>
+<script type='text/javascript'>
+    try {
+        if (enableGoogleAd) {
+            googletag.cmd.push(function () {
+                googletag.defineSlot('/1090369/cnblogs_blogpost_C1_sitehome', [300, 250], 'div-gpt-ad-1346480159711-0').addService(googletag.pubads());
+                googletag.pubads().enableSingleRequest();
+                googletag.enableServices();
+            });
+        };
+    } catch (e) { }
+</script>
+<div id="google_ad_c1" class="c_ad_block">
+    <div id='div-gpt-ad-1346480159711-0' style='width:300px; height:250px;'>
+    <script type='text/javascript'>
+        try {
+            if (enableGoogleAd) {
+                googletag.cmd.push(function () { googletag.display('div-gpt-ad-1346480159711-0'); });            
+            } else {
+                $('#div-gpt-ad-1346480159711-0').hide();
+            }
+    } catch (e) { }
+    </script>
+    </div>
+</div>
+</div>
+<div id="blog_news_kb"></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+$(function () {
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);
+    $.ajax({ url: 'http://counter.cnblogs.com/blog/post/' + cb_entryId, type: 'get', dataType: 'script', cache: true });
+});
+</script>
+</div>
+
+        </div>
+
+        <script type="text/javascript">
+            var m = window.__blog.contentRendered;
+            if (m) { m(__$("content")); }
+        </script>
+
+        <div id="sidebar">
+            
+<div id="about">
+<div>
+<h2 id="about_title">About</h2>
+<div id="about_body">
+<div id="blog-news"></div>
+<script type="text/javascript">loadBlogNews();</script>
+</div>
+</div>
+</div>
+
+            <script type="text/javascript">
+                var m = window.__blog.aboutRendered;
+                if (m) { m(__$("about")); }
+            </script>
+            
+<div id="mySearchWrapper">
+    <div id="mySearch">
+        <input type="image" src="/skins/Minyx2_Lite/images/btnsearch.gif" id="btnZzk"  class="submit" onclick="zzk_go();return false;"/>
+        <label class="lb_search"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="keyword" /></label>
+    </div>
+</div>
+
+            <script type="text/javascript">
+                var m = window.__blog.searchFormRendered;
+                if (m) { m(__$("searchform")); }
+            </script>
+            <div id="sideMain">
+            </div>
+            <div id="sideRight">
+            </div>
+            <div id="sideLeft">
+            </div>
+            
+                <div id="sideContainer">
+                </div>
+                <script type="text/javascript">
+                    $.ajax({
+                        url: '/' + currentBlogApp + '/mvc/blog/Minyx2_Lite_SideColumn.aspx',
+                        data: '{}',
+                        type: 'post',
+                        dataType: 'text',
+                        contentType: 'application/json; charset=utf-8',
+                        success: function (data) {
+                            if (data) {
+                                $("#sideContainer").html(data);
+                                loadBlogDefaultCalendar();
+                                loadBlogSideBlocks();
+                                var m = window.__blog.sideContainerRendered;
+                                if (m) { m(__$("sideContainer")); }
+                                window.__blog.sidebar.__layout();
+                            }
+                        }
+                    });
+
+                </script>
+            
+        </div>
+
+        <script type="text/javascript">
+            var m = window.__blog.sidebarRendered;
+            if (m) { m(__$("sidebar")); }
+        </script>
+
+        <div id="footer">
+            
+<p id="logoFoot">
+    <a href="http://www.spiga.com.mx/" title="Agencia Interactiva Spiga">www.spiga.com.mx</a>
+</p>
+<div class="footText">
+<p>
+Copyright &copy;2014 依水间
+</p>
+<p>
+<a href="http://www.cnblogs.com">博客园</a>
+</p>
+</div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        var m = window.__blog.wrapperRendered;
+        if (m) { m(__$("wrapper")); }
+    </script>
+
+</div>
+<script type="text/javascript">
+    var m = window.__blog.containerRendered;
+    if (m) { m(__$("container")); }
+</script>
+</body>
+</html>

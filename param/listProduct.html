@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html class="h-full">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        
+		<!--<link rel="stylesheet" type="text/css" href="css/jquery.mobile.custom.structure.css">-->
+        <link rel="stylesheet" type="text/css" href="css/ui-oak.css">
+        <link rel="stylesheet" href="fa/css/font-awesome.min.css">
+		<script src="js/oak-media.js"></script>
+		<script src="js/jquery-1.11.1.min.js"></script>
+
+	<!-- <script src="js/require.js" defer async="true" type="text/javascript"  data-main="js/productMain"></script> -->
+		<!--重要！消除Android载入白屏闪烁 start-->
+		<script>  
+		$(document).bind("mobileinit", function()
+		{
+			if (navigator.userAgent.indexOf("Android") != -1) {
+				$.mobile.defaultPageTransition = 'none';
+				$.mobile.defaultDialogTransition = 'none';
+			}
+		});
+		</script>
+		
+		<!--重要！消除Android载入白屏闪烁 end-->
+		<!-- <script src="js/jquery.mobile.custom.js"></script> -->
+		<!-- <script type="text/javascript" src="js/lib/jquery.mobile-1.1.0.min.js"></script> -->
+		<script src="js/jquery.scrollTo.min.js"></script>
+        <title>财富桥</title>
+    </head>
+    <body class="h-full">
+		<div data-role="page" id="pageone" class="page100 dp-box bo-ver ftf-ch">
+
+			<div data-role="header" class="h-header ta-c bgc-white bs-1">
+				<h1 id="top_header" class="fts1 w100 ftw-normal lnh-96">产品列表 </h1>
+			</div>
+
+			<div data-role="content" id="content" class="bf-1 bgc-gray1 minh2">
+				<!-- myInquirylist start -->
+				<!-- <div id="list_myinquiry">
+					<div class="lnh-81 pdl-m bdb-gray bgc-white">
+						<div class="fts-30 ftc-gray2">我的询价</div>
+					</div>
+					<div class="pdh-l bgc-white bdb-gray">
+						<div class="list-item xintuo mgl-m pdv-18">
+							<div class="clearfix">
+								<div class="dpin f-r pdh-15 h-m lnh-36 bgc-orange ftc-white">
+									<div class="fts-27">登录查看</div>
+									<div class="fts-27 dpnone">2.3%</div>
+								</div>
+								<div class="dpin f-l lnh1 fts1 ftc-orange">通黔11号</div>
+							</div>								
+							<div class="clearfix mgt-6">
+								<div class="dpin f-r">
+									<div class="fts-30 ftc-gray2 lnh1">10%</div>
+								</div>
+								<div class="dpin f-l list-tag-wrap">
+									<div class="f-l fts-27 lnh1 ftc-gray3">中融信托</div>
+									<div class="f-l w-18 ta-c">
+										<div class="fts-27 lnh1 ftc-blue">|</div>
+									</div>
+									<div class="f-l fts-27 lnh1 ftc-gray3">100万</div>
+									<div class="f-l w-18 ta-c">
+										<div class="fts-27 lnh1 ftc-blue">|</div>
+									</div>
+									<div class="f-l fts-27 lnh1 ftc-gray3">24个月</div>
+								</div>
+							</div>
+						</div>
+					</div>					
+				</div> -->
+				<!-- myInquirylist end -->	
+				<!-- productlist start -->
+				<div id="list_product">
+					<div class="lnh-81 pdl-m bdb-gray bgc-white">
+						<div class="fts-30 ftc-gray2">推荐产品</div>
+					</div>
+					<div class="pdh-l bgc-white bdb-gray">
+						<div class="list-item xintuo mgl-m pdv-18" rel='11'>
+							<div class="clearfix">
+								<div class="dpin f-r pdh-15 h-m lnh-36 bgc-orange ftc-white">
+									<div class="fts-27">登录查看</div>
+									<div class="fts-27 dpnone">2.3%</div>
+								</div>
+								<div class="dpin f-l lnh1 fts1 ftc-orange">通黔11号</div>
+							</div>								
+							<div class="clearfix mgt-6">
+								<div class="dpin f-r">
+									<div class="fts-30 ftc-gray2 lnh1">10%</div>
+								</div>
+								<div class="dpin f-l list-tag-wrap">
+									<div class="f-l fts-27 lnh1 ftc-gray3">中融信托</div>
+									<div class="f-l w-18 ta-c">
+										<div class="fts-27 lnh1 ftc-blue">|</div>
+									</div>
+									<div class="f-l fts-27 lnh1 ftc-gray3">100万</div>
+									<div class="f-l w-18 ta-c">
+										<div class="fts-27 lnh1 ftc-blue">|</div>
+									</div>
+									<div class="f-l fts-27 lnh1 ftc-gray3">24个月</div>
+								</div>
+							</div>
+						</div>
+					</div>	
+					<div class="pdh-l bgc-white bdb-gray">
+						<div class="list-item hehuo mgl-m pdv-18" rel='12'>
+							<div class="clearfix">
+								<div class="dpin f-r pdh-15 h-m lnh-36 bgc-red ftc-white">
+									<div class="fts-27">登录查看</div>
+									<div class="fts-27 dpnone">2.3%</div>
+								</div>
+								<div class="dpin f-l lnh1 fts1 ftc-red1">粤商2号</div>
+							</div>								
+							<div class="clearfix mgt-6">
+								<div class="dpin f-r">
+									<div class="fts-30 ftc-gray2 lnh1">10%</div>
+								</div>
+								<div class="dpin f-l list-tag-wrap">
+									<div class="f-l fts-27 lnh1 ftc-gray3">有限合伙</div>
+									<div class="f-l w-18 ta-c">
+										<div class="fts-27 lnh1 ftc-blue">|</div>
+									</div>
+									<div class="f-l fts-27 lnh1 ftc-gray3">100万</div>
+									<div class="f-l w-18 ta-c">
+										<div class="fts-27 lnh1 ftc-blue">|</div>
+									</div>
+									<div class="f-l fts-27 lnh1 ftc-gray3">24个月</div>
+								</div>
+							</div>
+						</div>
+					</div>	
+					<div class="pdh-l bgc-white bdb-gray">
+						<div class="list-item zichan mgl-m pdv-18" rel='13'>
+							<div class="clearfix">
+								<div class="dpin f-r pdh-15 h-m lnh-36 bgc-blue ftc-white">
+									<div class="fts-27">登录查看</div>
+									<div class="fts-27 dpnone">2.3%</div>
+								</div>
+								<div class="dpin f-l lnh1 fts1 ftc-blue">财通资产</div>
+							</div>								
+							<div class="clearfix mgt-6">
+								<div class="dpin f-r">
+									<div class="fts-30 ftc-gray2 lnh1">10%</div>
+								</div>
+								<div class="dpin f-l list-tag-wrap">
+									<div class="f-l fts-27 lnh1 ftc-gray3">中融资产</div>
+									<div class="f-l w-18 ta-c">
+										<div class="fts-27 lnh1 ftc-blue">|</div>
+									</div>
+									<div class="f-l fts-27 lnh1 ftc-gray3">100万</div>
+									<div class="f-l w-18 ta-c">
+										<div class="fts-27 lnh1 ftc-blue">|</div>
+									</div>
+									<div class="f-l fts-27 lnh1 ftc-gray3">24个月</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="pdh-l bgc-white bdb-gray">
+						<div class="list-item hehuo mgl-m pdv-18" rel='14'>
+							<div class="clearfix">
+								<div class="dpin f-r pdh-15 h-m lnh-36 bgc-red ftc-white">
+									<div class="fts-27 dpnone">登录查看</div>
+									<div class="fts-27">2.3%</div>
+								</div>
+								<div class="dpin f-l lnh1 fts1 ftc-red1">粤商2号</div>
+							</div>								
+							<div class="clearfix mgt-6">
+								<div class="dpin f-r">
+									<div class="fts-30 ftc-gray2 lnh1">10%</div>
+								</div>
+								<div class="dpin f-l list-tag-wrap">
+									<div class="f-l fts-27 lnh1 ftc-gray3">有限合伙</div>
+									<div class="f-l w-18 ta-c">
+										<div class="fts-27 lnh1 ftc-blue">|</div>
+									</div>
+									<div class="f-l fts-27 lnh1 ftc-gray3">100万</div>
+									<div class="f-l w-18 ta-c">
+										<div class="fts-27 lnh1 ftc-blue">|</div>
+									</div>
+									<div class="f-l fts-27 lnh1 ftc-gray3">24个月</div>
+								</div>
+							</div>
+						</div>
+					</div>			
+				</div>
+				<!-- productlist end -->
+				<div class="dpnone net-error mgt-360 mgh-90 w-540 h-270 lnh-270 ta-c bgc-gray2">
+					<div class="fts-27 ftc-white">对不起&nbsp;您的网络错误!</div>
+				</div>	
+			</div>
+
+			<div data-role="footer" class="h-footer bgc-white bs-2">
+				<div class="dp-box h-footer">
+					<div id="btn_me" class="bf-1 ta-c w144 mgv-10">
+						<i class="w100 fa fa-home fts-60 lnh-44 ftc-black1"></i><div class="fts-24 lnh-27  ftc-gray2">我</div>
+					</div>
+					<div id="btn_customer" class="bf-1 ta-c w144 mgv-10 ftc-black1">
+						<i class="w100 fa fa-users fts-44 "></i><div class="fts-24 ftc-gray2">客户</div>
+					</div>
+					<div id="add" class="bf-1 ta-c w144 lnh-footer bgc-orange">
+						<i class="w100 fa fa-plus-square fts-60 ftc-white lnh-60"></i>
+					</div>
+					<div id="btn_product" class="bf-1 ta-c w144 mgv-10">
+						<i class="w100 fa fa-bar-chart fts-44 ftc-orange"></i><div class="fts-24 ftc-orange">产品</div>
+					</div> 
+					<div id="btn_tools" class="bf-1 ta-c w144 mgv-10">
+						<i class="w100 fa fa-gears fts-44 ftc-black1"></i><div class="fts-24 ftc-gray2">工具</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript">
+          	
+			$("#btn_me").on("touchend",function(){
+				setTimeout('location.href="index.html"',100);
+			});
+
+			$("#btn_customer").on("touchend",function(){
+				setTimeout('location.href="listCustomer.html"',100);
+			});
+
+			$("#add").on("touchend",function(){
+				setTimeout('location.href="tel:400-656-0927"',100);
+			});
+			          
+			$("#btn_product").on("touchend",function(){
+				setTimeout('location.href="listProduct.html"',100);
+			}); 
+			
+			$("#btn_tools").on("touchend",function(){
+				setTimeout('location.href="tools.html"',100);
+			});
+
+			$("#list_myinquiry").on("touchend", ".list-item", function(){
+				// setTimeout('location.href="viewInquiry.html"',100);
+				// alert("enter viewInquiry.html");
+			});
+
+			$("#list_product").on("click", ".list-item", function(){
+				var item = this;
+				var product_id = $(item).attr('rel');
+				
+				//alert('clicked'+product_id);
+				//var page=GetQueryString("page");
+				var url = 'viewProduct.html?product_id='+product_id;
+				setTimeout('location.href="'+url+'"',100);
+			});
+			
+/* 			function GetQueryString(name) {
+				var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+				var r = window.location.search.substr(1).match(reg);
+				if (r != null) {
+					return unescape(r[2]);
+				}
+				return null;
+			} */
+        </script>
+		
+		<script src="js/oak-pageinit.js"></script>
+		
+		<script type="text/javascript" src="js/tochinesespell.js"></script>
+		<script>
+			$("#top_header").on("touchend",function(){
+				$("#content").scrollTo(0);
+			});
+		</script>
+    </body>
+</html>

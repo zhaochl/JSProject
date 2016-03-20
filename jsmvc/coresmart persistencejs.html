@@ -1,0 +1,1914 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en" class="">
+  <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# object: http://ogp.me/ns/object# article: http://ogp.me/ns/article# profile: http://ogp.me/ns/profile#">
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Language" content="en">
+    
+    
+    <title>coresmart/persistencejs</title>
+    <link rel="search" type="application/opensearchdescription+xml" href="/opensearch.xml" title="GitHub">
+    <link rel="fluid-icon" href="https://github.com/fluidicon.png" title="GitHub">
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-114.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-144.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144.png">
+    <meta property="fb:app_id" content="1401488693436528">
+
+      <meta content="@github" name="twitter:site" /><meta content="summary" name="twitter:card" /><meta content="coresmart/persistencejs" name="twitter:title" /><meta content="persistencejs - persistence.js is an asynchronous Javascript database mapper library. You can use it in the browser, as well on the server (and you can share data models between them)." name="twitter:description" /><meta content="https://avatars2.githubusercontent.com/u/1765159?v=2&amp;s=400" name="twitter:image:src" />
+<meta content="GitHub" property="og:site_name" /><meta content="object" property="og:type" /><meta content="https://avatars2.githubusercontent.com/u/1765159?v=2&amp;s=400" property="og:image" /><meta content="coresmart/persistencejs" property="og:title" /><meta content="https://github.com/coresmart/persistencejs" property="og:url" /><meta content="persistencejs - persistence.js is an asynchronous Javascript database mapper library. You can use it in the browser, as well on the server (and you can share data models between them)." property="og:description" />
+
+      <meta name="browser-stats-url" content="/_stats">
+    <link rel="assets" href="https://assets-cdn.github.com/">
+    <link rel="conduit-xhr" href="https://ghconduit.com:25035">
+    <link rel="xhr-socket" href="/_sockets">
+    <meta name="pjax-timeout" content="1000">
+
+    <meta name="msapplication-TileImage" content="/windows-tile.png">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="selected-link" value="repo_source" data-pjax-transient>
+      <meta name="google-analytics" content="UA-3769691-2">
+
+    <meta content="collector.githubapp.com" name="octolytics-host" /><meta content="collector-cdn.github.com" name="octolytics-script-host" /><meta content="github" name="octolytics-app-id" /><meta content="413144B6:2DCF:3EA7225:5448A664" name="octolytics-dimension-request_id" /><meta content="4577515" name="octolytics-actor-id" /><meta content="pkzikao" name="octolytics-actor-login" /><meta content="333a6a27fa8ab9c55a45df04e43d1290fe067a8ca97bf0e9bcdb184b92c54025" name="octolytics-actor-hash" />
+    
+    <meta content="Rails, view, files#disambiguate" name="analytics-event" />
+
+    
+    
+    <link rel="icon" type="image/x-icon" href="https://assets-cdn.github.com/favicon.ico">
+
+
+    <meta content="authenticity_token" name="csrf-param" />
+<meta content="8oeFHgT1T9WfvbZ0gbE1jyJMUmiJEn69n7MwJD2oFU1CB/Igyo3Mhfbr+f1FOSa9nqGGHh5BzGxb/w1XrY9+Yg==" name="csrf-token" />
+
+    <link href="https://assets-cdn.github.com/assets/github-70d8de33efb40fac263afe8d83520a168e2ef07fb9e73c977685818cc0af7593.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="https://assets-cdn.github.com/assets/github2-ea306d12881ca94e53dcca0369752a3f0a0316229008a5930d01940507249552.css" media="all" rel="stylesheet" type="text/css" />
+    
+    
+
+
+    <meta http-equiv="x-pjax-version" content="730537a23e7c6a602b9fc402e8f0da82">
+
+      
+  <meta name="description" content="persistencejs - persistence.js is an asynchronous Javascript database mapper library. You can use it in the browser, as well on the server (and you can share data models between them).">
+  <meta name="go-import" content="github.com/coresmart/persistencejs git https://github.com/coresmart/persistencejs.git">
+
+  <meta content="1765159" name="octolytics-dimension-user_id" /><meta content="coresmart" name="octolytics-dimension-user_login" /><meta content="497608" name="octolytics-dimension-repository_id" /><meta content="coresmart/persistencejs" name="octolytics-dimension-repository_nwo" /><meta content="true" name="octolytics-dimension-repository_public" /><meta content="false" name="octolytics-dimension-repository_is_fork" /><meta content="497608" name="octolytics-dimension-repository_network_root_id" /><meta content="coresmart/persistencejs" name="octolytics-dimension-repository_network_root_nwo" />
+  <link href="https://github.com/coresmart/persistencejs/commits/master.atom" rel="alternate" title="Recent Commits to persistencejs:master" type="application/atom+xml">
+
+  </head>
+
+
+  <body class="logged_in  env-production windows vis-public">
+    <a href="#start-of-content" tabindex="1" class="accessibility-aid js-skip-to-content">Skip to content</a>
+    <div class="wrapper">
+      
+      
+      
+      
+
+
+      <div class="header header-logged-in true" role="banner">
+  <div class="container clearfix">
+
+    <a class="header-logo-invertocat" href="https://github.com/" data-hotkey="g d" aria-label="Homepage" ga-data-click="Header, go to dashboard, icon:logo">
+  <span class="mega-octicon octicon-mark-github"></span>
+</a>
+
+
+      <div class="site-search repo-scope js-site-search" role="search">
+          <form accept-charset="UTF-8" action="/coresmart/persistencejs/search" class="js-site-search-form" data-global-search-url="/search" data-repo-search-url="/coresmart/persistencejs/search" method="get"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /></div>
+  <input type="text"
+    class="js-site-search-field is-clearable"
+    data-hotkey="s"
+    name="q"
+    placeholder="Search"
+    data-global-scope-placeholder="Search GitHub"
+    data-repo-scope-placeholder="Search"
+    tabindex="1"
+    autocapitalize="off">
+  <div class="scope-badge">This repository</div>
+</form>
+      </div>
+      <ul class="header-nav left" role="navigation">
+        <li class="header-nav-item explore">
+          <a class="header-nav-link" href="/explore" data-ga-click="Header, go to explore, text:explore">Explore</a>
+        </li>
+          <li class="header-nav-item">
+            <a class="header-nav-link" href="https://gist.github.com" data-ga-click="Header, go to gist, text:gist">Gist</a>
+          </li>
+          <li class="header-nav-item">
+            <a class="header-nav-link" href="/blog" data-ga-click="Header, go to blog, text:blog">Blog</a>
+          </li>
+        <li class="header-nav-item">
+          <a class="header-nav-link" href="https://help.github.com" data-ga-click="Header, go to help, text:help">Help</a>
+        </li>
+      </ul>
+
+    
+<ul class="header-nav user-nav right" id="user-links">
+  <li class="header-nav-item dropdown js-menu-container">
+    <a class="header-nav-link name" href="/pkzikao" data-ga-click="Header, go to profile, text:username">
+      <img alt="pkzikao" class="avatar" data-user="4577515" height="20" src="https://avatars2.githubusercontent.com/u/4577515?v=2&amp;s=40" width="20" />
+      <span class="css-truncate">
+        <span class="css-truncate-target">pkzikao</span>
+      </span>
+    </a>
+  </li>
+
+  <li class="header-nav-item dropdown js-menu-container">
+    <a class="header-nav-link js-menu-target tooltipped tooltipped-s" href="#" aria-label="Create new..." data-ga-click="Header, create new, icon:add">
+      <span class="octicon octicon-plus"></span>
+      <span class="dropdown-caret"></span>
+    </a>
+
+    <div class="dropdown-menu-content js-menu-content">
+      
+<ul class="dropdown-menu">
+  <li>
+    <a href="/new"><span class="octicon octicon-repo"></span> New repository</a>
+  </li>
+  <li>
+    <a href="/organizations/new"><span class="octicon octicon-organization"></span> New organization</a>
+  </li>
+
+
+    <li class="dropdown-divider"></li>
+    <li class="dropdown-header">
+      <span title="coresmart/persistencejs">This repository</span>
+    </li>
+      <li>
+        <a href="/coresmart/persistencejs/issues/new"><span class="octicon octicon-issue-opened"></span> New issue</a>
+      </li>
+</ul>
+
+    </div>
+  </li>
+
+  <li class="header-nav-item">
+        <a href="/notifications" aria-label="You have no unread notifications" class="header-nav-link notification-indicator tooltipped tooltipped-s" data-ga-click="Header, go to notifications, icon:read" data-hotkey="g n">
+        <span class="mail-status all-read"></span>
+        <span class="octicon octicon-inbox"></span>
+</a>
+  </li>
+
+  <li class="header-nav-item">
+    <a class="header-nav-link tooltipped tooltipped-s" href="/settings/profile" id="account_settings" aria-label="Settings" data-ga-click="Header, go to settings, icon:settings">
+      <span class="octicon octicon-gear"></span>
+    </a>
+  </li>
+
+  <li class="header-nav-item">
+    <form accept-charset="UTF-8" action="/logout" class="logout-form" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="2CQpe6UghF/iW6rwp0/YlNASiH8l6VA6bXqqHZ/mNY0n+3wZEZaOpfDnFvVgiZG0tOZOMrqPAxb+tMjIKkWsFg==" /></div>
+      <button class="header-nav-link sign-out-button tooltipped tooltipped-s" aria-label="Sign out" data-ga-click="Header, sign out, icon:logout">
+        <span class="octicon octicon-sign-out"></span>
+      </button>
+</form>  </li>
+
+</ul>
+
+
+    
+  </div>
+</div>
+
+      
+
+        
+
+
+      <div id="start-of-content" class="accessibility-aid"></div>
+          <div class="site" itemscope itemtype="http://schema.org/WebPage">
+    <div id="js-flash-container">
+      
+    </div>
+    <div class="pagehead repohead instapaper_ignore readability-menu">
+      <div class="container">
+        
+<ul class="pagehead-actions">
+
+    <li class="subscription">
+      <form accept-charset="UTF-8" action="/notifications/subscribe" class="js-social-container" data-autosubmit="true" data-remote="true" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="ljk3NC+NwO9RXbWX3jhAAsNpYbntv37a21SRz5SR1dLXpGHWign0KwpGqxtU/Z6aR7MLujwri7v99PXKYWCTtg==" /></div>  <input id="repository_id" name="repository_id" type="hidden" value="497608" />
+
+    <div class="select-menu js-menu-container js-select-menu">
+      <a class="social-count js-social-count" href="/coresmart/persistencejs/watchers">
+        72
+      </a>
+      <a href="/coresmart/persistencejs/subscription"
+        class="minibutton select-menu-button with-count js-menu-target" role="button" tabindex="0" aria-haspopup="true">
+        <span class="js-select-button">
+          <span class="octicon octicon-eye"></span>
+          Watch
+        </span>
+      </a>
+
+      <div class="select-menu-modal-holder">
+        <div class="select-menu-modal subscription-menu-modal js-menu-content" aria-hidden="true">
+          <div class="select-menu-header">
+            <span class="select-menu-title">Notifications</span>
+            <span class="octicon octicon-x js-menu-close" role="button" aria-label="Close"></span>
+          </div> <!-- /.select-menu-header -->
+
+          <div class="select-menu-list js-navigation-container" role="menu">
+
+            <div class="select-menu-item js-navigation-item selected" role="menuitem" tabindex="0">
+              <span class="select-menu-item-icon octicon octicon-check"></span>
+              <div class="select-menu-item-text">
+                <input checked="checked" id="do_included" name="do" type="radio" value="included" />
+                <h4>Not watching</h4>
+                <span class="description">Be notified when participating or @mentioned.</span>
+                <span class="js-select-button-text hidden-select-button-text">
+                  <span class="octicon octicon-eye"></span>
+                  Watch
+                </span>
+              </div>
+            </div> <!-- /.select-menu-item -->
+
+            <div class="select-menu-item js-navigation-item " role="menuitem" tabindex="0">
+              <span class="select-menu-item-icon octicon octicon octicon-check"></span>
+              <div class="select-menu-item-text">
+                <input id="do_subscribed" name="do" type="radio" value="subscribed" />
+                <h4>Watching</h4>
+                <span class="description">Be notified of all conversations.</span>
+                <span class="js-select-button-text hidden-select-button-text">
+                  <span class="octicon octicon-eye"></span>
+                  Unwatch
+                </span>
+              </div>
+            </div> <!-- /.select-menu-item -->
+
+            <div class="select-menu-item js-navigation-item " role="menuitem" tabindex="0">
+              <span class="select-menu-item-icon octicon octicon-check"></span>
+              <div class="select-menu-item-text">
+                <input id="do_ignore" name="do" type="radio" value="ignore" />
+                <h4>Ignoring</h4>
+                <span class="description">Never be notified.</span>
+                <span class="js-select-button-text hidden-select-button-text">
+                  <span class="octicon octicon-mute"></span>
+                  Stop ignoring
+                </span>
+              </div>
+            </div> <!-- /.select-menu-item -->
+
+          </div> <!-- /.select-menu-list -->
+
+        </div> <!-- /.select-menu-modal -->
+      </div> <!-- /.select-menu-modal-holder -->
+    </div> <!-- /.select-menu -->
+
+</form>
+    </li>
+
+  <li>
+    
+  <div class="js-toggler-container js-social-container starring-container ">
+
+    <form accept-charset="UTF-8" action="/coresmart/persistencejs/unstar" class="js-toggler-form starred js-unstar-button" data-remote="true" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="D2HhluBjfNbdVwO9bhDSwo4EXhhVYsk+52SeW4hAiDqsNVSWj16EkzPLqwXD0nWuszFyaTWFiTbb+6qyvA4/dg==" /></div>
+      <button
+        class="minibutton with-count js-toggler-target star-button"
+        aria-label="Unstar this repository" title="Unstar coresmart/persistencejs">
+        <span class="octicon octicon-star"></span>
+        Unstar
+      </button>
+        <a class="social-count js-social-count" href="/coresmart/persistencejs/stargazers">
+          1,321
+        </a>
+</form>
+    <form accept-charset="UTF-8" action="/coresmart/persistencejs/star" class="js-toggler-form unstarred js-star-button" data-remote="true" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="YGnggfTK12Z+kuHSszwQ2y1PdPb81TwKkcQV7abnEhjKjjPeWdFAFOM27FjT5QKW7nuc5w89IescNlY6xgoFuQ==" /></div>
+      <button
+        class="minibutton with-count js-toggler-target star-button"
+        aria-label="Star this repository" title="Star coresmart/persistencejs">
+        <span class="octicon octicon-star"></span>
+        Star
+      </button>
+        <a class="social-count js-social-count" href="/coresmart/persistencejs/stargazers">
+          1,321
+        </a>
+</form>  </div>
+
+  </li>
+
+
+        <li>
+          <a href="/coresmart/persistencejs/fork" class="minibutton with-count js-toggler-target fork-button tooltipped-n" title="Fork your own copy of coresmart/persistencejs to your account" aria-label="Fork your own copy of coresmart/persistencejs to your account" rel="nofollow" data-method="post">
+            <span class="octicon octicon-repo-forked"></span>
+            Fork
+          </a>
+          <a href="/coresmart/persistencejs/network" class="social-count">193</a>
+        </li>
+
+</ul>
+
+        <h1 itemscope itemtype="http://data-vocabulary.org/Breadcrumb" class="entry-title public">
+          <span class="mega-octicon octicon-repo"></span>
+          <span class="author"><a href="/coresmart" class="url fn" itemprop="url" rel="author"><span itemprop="title">coresmart</span></a></span><!--
+       --><span class="path-divider">/</span><!--
+       --><strong><a href="/coresmart/persistencejs" class="js-current-repository js-repo-home-link" data-pjax-container-selector="#js-repo-pjax-container">persistencejs</a></strong>
+
+          <span class="page-context-loader">
+            <img alt="" height="16" src="https://assets-cdn.github.com/images/spinners/octocat-spinner-32.gif" width="16" />
+          </span>
+
+        </h1>
+      </div><!-- /.container -->
+    </div><!-- /.repohead -->
+
+    <div class="container">
+      <div class="repository-with-sidebar repo-container new-discussion-timeline with-full-navigation ">
+        <div class="repository-sidebar clearfix">
+            
+<div class="sunken-menu vertical-right repo-nav js-repo-nav js-sidenav-container-pjax js-octicon-loaders" role="navigation" data-issue-count-url="/coresmart/persistencejs/issues/counts" data-pjax-container-selector="#js-repo-pjax-container">
+  <div class="sunken-menu-contents">
+    <ul class="sunken-menu-group">
+      <li class="tooltipped tooltipped-w" aria-label="Code">
+        <a href="/coresmart/persistencejs" aria-label="Code" class="selected js-selected-navigation-item sunken-menu-item" data-hotkey="g c" data-pjax="true" data-selected-links="repo_source repo_downloads repo_commits repo_releases repo_tags repo_branches /coresmart/persistencejs">
+          <span class="octicon octicon-code"></span> <span class="full-word">Code</span>
+          <img alt="" class="mini-loader" height="16" src="https://assets-cdn.github.com/images/spinners/octocat-spinner-32.gif" width="16" />
+</a>      </li>
+
+        <li class="tooltipped tooltipped-w" aria-label="Issues">
+          <a href="/coresmart/persistencejs/issues" aria-label="Issues" class="js-selected-navigation-item sunken-menu-item js-disable-pjax" data-hotkey="g i" data-selected-links="repo_issues repo_labels repo_milestones /coresmart/persistencejs/issues">
+            <span class="octicon octicon-issue-opened"></span> <span class="full-word">Issues</span>
+            <span class="js-issue-replace-counter"></span>
+            <img alt="" class="mini-loader" height="16" src="https://assets-cdn.github.com/images/spinners/octocat-spinner-32.gif" width="16" />
+</a>        </li>
+
+      <li class="tooltipped tooltipped-w" aria-label="Pull Requests">
+        <a href="/coresmart/persistencejs/pulls" aria-label="Pull Requests" class="js-selected-navigation-item sunken-menu-item js-disable-pjax" data-hotkey="g p" data-selected-links="repo_pulls /coresmart/persistencejs/pulls">
+            <span class="octicon octicon-git-pull-request"></span> <span class="full-word">Pull Requests</span>
+            <span class="js-pull-replace-counter"></span>
+            <img alt="" class="mini-loader" height="16" src="https://assets-cdn.github.com/images/spinners/octocat-spinner-32.gif" width="16" />
+</a>      </li>
+
+
+    </ul>
+    <div class="sunken-menu-separator"></div>
+    <ul class="sunken-menu-group">
+
+      <li class="tooltipped tooltipped-w" aria-label="Pulse">
+        <a href="/coresmart/persistencejs/pulse/weekly" aria-label="Pulse" class="js-selected-navigation-item sunken-menu-item" data-pjax="true" data-selected-links="pulse /coresmart/persistencejs/pulse/weekly">
+          <span class="octicon octicon-pulse"></span> <span class="full-word">Pulse</span>
+          <img alt="" class="mini-loader" height="16" src="https://assets-cdn.github.com/images/spinners/octocat-spinner-32.gif" width="16" />
+</a>      </li>
+
+      <li class="tooltipped tooltipped-w" aria-label="Graphs">
+        <a href="/coresmart/persistencejs/graphs" aria-label="Graphs" class="js-selected-navigation-item sunken-menu-item" data-pjax="true" data-selected-links="repo_graphs repo_contributors /coresmart/persistencejs/graphs">
+          <span class="octicon octicon-graph"></span> <span class="full-word">Graphs</span>
+          <img alt="" class="mini-loader" height="16" src="https://assets-cdn.github.com/images/spinners/octocat-spinner-32.gif" width="16" />
+</a>      </li>
+    </ul>
+
+
+  </div>
+</div>
+
+              <div class="only-with-full-nav">
+                
+  
+<div class="clone-url "
+  data-protocol-type="http"
+  data-url="/users/set_protocol?protocol_selector=http&amp;protocol_type=clone">
+  <h3><span class="text-emphasized">HTTPS</span> clone URL</h3>
+  <div class="input-group">
+    <input type="text" class="input-mini input-monospace js-url-field"
+           value="https://github.com/coresmart/persistencejs.git" readonly="readonly">
+    <span class="input-group-button">
+      <button aria-label="Copy to clipboard" class="js-zeroclipboard minibutton zeroclipboard-button" data-clipboard-text="https://github.com/coresmart/persistencejs.git" data-copied-hint="Copied!" type="button"><span class="octicon octicon-clippy"></span></button>
+    </span>
+  </div>
+</div>
+
+  
+<div class="clone-url "
+  data-protocol-type="ssh"
+  data-url="/users/set_protocol?protocol_selector=ssh&amp;protocol_type=clone">
+  <h3><span class="text-emphasized">SSH</span> clone URL</h3>
+  <div class="input-group">
+    <input type="text" class="input-mini input-monospace js-url-field"
+           value="git@github.com:coresmart/persistencejs.git" readonly="readonly">
+    <span class="input-group-button">
+      <button aria-label="Copy to clipboard" class="js-zeroclipboard minibutton zeroclipboard-button" data-clipboard-text="git@github.com:coresmart/persistencejs.git" data-copied-hint="Copied!" type="button"><span class="octicon octicon-clippy"></span></button>
+    </span>
+  </div>
+</div>
+
+  
+<div class="clone-url open"
+  data-protocol-type="subversion"
+  data-url="/users/set_protocol?protocol_selector=subversion&amp;protocol_type=clone">
+  <h3><span class="text-emphasized">Subversion</span> checkout URL</h3>
+  <div class="input-group">
+    <input type="text" class="input-mini input-monospace js-url-field"
+           value="https://github.com/coresmart/persistencejs" readonly="readonly">
+    <span class="input-group-button">
+      <button aria-label="Copy to clipboard" class="js-zeroclipboard minibutton zeroclipboard-button" data-clipboard-text="https://github.com/coresmart/persistencejs" data-copied-hint="Copied!" type="button"><span class="octicon octicon-clippy"></span></button>
+    </span>
+  </div>
+</div>
+
+
+<p class="clone-options">You can clone with
+      <a href="#" class="js-clone-selector" data-protocol="http">HTTPS</a>,
+      <a href="#" class="js-clone-selector" data-protocol="ssh">SSH</a>,
+      or <a href="#" class="js-clone-selector" data-protocol="subversion">Subversion</a>.
+  <a href="https://help.github.com/articles/which-remote-url-should-i-use" class="help tooltipped tooltipped-n" aria-label="Get help on which URL is right for you.">
+    <span class="octicon octicon-question"></span>
+  </a>
+</p>
+
+
+  <a href="github-windows://openRepo/https://github.com/coresmart/persistencejs" class="minibutton sidebar-button" title="Save coresmart/persistencejs to your computer and use it in GitHub Desktop." aria-label="Save coresmart/persistencejs to your computer and use it in GitHub Desktop.">
+    <span class="octicon octicon-device-desktop"></span>
+    Clone in Desktop
+  </a>
+
+                <a href="/coresmart/persistencejs/archive/master.zip"
+                   class="minibutton sidebar-button"
+                   aria-label="Download the contents of coresmart/persistencejs as a zip file"
+                   title="Download the contents of coresmart/persistencejs as a zip file"
+                   rel="nofollow">
+                  <span class="octicon octicon-cloud-download"></span>
+                  Download ZIP
+                </a>
+              </div>
+        </div><!-- /.repository-sidebar -->
+
+        <div id="js-repo-pjax-container" class="repository-content context-loader-container" data-pjax-container>
+          
+<span id="js-show-full-navigation"></span>
+
+<div class="repository-meta js-details-container ">
+    <div class="repository-description">
+      <p>persistence.js is an asynchronous Javascript database mapper library. You can use it in the browser, as well on the server (and you can share data models between them).</p>
+    </div>
+
+    <div class="repository-website">
+      <p><a href="http://persistencejs.org" rel="nofollow">http://persistencejs.org</a></p>
+    </div>
+
+
+</div>
+
+<div class="overall-summary overall-summary-bottomless">
+
+  <div class="stats-switcher-viewport js-stats-switcher-viewport">
+    <div class="stats-switcher-wrapper">
+    <ul class="numbers-summary">
+      <li class="commits">
+        <a data-pjax href="/coresmart/persistencejs/commits/master">
+            <span class="octicon octicon-history"></span>
+            <span class="num text-emphasized">
+              462
+            </span>
+            commits
+        </a>
+      </li>
+      <li>
+        <a data-pjax href="/coresmart/persistencejs/branches">
+          <span class="octicon octicon-git-branch"></span>
+          <span class="num text-emphasized">
+            3
+          </span>
+          branches
+        </a>
+      </li>
+
+      <li>
+        <a data-pjax href="/coresmart/persistencejs/releases">
+          <span class="octicon octicon-tag"></span>
+          <span class="num text-emphasized">
+            9
+          </span>
+          releases
+        </a>
+      </li>
+
+      <li>
+        
+  <a href="/coresmart/persistencejs/graphs/contributors">
+    <span class="octicon octicon-organization"></span>
+    <span class="num text-emphasized">
+      38
+    </span>
+    contributors
+  </a>
+      </li>
+    </ul>
+
+      <div class="repository-lang-stats">
+        <ol class="repository-lang-stats-numbers">
+          <li>
+              <a href="/coresmart/persistencejs/search?l=javascript">
+                <span class="color-block language-color" style="background-color:#f1e05a;"></span>
+                <span class="lang">JavaScript</span>
+                <span class="percent">98.3%</span>
+              </a>
+          </li>
+          <li>
+              <span class="other">
+                <span data-lang="Other" class="color-block language-color"></span>
+                <span class="lang">Other</span>
+                <span class="percent">1.7%</span>
+              </span>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+  <div class="tooltipped tooltipped-s" aria-label="Show language statistics">
+    <a href="#"
+     class="repository-lang-stats-graph js-toggle-lang-stats"
+     style="background-color:#ccc">
+  <span class="language-color" style="width:98.3%; background-color:#f1e05a;" itemprop="keywords">JavaScript</span><span class="language-color" style="width:1.7%; background-color:#ccc;" itemprop="keywords">Other</span>
+    </a>
+  </div>
+
+<div class="js-deferred-content"
+  data-url="/coresmart/persistencejs/show_partial?partial=recently_touched_branches_list">
+</div>
+
+<div class="file-navigation in-mid-page">
+  <a href="/coresmart/persistencejs/find/master"
+        class="js-show-file-finder minibutton empty-icon tooltipped tooltipped-s right"
+        data-pjax
+        data-hotkey="t"
+        aria-label="Quickly jump between files">
+    <span class="octicon octicon-list-unordered"></span>
+  </a>
+    <a href="/coresmart/persistencejs/compare" aria-label="Compare, review, create a pull request" class="minibutton primary tooltipped tooltipped-s left compare-button" aria-label="Compare &amp; review" data-pjax>
+      <span class="octicon octicon-git-compare"></span>
+    </a>
+
+  
+<div class="select-menu js-menu-container js-select-menu left">
+  <span class="minibutton select-menu-button js-menu-target css-truncate" data-hotkey="w"
+    data-master-branch="master"
+    data-ref="master"
+    title="master"
+    role="button" aria-label="Switch branches or tags" tabindex="0" aria-haspopup="true">
+    <span class="octicon octicon-git-branch"></span>
+    <i>branch:</i>
+    <span class="js-select-button css-truncate-target">master</span>
+  </span>
+
+  <div class="select-menu-modal-holder js-menu-content js-navigation-container" data-pjax aria-hidden="true">
+
+    <div class="select-menu-modal">
+      <div class="select-menu-header">
+        <span class="select-menu-title">Switch branches/tags</span>
+        <span class="octicon octicon-x js-menu-close" role="button" aria-label="Close"></span>
+      </div> <!-- /.select-menu-header -->
+
+      <div class="select-menu-filters">
+        <div class="select-menu-text-filter">
+          <input type="text" aria-label="Filter branches/tags" id="context-commitish-filter-field" class="js-filterable-field js-navigation-enable" placeholder="Filter branches/tags">
+        </div>
+        <div class="select-menu-tabs">
+          <ul>
+            <li class="select-menu-tab">
+              <a href="#" data-tab-filter="branches" class="js-select-menu-tab">Branches</a>
+            </li>
+            <li class="select-menu-tab">
+              <a href="#" data-tab-filter="tags" class="js-select-menu-tab">Tags</a>
+            </li>
+          </ul>
+        </div><!-- /.select-menu-tabs -->
+      </div><!-- /.select-menu-filters -->
+
+      <div class="select-menu-list select-menu-tab-bucket js-select-menu-tab-bucket" data-tab-filter="branches">
+
+        <div data-filterable-for="context-commitish-filter-field" data-filterable-type="substring">
+
+
+            <div class="select-menu-item js-navigation-item ">
+              <span class="select-menu-item-icon octicon octicon-check"></span>
+              <a href="/coresmart/persistencejs/tree/integration"
+                 data-name="integration"
+                 data-skip-pjax="true"
+                 rel="nofollow"
+                 class="js-navigation-open select-menu-item-text css-truncate-target"
+                 title="integration">integration</a>
+            </div> <!-- /.select-menu-item -->
+            <div class="select-menu-item js-navigation-item selected">
+              <span class="select-menu-item-icon octicon octicon-check"></span>
+              <a href="/coresmart/persistencejs/tree/master"
+                 data-name="master"
+                 data-skip-pjax="true"
+                 rel="nofollow"
+                 class="js-navigation-open select-menu-item-text css-truncate-target"
+                 title="master">master</a>
+            </div> <!-- /.select-menu-item -->
+            <div class="select-menu-item js-navigation-item ">
+              <span class="select-menu-item-icon octicon octicon-check"></span>
+              <a href="/coresmart/persistencejs/tree/new"
+                 data-name="new"
+                 data-skip-pjax="true"
+                 rel="nofollow"
+                 class="js-navigation-open select-menu-item-text css-truncate-target"
+                 title="new">new</a>
+            </div> <!-- /.select-menu-item -->
+        </div>
+
+          <div class="select-menu-no-results">Nothing to show</div>
+      </div> <!-- /.select-menu-list -->
+
+      <div class="select-menu-list select-menu-tab-bucket js-select-menu-tab-bucket" data-tab-filter="tags">
+        <div data-filterable-for="context-commitish-filter-field" data-filterable-type="substring">
+
+
+            <div class="select-menu-item js-navigation-item ">
+              <span class="select-menu-item-icon octicon octicon-check"></span>
+              <a href="/coresmart/persistencejs/tree/v0.3.0"
+                 data-name="v0.3.0"
+                 data-skip-pjax="true"
+                 rel="nofollow"
+                 class="js-navigation-open select-menu-item-text css-truncate-target"
+                 title="v0.3.0">v0.3.0</a>
+            </div> <!-- /.select-menu-item -->
+            <div class="select-menu-item js-navigation-item ">
+              <span class="select-menu-item-icon octicon octicon-check"></span>
+              <a href="/coresmart/persistencejs/tree/v0.2.4"
+                 data-name="v0.2.4"
+                 data-skip-pjax="true"
+                 rel="nofollow"
+                 class="js-navigation-open select-menu-item-text css-truncate-target"
+                 title="v0.2.4">v0.2.4</a>
+            </div> <!-- /.select-menu-item -->
+            <div class="select-menu-item js-navigation-item ">
+              <span class="select-menu-item-icon octicon octicon-check"></span>
+              <a href="/coresmart/persistencejs/tree/v0.2.3"
+                 data-name="v0.2.3"
+                 data-skip-pjax="true"
+                 rel="nofollow"
+                 class="js-navigation-open select-menu-item-text css-truncate-target"
+                 title="v0.2.3">v0.2.3</a>
+            </div> <!-- /.select-menu-item -->
+            <div class="select-menu-item js-navigation-item ">
+              <span class="select-menu-item-icon octicon octicon-check"></span>
+              <a href="/coresmart/persistencejs/tree/v0.2.2"
+                 data-name="v0.2.2"
+                 data-skip-pjax="true"
+                 rel="nofollow"
+                 class="js-navigation-open select-menu-item-text css-truncate-target"
+                 title="v0.2.2">v0.2.2</a>
+            </div> <!-- /.select-menu-item -->
+            <div class="select-menu-item js-navigation-item ">
+              <span class="select-menu-item-icon octicon octicon-check"></span>
+              <a href="/coresmart/persistencejs/tree/v0.2.1"
+                 data-name="v0.2.1"
+                 data-skip-pjax="true"
+                 rel="nofollow"
+                 class="js-navigation-open select-menu-item-text css-truncate-target"
+                 title="v0.2.1">v0.2.1</a>
+            </div> <!-- /.select-menu-item -->
+            <div class="select-menu-item js-navigation-item ">
+              <span class="select-menu-item-icon octicon octicon-check"></span>
+              <a href="/coresmart/persistencejs/tree/v0.2.0"
+                 data-name="v0.2.0"
+                 data-skip-pjax="true"
+                 rel="nofollow"
+                 class="js-navigation-open select-menu-item-text css-truncate-target"
+                 title="v0.2.0">v0.2.0</a>
+            </div> <!-- /.select-menu-item -->
+            <div class="select-menu-item js-navigation-item ">
+              <span class="select-menu-item-icon octicon octicon-check"></span>
+              <a href="/coresmart/persistencejs/tree/v0.1.1"
+                 data-name="v0.1.1"
+                 data-skip-pjax="true"
+                 rel="nofollow"
+                 class="js-navigation-open select-menu-item-text css-truncate-target"
+                 title="v0.1.1">v0.1.1</a>
+            </div> <!-- /.select-menu-item -->
+            <div class="select-menu-item js-navigation-item ">
+              <span class="select-menu-item-icon octicon octicon-check"></span>
+              <a href="/coresmart/persistencejs/tree/v0.1"
+                 data-name="v0.1"
+                 data-skip-pjax="true"
+                 rel="nofollow"
+                 class="js-navigation-open select-menu-item-text css-truncate-target"
+                 title="v0.1">v0.1</a>
+            </div> <!-- /.select-menu-item -->
+            <div class="select-menu-item js-navigation-item ">
+              <span class="select-menu-item-icon octicon octicon-check"></span>
+              <a href="/coresmart/persistencejs/tree/0.3.0"
+                 data-name="0.3.0"
+                 data-skip-pjax="true"
+                 rel="nofollow"
+                 class="js-navigation-open select-menu-item-text css-truncate-target"
+                 title="0.3.0">0.3.0</a>
+            </div> <!-- /.select-menu-item -->
+        </div>
+
+        <div class="select-menu-no-results">Nothing to show</div>
+      </div> <!-- /.select-menu-list -->
+
+    </div> <!-- /.select-menu-modal -->
+  </div> <!-- /.select-menu-modal-holder -->
+</div> <!-- /.select-menu -->
+
+
+
+  <div class="breadcrumb"><span class='repo-root js-repo-root'><span itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/coresmart/persistencejs" class="" data-branch="master" data-direction="back" data-pjax="true" itemscope="url"><span itemprop="title">persistencejs</span></a></span></span><span class="separator"> / </span><form action="/coresmart/persistencejs/new/master" aria-label="Fork this project and create a new file" class="js-new-blob-form tooltipped tooltipped-e new-file-link" method="post"><span aria-label="Fork this project and create a new file" class="js-new-blob-submit octicon octicon-plus" data-test-id="create-new-git-file" role="button"></span></form></div>
+</div>
+
+
+
+  
+  <div class="commit commit-tease js-details-container" >
+    <p class="commit-title ">
+        <a href="/coresmart/persistencejs/commit/d77e9d17a0a6f2ce487e947a899c84bb087ef630" class="message" data-pjax="true" title="Merge pull request #143 from otype/cordovasupport
+
+added description in README on how to use the Cordova support">Merge pull request</a> <a href="https://github.com/coresmart/persistencejs/pull/143" class="issue-link" title="added description in README on how to use the Cordova support">#143</a> <a href="/coresmart/persistencejs/commit/d77e9d17a0a6f2ce487e947a899c84bb087ef630" class="message" data-pjax="true" title="Merge pull request #143 from otype/cordovasupport
+
+added description in README on how to use the Cordova support">from otype/cordovasupport</a>
+        <span class="hidden-text-expander inline"><a href="#" class="js-details-target">…</a></span>
+    </p>
+      <div class="commit-desc"><pre>added description in README on how to use the Cordova support</pre></div>
+    <div class="commit-meta">
+      <button aria-label="Copy SHA" class="js-zeroclipboard zeroclipboard-link" data-clipboard-text="d77e9d17a0a6f2ce487e947a899c84bb087ef630" data-copied-hint="Copied!" type="button"><span class="octicon octicon-clippy"></span></button>
+      <a href="/coresmart/persistencejs/commit/d77e9d17a0a6f2ce487e947a899c84bb087ef630" class="sha-block" data-pjax>latest commit <span class="sha">d77e9d17a0</span></a>
+
+      <div class="authorship">
+        <img alt="Zef Hemel" class="avatar" data-user="59073" height="20" src="https://avatars2.githubusercontent.com/u/59073?v=2&amp;s=40" width="20" />
+        <span class="author-name"><a href="/zefhemel" rel="contributor">zefhemel</a></span>
+        authored <time class="updated" datetime="2014-03-21T14:52:16Z" is="relative-time">Mar 21, 2014</time>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="file-wrap">
+    <table class="files" data-pjax>
+
+      <tbody class=""
+  data-url="/coresmart/persistencejs/file-list/master"
+  data-deferred-content-error="Failed to load latest commit information.">
+
+    <tr>
+      <td class="icon">
+        <span class="octicon octicon-file-directory"></span>
+        <img alt="" class="spinner" height="16" src="https://assets-cdn.github.com/images/spinners/octocat-spinner-32.gif" width="16" />
+      </td>
+      <td class="content">
+        <span class="css-truncate css-truncate-target"><a href="/coresmart/persistencejs/tree/master/demo/jquerymobile" class="js-directory-link" id="d3321d7321ca04f9615dcebb9da830ca-7bac25aac7a8b61fee56540a2b8d860c90682702" title="This path skips through empty directories"><span class="simplified-path">demo/</span>jquerymobile</a></span>
+      </td>
+      <td class="message">
+        <span class="css-truncate css-truncate-target ">
+          <a href="/coresmart/persistencejs/commit/48c42543bd39feefb19558e7dca7ffee9baf4d93" class="message" data-pjax="true" title="refactored the jquery code and documentation  into a jquery  and jquerly.mobile part.">refactored the jquery code and documentation into a jquery and jquerl…</a>
+        </span>
+      </td>
+      <td class="age">
+        <span class="css-truncate css-truncate-target"><time datetime="2010-11-20T12:43:32Z" is="time-ago">Nov 20, 2010</time></span>
+      </td>
+    </tr>
+    <tr>
+      <td class="icon">
+        <span class="octicon octicon-file-directory"></span>
+        <img alt="" class="spinner" height="16" src="https://assets-cdn.github.com/images/spinners/octocat-spinner-32.gif" width="16" />
+      </td>
+      <td class="content">
+        <span class="css-truncate css-truncate-target"><a href="/coresmart/persistencejs/tree/master/docs" class="js-directory-link" id="e3e2a9bfd88566b05001b02a3f51d286-9b08140e5c7e1fadfc40a23fe5c713169548d78e" title="docs">docs</a></span>
+      </td>
+      <td class="message">
+        <span class="css-truncate css-truncate-target ">
+          <a href="/coresmart/persistencejs/commit/1ab84f67eb0bdca300ad85ff1e1c0f3727af1ea1" class="message" data-pjax="true" title="Updated search doc">Updated search doc</a>
+        </span>
+      </td>
+      <td class="age">
+        <span class="css-truncate css-truncate-target"><time datetime="2013-05-05T15:07:57Z" is="time-ago">May 5, 2013</time></span>
+      </td>
+    </tr>
+    <tr>
+      <td class="icon">
+        <span class="octicon octicon-file-directory"></span>
+        <img alt="" class="spinner" height="16" src="https://assets-cdn.github.com/images/spinners/octocat-spinner-32.gif" width="16" />
+      </td>
+      <td class="content">
+        <span class="css-truncate css-truncate-target"><a href="/coresmart/persistencejs/tree/master/lib" class="js-directory-link" id="e8acc63b1e238f3255c900eed37254b8-1ea876abcb4a585e6a978ac399a0df4068da57bb" title="lib">lib</a></span>
+      </td>
+      <td class="message">
+        <span class="css-truncate css-truncate-target ">
+          <a href="/coresmart/persistencejs/commit/11abae13d69b8aa928ca0b55c9820bcb9714eda8" class="message" data-pjax="true" title="adding Cordova SQL store (with fallback to websql)">adding Cordova SQL store (with fallback to websql)</a>
+        </span>
+      </td>
+      <td class="age">
+        <span class="css-truncate css-truncate-target"><time datetime="2014-03-19T10:15:45Z" is="time-ago">Mar 19, 2014</time></span>
+      </td>
+    </tr>
+    <tr>
+      <td class="icon">
+        <span class="octicon octicon-file-directory"></span>
+        <img alt="" class="spinner" height="16" src="https://assets-cdn.github.com/images/spinners/octocat-spinner-32.gif" width="16" />
+      </td>
+      <td class="content">
+        <span class="css-truncate css-truncate-target"><a href="/coresmart/persistencejs/tree/master/test" class="js-directory-link" id="098f6bcd4621d373cade4e832627b4f6-eac53507406af9c1e1a9934d26be2e9873a52d58" title="test">test</a></span>
+      </td>
+      <td class="message">
+        <span class="css-truncate css-truncate-target ">
+          <a href="/coresmart/persistencejs/commit/61629e492b114d6adc11927376c1493ba11c9d57" class="message" data-pjax="true" title="Merge pull request #89 from doo/local_object_removal
+
+Fixed removing local (_new) objects">Merge pull request</a> <a href="https://github.com/coresmart/persistencejs/pull/89" class="issue-link" title="Fixed removing local (_new) objects">#89</a> <a href="/coresmart/persistencejs/commit/61629e492b114d6adc11927376c1493ba11c9d57" class="message" data-pjax="true" title="Merge pull request #89 from doo/local_object_removal
+
+Fixed removing local (_new) objects">from doo/local_object_removal</a>
+        </span>
+      </td>
+      <td class="age">
+        <span class="css-truncate css-truncate-target"><time datetime="2013-04-25T07:26:35Z" is="time-ago">Apr 25, 2013</time></span>
+      </td>
+    </tr>
+    <tr>
+      <td class="icon">
+        <span class="octicon octicon-file-text"></span>
+        <img alt="" class="spinner" height="16" src="https://assets-cdn.github.com/images/spinners/octocat-spinner-32.gif" width="16" />
+      </td>
+      <td class="content">
+        <span class="css-truncate css-truncate-target"><a href="/coresmart/persistencejs/blob/master/.gitignore" class="js-directory-link" id="a084b794bc0759e7a6b77810e01874f2-2e8eaa9fbad0ffc80cb053d07dd8087240b46c70" title=".gitignore">.gitignore</a></span>
+      </td>
+      <td class="message">
+        <span class="css-truncate css-truncate-target ">
+          <a href="/coresmart/persistencejs/commit/d1d16e074d9be1b30aea4cb0fa6e247de9f41dcf" class="message" data-pjax="true" title="query execution fixes for Titanium
+
+adding titanium test
+
+extract titanium code to persistence.store.titanium.js and added a type mapper to properly support BIGINT on titanium
+
+cleaning up titanium test app">query execution fixes for Titanium</a>
+        </span>
+      </td>
+      <td class="age">
+        <span class="css-truncate css-truncate-target"><time datetime="2011-02-14T08:12:42Z" is="time-ago">Feb 14, 2011</time></span>
+      </td>
+    </tr>
+    <tr>
+      <td class="icon">
+        <span class="octicon octicon-file-text"></span>
+        <img alt="" class="spinner" height="16" src="https://assets-cdn.github.com/images/spinners/octocat-spinner-32.gif" width="16" />
+      </td>
+      <td class="content">
+        <span class="css-truncate css-truncate-target"><a href="/coresmart/persistencejs/blob/master/AUTHORS" class="js-directory-link" id="3d350169560e75d0cf9fc8e3574a3639-04358dfdebcdd04587ddc9dfe363b9e78c9f4096" title="AUTHORS">AUTHORS</a></span>
+      </td>
+      <td class="message">
+        <span class="css-truncate css-truncate-target ">
+          <a href="/coresmart/persistencejs/commit/cc33adec42275fdb5fee483efc692f05281ce53a" class="message" data-pjax="true" title="* SQLite node.js store, minor indentation tweaks, link to node-sqlite
+* project
+* Minor tweak to sqlite test
+* Added Eugene to authors">* SQLite node.js store, minor indentation tweaks, link to node-sqlite</a>
+        </span>
+      </td>
+      <td class="age">
+        <span class="css-truncate css-truncate-target"><time datetime="2011-02-10T10:44:23Z" is="time-ago">Feb 10, 2011</time></span>
+      </td>
+    </tr>
+    <tr>
+      <td class="icon">
+        <span class="octicon octicon-file-text"></span>
+        <img alt="" class="spinner" height="16" src="https://assets-cdn.github.com/images/spinners/octocat-spinner-32.gif" width="16" />
+      </td>
+      <td class="content">
+        <span class="css-truncate css-truncate-target"><a href="/coresmart/persistencejs/blob/master/CHANGES" class="js-directory-link" id="e4eb329834da3d36278b1b7d943b3bc9-fc2e87d86e82c9ac5791f5b471ae7dfb74c4f840" title="CHANGES">CHANGES</a></span>
+      </td>
+      <td class="message">
+        <span class="css-truncate css-truncate-target ">
+          <a href="/coresmart/persistencejs/commit/df2006434b5124ed43945f3565cd4c1474a7921e" class="message" data-pjax="true" title="Basic search tests.">Basic search tests.</a>
+        </span>
+      </td>
+      <td class="age">
+        <span class="css-truncate css-truncate-target"><time datetime="2010-08-13T12:27:04Z" is="time-ago">Aug 13, 2010</time></span>
+      </td>
+    </tr>
+    <tr>
+      <td class="icon">
+        <span class="octicon octicon-file-text"></span>
+        <img alt="" class="spinner" height="16" src="https://assets-cdn.github.com/images/spinners/octocat-spinner-32.gif" width="16" />
+      </td>
+      <td class="content">
+        <span class="css-truncate css-truncate-target"><a href="/coresmart/persistencejs/blob/master/README.md" class="js-directory-link" id="04c6e90faac2675aa89e2176d2eec7d8-906df71dadd99f4b98212ae6a7121583bcd5e586" title="README.md">README.md</a></span>
+      </td>
+      <td class="message">
+        <span class="css-truncate css-truncate-target ">
+          <a href="/coresmart/persistencejs/commit/0f6083636ed10003936010499f4fda298c397e0b" class="message" data-pjax="true" title="added description in README on how to use the Cordova support">added description in README on how to use the Cordova support</a>
+        </span>
+      </td>
+      <td class="age">
+        <span class="css-truncate css-truncate-target"><time datetime="2014-03-21T14:49:37Z" is="time-ago">Mar 21, 2014</time></span>
+      </td>
+    </tr>
+    <tr>
+      <td class="icon">
+        <span class="octicon octicon-file-text"></span>
+        <img alt="" class="spinner" height="16" src="https://assets-cdn.github.com/images/spinners/octocat-spinner-32.gif" width="16" />
+      </td>
+      <td class="content">
+        <span class="css-truncate css-truncate-target"><a href="/coresmart/persistencejs/blob/master/bower.json" class="js-directory-link" id="0a08a7565aba4405282251491979bb6b-a70e0d54bcf1c16417e7011ecd5ed3c0462e85a9" title="bower.json">bower.json</a></span>
+      </td>
+      <td class="message">
+        <span class="css-truncate css-truncate-target ">
+          <a href="/coresmart/persistencejs/commit/2e3fd2fd89e7c5366c3aeefe60006eddf7a9388b" class="message" data-pjax="true" title="better markdown style and more bower configuration added">better markdown style and more bower configuration added</a>
+        </span>
+      </td>
+      <td class="age">
+        <span class="css-truncate css-truncate-target"><time datetime="2013-12-08T16:17:07Z" is="time-ago">Dec 8, 2013</time></span>
+      </td>
+    </tr>
+    <tr>
+      <td class="icon">
+        <span class="octicon octicon-file-text"></span>
+        <img alt="" class="spinner" height="16" src="https://assets-cdn.github.com/images/spinners/octocat-spinner-32.gif" width="16" />
+      </td>
+      <td class="content">
+        <span class="css-truncate css-truncate-target"><a href="/coresmart/persistencejs/blob/master/index.js" class="js-directory-link" id="168726dbe96b3ce427e7fedce31bb0bc-2291cd85825de405d693c61d924ee900b81eba91" title="index.js">index.js</a></span>
+      </td>
+      <td class="message">
+        <span class="css-truncate css-truncate-target ">
+          <a href="/coresmart/persistencejs/commit/73ec17dc08cfbd79c2cda713d505873d1e52a3eb" class="message" data-pjax="true" title="properly export persistence library for node">properly export persistence library for node</a>
+        </span>
+      </td>
+      <td class="age">
+        <span class="css-truncate css-truncate-target"><time datetime="2011-04-16T16:53:59Z" is="time-ago">Apr 16, 2011</time></span>
+      </td>
+    </tr>
+    <tr>
+      <td class="icon">
+        <span class="octicon octicon-file-text"></span>
+        <img alt="" class="spinner" height="16" src="https://assets-cdn.github.com/images/spinners/octocat-spinner-32.gif" width="16" />
+      </td>
+      <td class="content">
+        <span class="css-truncate css-truncate-target"><a href="/coresmart/persistencejs/blob/master/package.json" class="js-directory-link" id="b9cfc7f2cdf78a7f4b91a753d10865a2-f35f59f8864ad0e93f6caf04d8124db7050057f0" title="package.json">package.json</a></span>
+      </td>
+      <td class="message">
+        <span class="css-truncate css-truncate-target ">
+          <a href="/coresmart/persistencejs/commit/7b34341a6027284b635bb97ba7059848adfe685a" class="message" data-pjax="true" title="Version bump">Version bump</a>
+        </span>
+      </td>
+      <td class="age">
+        <span class="css-truncate css-truncate-target"><time datetime="2013-06-24T05:45:05Z" is="time-ago">Jun 24, 2013</time></span>
+      </td>
+    </tr>
+</tbody>
+
+    </table>
+  </div>
+
+
+  <div id="readme" class="boxed-group flush clearfix announce instapaper_body md">
+    <h3>
+      <span class="octicon octicon-book"></span>
+      README.md
+    </h3>
+
+    <article class="markdown-body entry-content" itemprop="mainContentOfPage"><h1>
+<a name="user-content-persistencejs" class="anchor" href="#persistencejs" aria-hidden="true"><span class="octicon octicon-link"></span></a>persistence.js</h1>
+
+<p><code>persistence.js</code> is a asynchronous Javascript object-relational
+mapper library. It can be used both in the web browser and on
+the server using <a href="http://nodejs.org">node.js</a>. It currently
+supports 4 types of data stores:</p>
+
+<ul class="task-list">
+<li>
+<a href="http://dev.w3.org/html5/webdatabase/">HTML5 WebSQL database</a>, a
+somewhat controversial part of HTML5 that is supported in Webkit
+browsers, specifically on mobile devices, including iPhone, Android
+and Palm's WebOS. </li>
+<li>
+<a href="http://gears.google.com">Google Gears</a>, a browser plug-in that adds
+a number of feature to the browser, including a in-browser database.</li>
+<li>
+<a href="http://www.mysql.com">MySQL</a>, using the
+<a href="http://github.com/felixge/node-mysql">node-mysql</a>, node.js module
+on the server.</li>
+<li>In-memory, as a fallback. Keeps the database in memory and is
+cleaned upon a page refresh (or server restart), unless saved to
+<a href="http://dev.w3.org/html5/webstorage/">localStorage</a>.</li>
+</ul>
+
+<p>There is also an experimental support for <a href="http://doc.trolltech.org/4.7-snapshot/declarativeui.html">Qt 4.7 Declarative UI
+framework
+(QML)</a> which
+is an extension to JavaScript.</p>
+
+<p>For browser use, <code>persistence.js</code> has no dependencies on any other
+frameworks, other than the Google Gears <a href="http://code.google.com/apis/gears/gears_init.js">initialization
+script</a>, in case you
+want to enable Gears support.</p>
+
+<h2>
+<a name="user-content-plug-ins" class="anchor" href="#plug-ins" aria-hidden="true"><span class="octicon octicon-link"></span></a>Plug-ins</h2>
+
+<p>There are a few <code>persistence.js</code> plug-ins available that add functionality:</p>
+
+<ul class="task-list">
+<li>
+<code>persistence.search.js</code>, adds simple full-text search capabilities,
+see <code>docs/search.md</code> for more information.</li>
+<li>
+<code>persistence.migrations.js</code>, supports data migrations (changes to
+the database schema), see <code>docs/migrations.md</code> for more information.</li>
+<li>
+<code>persistence.sync.js</code>, supports database synchronization with a
+remote server, see <code>docs/sync.md</code> for more information.</li>
+<li>
+<code>jquery.persistence.js</code>, adds jQuery integration, including 
+jQuery-mobile ajax request interception and re-routing to persistencejs,
+see <code>docs/jquery.md</code> for more information and <code>demo/jquerymobile</code> for a 
+simple demo.</li>
+</ul>
+
+<h2>
+<a name="user-content-a-brief-intro-to-async-programming" class="anchor" href="#a-brief-intro-to-async-programming" aria-hidden="true"><span class="octicon octicon-link"></span></a>A Brief Intro to Async Programming</h2>
+
+<p>In browsers, Javascript and the web page's rendering engine share
+a single thread. The result of this is that only one thing can happen
+at a time. If a database query would be performed <em>synchronously</em>,
+like in many other programming environments like Java and PHP the
+browser would freeze from the moment the query was issued until the
+results came back. Therefore, many APIs in Javascript are defined as
+<em>asynchronous</em> APIs, which mean that they do not block when an
+"expensive" computation is performed, but instead provide the call
+with a function that will be invoked once the result is known. In the
+meantime, the browser can perform other duties.</p>
+
+<p>For instance, a synchronous database call call would look as follows:</p>
+
+<pre><code>var results = db.query("SELECT * FROM Table");
+for(...) { ... }
+</code></pre>
+
+<p>The execution of the first statement could take half a second, during
+which the browser doesn't do anything else. By contrast, the
+asynchronous version looks as follows:</p>
+
+<pre><code>db.query("SELECT * FROM Table", function(results) {
+  for(...) { ... }
+});
+</code></pre>
+
+<p>Note that there will be a delay between the <code>db.query</code> call and the
+result being available and that while the database is processing the
+query, the execution of the Javascript continues. To make this clear,
+consider the following program:</p>
+
+<pre><code>db.query("SELECT * FROM Table", function(results) {
+  console.log("hello");
+});
+console.log("world");
+</code></pre>
+
+<p>Although one could assume this would print "hello", followed by
+"world", the result will likely be that "world" is printed before
+"hello", because "hello" is only printed when the results from the
+query are available. This is a tricky thing about asynchronous
+programming that a Javascript developer will have to get used to.</p>
+
+<h1>
+<a name="user-content-using-persistencejs-in-the-browser" class="anchor" href="#using-persistencejs-in-the-browser" aria-hidden="true"><span class="octicon octicon-link"></span></a>Using persistence.js in the browser</h1>
+
+<h2>
+<a name="user-content-browser-support" class="anchor" href="#browser-support" aria-hidden="true"><span class="octicon octicon-link"></span></a>Browser support</h2>
+
+<ul class="task-list">
+<li>Modern webkit browsers (Google Chrome and Safari)</li>
+<li>Firefox (through Google Gears)</li>
+<li>Opera</li>
+<li>Android browser (tested on 1.6 and 2.x)</li>
+<li>iPhone browser (iPhone OS 3+)</li>
+<li>Palm WebOS (tested on 1.4.0)</li>
+<li>Other browsers supporting <code>localStorage</code> (e.g. Firefox)</li>
+</ul>
+
+<p>(The following is being worked on:)
+Internet Explorer is likely not supported (untested) because it
+lacks <code>__defineGetter__</code> and <code>__defineSetter__</code> support, which
+<code>persistence.js</code> uses heavily. This may change in IE 9.</p>
+
+<h2>
+<a name="user-content-setting-up" class="anchor" href="#setting-up" aria-hidden="true"><span class="octicon octicon-link"></span></a>Setting up</h2>
+
+<ul class="task-list">
+<li>Using <code>bower</code>:</li>
+</ul>
+
+<div class="highlight highlight-shell"><pre>bower install persistence
+</pre></div>
+
+<p>Add a <code>&lt;script&gt;</code> to your <code>index.html</code>:</p>
+
+<p><code>lib/persistence.js</code> needs to be added, as well as any data stores you want to use. Note that the <code>mysql</code> and
+<code>websql</code> stores both depend on the <code>sql</code> store. A typical setup requires you to add at least
+<code>lib/persistence.js</code>, <code>lib/persistence.store.sql.js</code> and <code>lib/persistence.store.websql.js</code> as follows:</p>
+
+<pre><code>&lt;script src="/bower_components/persistencejs/lib/persistence.js"&gt;&lt;/script&gt;
+&lt;script src="/bower_components/persistencejs/lib/persistence.store.sql.js"&gt;&lt;/script&gt;
+&lt;script src="/bower_components/persistencejs/lib/persistence.store.websql.js"&gt;&lt;/script&gt;
+</code></pre>
+
+<p>If you want to use the in-memory store (in combination with
+<code>localStorage</code>) you also need the <code>persistence.store.memory.js</code>
+included.</p>
+
+<ul class="task-list">
+<li>
+<p>Using directly from source:</p>
+
+<p>git clone git://github.com/zefhemel/persistencejs.git</p>
+</li>
+</ul>
+
+<p>Copy directories you will need following almost the same instructions above.</p>
+
+<h2>
+<a name="user-content-setup-your-database" class="anchor" href="#setup-your-database" aria-hidden="true"><span class="octicon octicon-link"></span></a>Setup your database</h2>
+
+<p>You need to explicitly configure the data store you want to use,
+configuration of the data store is store-specific. The WebSQL store
+(which includes Google Gears support) is configured as follows:</p>
+
+<pre><code>persistence.store.websql.config(persistence, 'yourdbname', 'A database description', 5 * 1024 * 1024);
+</code></pre>
+
+<p>The first argument is always supposed to be <code>persistence</code>. The second
+in your database name (it will create it if it does not already exist,
+the third is a description for you database, the last argument is the
+maximum size of your database in bytes (5MB in this example).</p>
+
+<h2>
+<a name="user-content-setting-up-for-cordova-with-sqlitepluginwebsql" class="anchor" href="#setting-up-for-cordova-with-sqlitepluginwebsql" aria-hidden="true"><span class="octicon octicon-link"></span></a>Setting up for Cordova with SQLitePlugin/WebSQL</h2>
+
+<p>Use following if you want to use <code>persistencejs</code> in a <a href="https://cordova.apache.org/">Cordova</a> mobile app and you plan to use the <a href="https://github.com/brodysoft/Cordova-SQLitePlugin">Cordova SQLitePlugin</a>:</p>
+
+<pre><code>persistence.store.cordovasql.config(
+  persistence,
+  'yourdbname',
+  '0.0.1',                // DB version
+  'My database',          // DB display name
+  5 * 1024 * 1024,        // DB size
+  0                       // SQLitePlugin Background processing disabled
+);
+</code></pre>
+
+<p>For more information on the SQLitePlugin background processing please refer to the <a href="https://github.com/brodysoft/Cordova-SQLitePlugin">SQLitePlugin</a> readme.</p>
+
+<p>The Cordova support in <code>persistencejs</code> will try to work with the <a href="https://github.com/brodysoft/Cordova-SQLitePlugin">SQLitePlugin</a> if it is loaded; if not it will automatically fall back to <a href="http://docs.phonegap.com/en/edge/cordova_storage_storage.md.html#Storage">WebSQL</a>.</p>
+
+<h2>
+<a name="user-content-the-in-memory-store" class="anchor" href="#the-in-memory-store" aria-hidden="true"><span class="octicon octicon-link"></span></a>The in-memory store</h2>
+
+<p>The in-memory store is offered as a fallback for browsers that do not
+support any of the other supported stores (e.g. WebSQL or Gears). In
+principal, it only keeps data in memory, which means that navigating
+away from the page (including a reload or tab close) will result in
+the loss of all data.</p>
+
+<p>A way around this is using the <code>persistence.saveToLocalStorage</code> and
+<code>persistence.loadFromLocalStorage</code> functions that can save the entire
+database to the <a href="http://dev.w3.org/html5/webstorage/">localStorage</a>, which
+is persisted indefinitely (similar to WebSQL).</p>
+
+<p>If you're going to use the in-memory store, you can configure it as follows:</p>
+
+<pre><code>persistence.store.memory.config(persistence);
+</code></pre>
+
+<p>Then, if desired, current data can be loaded from the localStorage using:</p>
+
+<pre><code>persistence.loadFromLocalStorage(function() {
+  alert("All data loaded!");
+});
+</code></pre>
+
+<p>And saved using:</p>
+
+<pre><code>persistence.saveToLocalStorage(function() {
+  alert("All data saved!");
+});
+</code></pre>
+
+<p>Drawbacks of the in-memory store:</p>
+
+<ul class="task-list">
+<li>Performance: All actions that are typically performed by a database
+(sorting, filtering), are now all performed in-memory using
+Javascript.</li>
+<li>Limited database size: Loading and saving requires serialization of
+all data from and to JSON, which gets more expensive as your dataset
+grows. Most browsers have a maximum size of 5MB for <code>localStorage</code>.</li>
+<li>Synchronous behavior: Although the API is asynchronous, all
+persistence actions will be performed synchronously on the main
+Javascript thread, which may make the browser less responsive.</li>
+</ul>
+
+<h2>
+<a name="user-content-schema-definition" class="anchor" href="#schema-definition" aria-hidden="true"><span class="octicon octicon-link"></span></a>Schema definition</h2>
+
+<p>A data model is declared using <code>persistence.define</code>. The following two
+definitions define a <code>Task</code> and <code>Category</code> entity with a few simple
+properties. The property types are based on <a href="http://www.sqlite.org/datatype3.html">SQLite
+types</a>, specifically supported
+types are (but any SQLite type is supported):</p>
+
+<ul class="task-list">
+<li>
+<code>TEXT</code>: for textual data </li>
+<li>
+<code>INT</code>: for numeric values</li>
+<li>
+<code>BOOL</code>: for boolean values (<code>true</code> or <code>false</code>)</li>
+<li>
+<code>DATE</code>: for date/time value (with precision of 1 second)</li>
+<li>
+<code>JSON</code>: a special type that can be used to store arbitrary
+<a href="http://www.json.org">JSON</a> data. Note that this data can not be used
+to filter or sort in any sensible way. If internal changes are made to a <code>JSON</code>
+property, <code>persistence.js</code> may not register them. Therefore, a manual
+call to <code>anObj.markDirty('jsonPropertyName')</code> is required before calling
+<code>persistence.flush</code>.</li>
+</ul>
+
+<p>Example use:</p>
+
+<pre><code>var Task = persistence.define('Task', {
+  name: "TEXT",
+  description: "TEXT",
+  done: "BOOL"
+});
+
+var Category = persistence.define('Category', {
+  name: "TEXT",
+  metaData: "JSON"
+});
+
+var Tag = persistence.define('Tag', {
+  name: "TEXT"
+});
+</code></pre>
+
+<p>The returned values are constructor functions and can be used to
+create new instances of these entities later.</p>
+
+<p>It is possible to create indexes on one or more columns using
+<code>EntityName.index</code>, for instance:</p>
+
+<pre><code>Task.index('done');
+Task.index(['done', 'name']);
+</code></pre>
+
+<p>These indexes can also be used to impose unique constraints :</p>
+
+<pre><code>Task.index(['done', 'name'],{unique:true});
+</code></pre>
+
+<p>Relationships between entities are defined using the constructor
+function's <code>hasMany</code> call:</p>
+
+<pre><code>// This defines a one-to-many relationship:
+Category.hasMany('tasks', Task, 'category');
+// These two definitions define a many-to-many relationship
+Task.hasMany('tags', Tag, 'tasks');
+Tag.hasMany('tasks', Task, 'tags');
+</code></pre>
+
+<p>The first statement defines a <code>tasks</code> relationship on category objects
+containing a <code>QueryCollection</code> (see the section on query collections
+later) of <code>Task</code>s, it also defines an inverse relationship on <code>Task</code>
+objects with the name <code>category</code>. The last two statements define a
+many-to-many relationships between <code>Task</code> and <code>Tag</code>. <code>Task</code> gets a
+<code>tags</code> property (a <code>QueryCollection</code>) containing all its tags and vice
+versa, <code>Tag</code> gets a <code>tasks</code> property containing all of its tasks.</p>
+
+<p>The defined entity definitions are synchronized (activated) with the
+database using a <code>persistence.schemaSync</code> call, which takes a callback
+function (with a newly created transaction as an argument), that is called
+when the schema synchronization has completed, the callback is
+optional.</p>
+
+<pre><code>persistence.schemaSync();
+// or
+persistence.schemaSync(function(tx) { 
+  // tx is the transaction object of the transaction that was
+  // automatically started
+});
+</code></pre>
+
+<p>There is also a migrations plugin you can check out, documentation can be found
+in <a href="/coresmart/persistencejs/blob/master/migrations/persistence.migrations.docs.md">persistence.migrations.docs.md</a> file.</p>
+
+<h2>
+<a name="user-content-mix-ins" class="anchor" href="#mix-ins" aria-hidden="true"><span class="octicon octicon-link"></span></a>Mix-ins</h2>
+
+<p>You can also define mix-ins and apply them to entities of the model. </p>
+
+<p>A mix-in definition is similar to an entity definition, except using
+<code>defineMixin</code> rather than just <code>define</code>. For example:</p>
+
+<pre><code>var Annotatable = persistence.defineMixin('Annotatable', {
+  lastAnnotated: "DATE"
+});
+</code></pre>
+
+<p>You can define relationships between mix-in and entities. For example:</p>
+
+<pre><code>// A normal entity
+var Note = persistence.define('Note', {
+  text: "TEXT"
+});
+
+// relationship between a mix-in and a normal entity
+Annotatable.hasMany('notes', Note, 'annotated');
+</code></pre>
+
+<p>Once you have defined a mix-in, you can apply it to any entity of your model, 
+with the <code>Entity.is(mixin)</code> method. For example:</p>
+
+<pre><code>Project.is(Annotatable);
+Task.is(Annotatable);
+</code></pre>
+
+<p>Now, your <code>Project</code> and <code>Task</code> entities have an additional <code>lastAnnotated</code> property.
+They also have a one to many relationship called <code>notes</code> to the <code>Note</code> entity. 
+And you can also traverse the reverse relationship from a <code>Note</code> to its <code>annotated</code> object.</p>
+
+<p>Note that <code>annotated</code> is a polymorphic relationship as it may yield either a <code>Project</code> 
+or a <code>Task</code> (or any other entity which is `Annotatable').</p>
+
+<p>Note: Prefetch is not allowed (yet) on a relationship that targets a mixin. In the example above
+you cannot prefetch the <code>annotated</code> relationship when querying the <code>Note</code> entity.</p>
+
+<p>Notes: this feature is very experimental at this stage. It needs more testing.
+  Support for "is a" relationships (classical inheritance) is also in the works.</p>
+
+<h2>
+<a name="user-content-creating-and-manipulating-objects" class="anchor" href="#creating-and-manipulating-objects" aria-hidden="true"><span class="octicon octicon-link"></span></a>Creating and manipulating objects</h2>
+
+<p>New objects can be instantiated with the constructor functions.
+Optionally, an object with initial property values can be passed as
+well, or the properties may be set later:</p>
+
+<pre><code>var task = new Task();
+var category = new Category({name: "My category"});
+category.metaData = {rating: 5};
+var tag = new Tag();
+tag.name = "work";
+</code></pre>
+
+<p>Many-to-one relationships are accessed using their specified name, e.g.:
+    task.category = category;</p>
+
+<p>One-to-many and many-to-many relationships are access and manipulated
+through the <code>QueryCollection</code> API that will be discussed later:</p>
+
+<pre><code>task.tags.add(tag);
+tasks.tags.remove(tag);
+tasks.tags.list(tx, function(allTags) { console.log(allTags); });
+</code></pre>
+
+<h2>
+<a name="user-content-persistingremoving-objects" class="anchor" href="#persistingremoving-objects" aria-hidden="true"><span class="octicon octicon-link"></span></a>Persisting/removing objects</h2>
+
+<p>Similar to <a href="http://www.hibernate.org">hibernate</a>, <code>persistence.js</code>
+uses a tracking mechanism to determine which objects' changes have to
+be persisted to the database. All objects retrieved from the database
+are automatically tracked for changes. New entities can be tracked to
+be persisted using the <code>persistence.add</code> function:</p>
+
+<pre><code>var c = new Category({name: "Main category"});
+persistence.add(c);
+for ( var i = 0; i &lt; 5; i++) {
+  var t = new Task();
+  t.name = 'Task ' + i;
+  t.done = i % 2 == 0;
+  t.category = c;
+  persistence.add(t);
+}
+</code></pre>
+
+<p>Objects can also be removed from the database:</p>
+
+<pre><code>persistence.remove(c);
+</code></pre>
+
+<p>All changes made to tracked objects can be flushed to the database by
+using <code>persistence.flush</code>, which takes a transaction object and
+callback function as arguments. A new transaction can be started using
+<code>persistence.transaction</code>:</p>
+
+<pre><code>persistence.transaction(function(tx) {
+  persistence.flush(tx, function() {
+    alert('Done flushing!');
+  });
+});
+</code></pre>
+
+<p>For convenience, it is also possible to not specify a transaction or
+callback, in that case a new transaction will be started
+automatically. For instance:</p>
+
+<pre><code>persistence.flush();
+// or, with callback
+persistence.flush(function() {
+  alert('Done flushing');
+});
+</code></pre>
+
+<p>Note that when no callback is defined, the flushing still happens
+asynchronously.</p>
+
+<p><strong>Important</strong>: Changes and new objects will not be persisted until you
+explicitly call <code>persistence.flush()</code>. The exception to this rule is
+using the <code>list(...)</code> method on a database <code>QueryCollection</code>, which also
+flushes first, although this behavior may change in the future. </p>
+
+<h2>
+<a name="user-content-dumping-and-restoring-data" class="anchor" href="#dumping-and-restoring-data" aria-hidden="true"><span class="octicon octicon-link"></span></a>Dumping and restoring data</h2>
+
+<p>The library supports two kinds of dumping and restoring data.</p>
+
+<p><code>persistence.dump</code> can be used to create an object containing a full
+dump of a database. Naturally, it is adviced to only do this with
+smaller databases. Example:</p>
+
+<pre><code>persistence.dump(tx, [Task, Category], function(dump) {
+  console.log(dump);
+});
+</code></pre>
+
+<p>The <code>tx</code> is left out, a new transaction will be started for the
+operation. If the second argument is left out, <code>dump</code> defaults
+to dumping <em>all</em> defined entities.</p>
+
+<p>The dump format is:</p>
+
+<pre><code>{"entity-name": [list of instances],
+ ...}
+</code></pre>
+
+<p><code>persistence.load</code> is used to restore the dump produced by
+<code>persistence.dump</code>. Usage:</p>
+
+<pre><code>persistence.load(tx, dumpObj, function() {
+  alert('Dump restored!');
+});
+</code></pre>
+
+<p>The <code>tx</code> argument can be left out to automatically start a new
+transaction. Note that <code>persistence.load</code> does not empty the database
+first, it simply attempts to add all objects to the database. If
+objects with, e.g. the same ID already exist, this will fail.</p>
+
+<p>Similarly, <code>persistence.loadFromJson</code> and <code>persistence.dumpToJson</code>
+respectively load and dump all the database's data as JSON strings.</p>
+
+<h2>
+<a name="user-content-entity-constructor-functions" class="anchor" href="#entity-constructor-functions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Entity constructor functions</h2>
+
+<p>The constructor function returned by a <code>persistence.define</code> call
+cannot only be used to instantiate new objects, it also has some
+useful methods of its own:</p>
+
+<ul class="task-list">
+<li>
+<code>EntityName.all([session])</code> returns a query collection containing
+all
+persisted instances of that object. The <code>session</code> argument is
+optional and only required when <code>persistence.js</code> is used in
+multi-session mode.</li>
+<li>
+<code>EntityName.load([session], [tx], id, callback)</code> loads an particular
+object from the database by id or returns <code>null</code> if it has not been
+found.</li>
+<li>
+<code>EntityName.findBy([session], [tx], property, value, callback)</code> searches
+for a particular object based on a property value (this is assumed to
+be unique), the callback function is called with the found object or
+<code>null</code> if it has not been found.</li>
+<li>
+<code>EntityName.index([col1, col2, ..., colN], options)</code> creates an index on a column
+of a combination of columns, for faster searching. If options.unique is true,
+the index will impose a unique constraint on the values of the columns.</li>
+</ul>
+
+<p>And of course the methods to define relationships to other entities:</p>
+
+<ul class="task-list">
+<li>
+<code>EntityName.hasMany(property, Entity, inverseProperty)</code> defines a
+1:N or N:M relationship (depending on the inverse property)</li>
+<li>
+<code>EntityName.hasOne(property, Entity)</code> defines a 1:1 or N:1
+relationship</li>
+</ul>
+
+<h2>
+<a name="user-content-entity-objects" class="anchor" href="#entity-objects" aria-hidden="true"><span class="octicon octicon-link"></span></a>Entity objects</h2>
+
+<p>Entity instances also have a few predefined properties and methods you
+should be aware of:</p>
+
+<ul class="task-list">
+<li>
+<code>obj.id</code>, contains the identifier of your entity, this is a
+automatically generated (approximation of a) UUID. You should
+never write to this property.</li>
+<li>
+<code>obj.fetch(prop, callback)</code>, if an object has a <code>hasOne</code>
+relationship to another which has not yet been fetched from the
+database (e.g. when <code>prefetch</code> wasn't used), you can fetch in manually
+using <code>fetch</code>. When the property object is retrieved the callback function
+is invoked with the result, the result is also cached in the entity
+object itself.</li>
+<li>
+<code>obj.selectJSON([tx], propertySpec, callback)</code>, sometime you need to extract
+a subset of data from an entity. You for instance need to post a
+JSON representation of your entity, but do not want to include all
+properties. <code>selectJSON</code> allows you to do that. The <code>propertySpec</code>
+arguments expects an array with property names. Some examples:
+
+<ul class="task-list">
+<li>
+<code>['id', 'name']</code>, will return an object with the id and name property of this entity</li>
+<li>
+<code>['*']</code>, will return an object with all the properties of this entity, not recursive</li>
+<li>
+<code>['project.name']</code>, will return an object with a project property which has a name 
+property containing the project name (hasOne relationship)</li>
+<li>
+<code>['project.[id, name]']</code>, will return an object with a project property which has an
+id and name property containing the project name (hasOne relationship)</li>
+<li>
+<code>['tags.name']</code>, will return an object with an array <code>tags</code> property containing 
+objects each with a single property: name</li>
+</ul>
+</li>
+</ul>
+
+<h2>
+<a name="user-content-query-collections" class="anchor" href="#query-collections" aria-hidden="true"><span class="octicon octicon-link"></span></a>Query collections</h2>
+
+<p>A core concept of <code>persistence.js</code> is the <code>QueryCollection</code>. A
+<code>QueryCollection</code> represents a (sometimes) virtual collection that can
+be filtered, ordered or paginated. <code>QueryCollection</code>s are somewhate
+inspired by <a href="http://code.google.com/appengine/docs/python/datastore/queryclass.html">Google AppEngine's Query
+class</a>.
+A <code>QueryCollection</code> has the following methods:</p>
+
+<ul class="task-list">
+<li>
+<code>filter(property, operator, value)</code><br>
+Returns a new <code>QueryCollection</code> that adds a filter, filtering a
+certain property based on an operator and value. Supported operators
+are '=', '!=', '&lt;', '&lt;=', '&gt;', '&gt;=', 'in' and 'not in'. Example:
+<code>.filter('done', '=', true)</code>
+</li>
+<li>
+<code>or(filter)</code><br>
+Returns a new <code>QueryCollection</code> that contains items either matching
+the filters specified before calling <code>or</code>, or the filter represented
+in the argument. The <code>filter</code> argument is of a <code>Filter</code> type, there
+are three types of filters:
+
+<ul class="task-list">
+<li>
+<code>persistence.PropertyFilter</code>, which filters on properties (internally called when <code>filter(...)</code> is used.<br>
+Example: <code>new persistence.PropertyFilter('done', '=', true)</code>
+</li>
+<li>
+<code>persistence.AndFilter</code>, which is passed two filter objects as arguments, both of which should be true.
+Example: <code>new persistence.AndFilter(new persistence.PropertyFilter('done', '=', true), new persistence.PropertyFilter('archived', '=', true))</code>
+</li>
+<li>
+<code>persistence.OrFilter</code>, which is passed two filter objects as arguments, one of which should be true.
+Example: <code>new persistence.OrFilter(new persistence.PropertyFilter('done', '=', true), new persistence.PropertyFilter('archived', '=', true))</code>
+</li>
+</ul>
+</li>
+<li>
+<code>and(filter)</code><br>
+same as <code>or(filter)</code> except that both conditions should hold for items to be in the collection. </li>
+<li>
+<code>order(property, ascending)</code><br>
+Returns a new <code>QueryCollection</code> that will order its results by the
+property specified in either an ascending (ascending === true) or
+descending (ascending === false) order.</li>
+<li>
+<code>limit(n)</code><br>
+Returns a new <code>QueryCollection</code> that limits the size of the result
+set to <code>n</code> items. Useful for pagination.</li>
+<li>
+<code>skip(n)</code><br>
+Returns a new <code>QueryCollection</code> that skips the first <code>n</code> results.
+Useful for pagination.</li>
+<li>
+<code>prefetch(rel)</code><br>
+Returns a new <code>QueryCollection</code> that prefetches entities linked
+through relationship <code>rel</code>, note that this only works for one-to-one
+and many-to-one relationships.</li>
+<li>
+<code>add(obj)</code><br>
+Adds object <code>obj</code> to the collection.</li>
+<li>
+<code>remove(obj)</code><br>
+Removes object <code>obj</code> from the collection.</li>
+<li>
+<code>list([tx], callback)</code><br>
+Asynchronously fetches the results matching the formulated query.
+Once retrieved, the callback function is invoked with an array of
+entity objects as argument.</li>
+<li>
+<code>each([tx], eachCallback)</code><br>
+Asynchronously fetches the results matching the formulated query.
+Once retrieved, the <code>eachCallback</code> function is invoked on each
+element of the result objects.</li>
+<li>
+<code>forEach([tx], eachCallback)</code><br>
+Alias for <code>each</code>
+</li>
+<li>
+<code>one([tx], callback)</code>
+Asynchronously fetches the first element of the collection, or <code>null</code> if none.</li>
+<li>
+<code>destroyAll([tx], callback)</code>
+Asynchronously removes all the items in the collection. <strong>Important</strong>: this does
+not only remove the items from the collection, but removes the items themselves!</li>
+<li>
+<code>count([tx], callback)</code>
+Asynchronously counts the number of items in the collection. The arguments passed
+to the <code>callback</code> function is the number of items.</li>
+</ul>
+
+<p>Query collections are returned by:</p>
+
+<ul class="task-list">
+<li>
+<code>EntityName.all()</code>, e.g. <code>Task.all()</code>
+</li>
+<li>one-to-many and many-to-many relationships, e.g. <code>task.tags</code>
+</li>
+</ul>
+
+<p>Example:</p>
+
+<pre><code>var allTasks = Task.all().filter("done", '=', true).prefetch("category").order("name", false).limit(10);
+
+allTasks.list(null, function (results) {
+    results.forEach(function (r) {
+        console.log(r.name)
+        window.task = r;
+    });
+});
+</code></pre>
+
+<h1>
+<a name="user-content-using-persistencejs-on-the-server" class="anchor" href="#using-persistencejs-on-the-server" aria-hidden="true"><span class="octicon octicon-link"></span></a>Using persistence.js on the server</h1>
+
+<p>Installing <code>persistence.js</code> on node is easy using <a href="http://npmjs.org">npm</a>:</p>
+
+<pre><code>npm install persistencejs
+</code></pre>
+
+<p>Sadly the node.js server environment requires slight changes to
+<code>persistence.js</code> to make it work with multiple database connections:</p>
+
+<ul class="task-list">
+<li>A <code>Session</code> object needs to be passed as an extra argument to
+certain method calls, typically as a first argument.</li>
+<li>Methods previously called on the <code>persistence</code> object itself are now
+called on the <code>Session</code> object.</li>
+</ul>
+
+<p>An example <code>node.js</code> application is included in <code>test/node-blog.js</code>. </p>
+
+<h2>
+<a name="user-content-setup" class="anchor" href="#setup" aria-hidden="true"><span class="octicon octicon-link"></span></a>Setup</h2>
+
+<p>You need to <code>require</code> two modules, the <code>persistence.js</code> library itself
+and the MySQL backend module.</p>
+
+<pre><code>var persistence = require('persistencejs');
+var persistenceStore = persistence.StoreConfig.init(persistence, { adaptor: 'mysql' });
+</code></pre>
+
+<p>Then, you configure the database settings to use:</p>
+
+<pre><code>persistenceStore.config(persistence, 'localhost', 3306, 'dbname', 'username', 'password');
+</code></pre>
+
+<p>Subsequently, for every connection you handle (assuming you're
+building a sever), you call the <code>persistenceStore.getSession()</code>
+method:</p>
+
+<pre><code>var session = persistenceStore.getSession();
+</code></pre>
+
+<p>This session is what you pass around, typically together with a
+transaction object. Note that currently you can only have one
+transaction open per session and transactions cannot be nested.</p>
+
+<pre><code>session.transaction(function(tx) {
+  ...
+});
+</code></pre>
+
+<h2>
+<a name="user-content-commit-and-rollback" class="anchor" href="#commit-and-rollback" aria-hidden="true"><span class="octicon octicon-link"></span></a>Commit and Rollback</h2>
+
+<p><code>persistence.js</code> works in autocommit mode by default. </p>
+
+<p>You can override this behavior and enable explicit commit and rollback 
+by passing true as first argument to <code>persistence.transaction</code>. 
+You can then use the following two methods to control the transaction:</p>
+
+<ul class="task-list">
+<li>
+<code>transaction.commit(session, callback)</code> commits the changes.</li>
+<li>
+<code>transaction.rollback(session, callback)</code> rollbacks the changes.</li>
+</ul>
+
+<p>Typical code will look like:</p>
+
+<pre><code>session.transaction(true, function(tx) {
+  // create/update/delete objects
+  modifyThings(session, tx, function(err, result) {
+    if (err) {
+      // something went wrong
+      tx.rollback(session, function() {
+        console.log('changes have been rolled back: ' + ex.message);
+      });
+    }
+    else {
+      // success
+      tx.commit(session, function() {
+        console.log('changes have been committed: ' result);
+    });
+  });
+});
+</code></pre>
+
+<p>Explicit commit and rollback is only supported on MySQL (server side) 
+for now.</p>
+
+<h2>
+<a name="user-content-defining-your-data-model" class="anchor" href="#defining-your-data-model" aria-hidden="true"><span class="octicon octicon-link"></span></a>Defining your data model</h2>
+
+<p>Defining your data model is done in exactly the same way as regular <code>persistence.js</code>:</p>
+
+<pre><code>var Task = persistence.define('Task', {
+  name: "TEXT",
+  description: "TEXT",
+  done: "BOOL"
+});
+</code></pre>
+
+<p>A <code>schemaSync</code> is typically performed as follows:</p>
+
+<pre><code>session.schemaSync(tx, function() {
+  ...
+});
+</code></pre>
+
+<h2>
+<a name="user-content-creating-and-manipulating-objects-1" class="anchor" href="#creating-and-manipulating-objects-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Creating and manipulating objects</h2>
+
+<p>Creating and manipulating objects is done much the same way as with
+regular <code>persistence.js</code>, except that in the entity's constructor you
+need to reference the <code>Session</code> again:</p>
+
+<pre><code>var t = new Task(session);
+...
+session.add(t);
+
+session.flush(tx, function() {
+  ...
+});
+</code></pre>
+
+<h2>
+<a name="user-content-query-collections-1" class="anchor" href="#query-collections-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Query collections</h2>
+
+<p>Query collections work the same way as in regular <code>persistence.js</code>
+with the exception of the <code>Entity.all()</code> method that now also requires
+a <code>Session</code> to be passed to it:</p>
+
+<pre><code>Task.all(session).filter('done', '=', true).list(tx, function(tasks) {
+  ...
+});
+</code></pre>
+
+<h2>
+<a name="user-content-closing-the-session" class="anchor" href="#closing-the-session" aria-hidden="true"><span class="octicon octicon-link"></span></a>Closing the session</h2>
+
+<p>After usage, you need to close your session:</p>
+
+<pre><code>session.close();
+</code></pre>
+
+<h1>
+<a name="user-content-bugs-and-contributions" class="anchor" href="#bugs-and-contributions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Bugs and Contributions</h1>
+
+<p>If you find a bug, please <a href="https://github.com/zefhemel/persistencejs/issues">report
+it</a>.  or fork the
+project, fix the problem and send me a pull request. For a list of
+planned features and open issues, have a look at the <a href="https://github.com/zefhemel/persistencejs/issues">issue
+tracker</a>.</p>
+
+<p>For support and discussion, please join the <a href="http://groups.google.com/group/persistencejs">persistence.js Google
+Group</a>.</p>
+
+<p>Thanks goes to the people listed in <code>AUTHORS</code> for their contributions.</p>
+
+<p>If you use <a href="http://code.google.com/webtoolkit/">GWT</a> (the Google Web
+Toolkit), be sure to have a look at <a href="http://github.com/dennisjzh/GwtMobile-Persistence">Dennis Z. Jiang's GWT persistence.js
+wrapper</a></p>
+
+<h1>
+<a name="user-content-license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h1>
+
+<p>This work is licensed under the <a href="http://en.wikipedia.org/wiki/MIT_License">MIT license</a>.</p>
+
+<h2>
+<a name="user-content-support-this-work" class="anchor" href="#support-this-work" aria-hidden="true"><span class="octicon octicon-link"></span></a>Support this work</h2>
+
+<p>You can support this project by flattering it:</p>
+
+<p><a href="http://flattr.com/thing/2510/persistence-js" target="_blank">
+<img src="https://camo.githubusercontent.com/3906a125c2afce9449665b4afb904077d37152c7/687474703a2f2f6170692e666c617474722e636f6d2f627574746f6e2f627574746f6e2d7374617469632d35307836302e706e67" title="Flattr this" border="0" data-canonical-src="http://api.flattr.com/button/button-static-50x60.png" style="max-width:100%;"></a></p>
+</article>
+  </div>
+
+
+        </div>
+
+      </div><!-- /.repo-container -->
+      <div class="modal-backdrop"></div>
+    </div><!-- /.container -->
+  </div><!-- /.site -->
+
+
+    </div><!-- /.wrapper -->
+
+      <div class="container">
+  <div class="site-footer" role="contentinfo">
+    <ul class="site-footer-links right">
+      <li><a href="https://status.github.com/">Status</a></li>
+      <li><a href="https://developer.github.com">API</a></li>
+      <li><a href="http://training.github.com">Training</a></li>
+      <li><a href="http://shop.github.com">Shop</a></li>
+      <li><a href="/blog">Blog</a></li>
+      <li><a href="/about">About</a></li>
+
+    </ul>
+
+    <a href="/" aria-label="Homepage">
+      <span class="mega-octicon octicon-mark-github" title="GitHub"></span>
+    </a>
+
+    <ul class="site-footer-links">
+      <li>&copy; 2014 <span title="0.06402s from github-fe123-cp1-prd.iad.github.net">GitHub</span>, Inc.</li>
+        <li><a href="/site/terms">Terms</a></li>
+        <li><a href="/site/privacy">Privacy</a></li>
+        <li><a href="/security">Security</a></li>
+        <li><a href="/contact">Contact</a></li>
+    </ul>
+  </div><!-- /.site-footer -->
+</div><!-- /.container -->
+
+
+    <div class="fullscreen-overlay js-fullscreen-overlay" id="fullscreen_overlay">
+  <div class="fullscreen-container js-suggester-container">
+    <div class="textarea-wrap">
+      <textarea name="fullscreen-contents" id="fullscreen-contents" class="fullscreen-contents js-fullscreen-contents js-suggester-field" placeholder=""></textarea>
+    </div>
+  </div>
+  <div class="fullscreen-sidebar">
+    <a href="#" class="exit-fullscreen js-exit-fullscreen tooltipped tooltipped-w" aria-label="Exit Zen Mode">
+      <span class="mega-octicon octicon-screen-normal"></span>
+    </a>
+    <a href="#" class="theme-switcher js-theme-switcher tooltipped tooltipped-w"
+      aria-label="Switch themes">
+      <span class="octicon octicon-color-mode"></span>
+    </a>
+  </div>
+</div>
+
+
+
+    <div id="ajax-error-message" class="flash flash-error">
+      <span class="octicon octicon-alert"></span>
+      <a href="#" class="octicon octicon-x flash-close js-ajax-error-dismiss" aria-label="Dismiss error"></a>
+      Something went wrong with that request. Please try again.
+    </div>
+
+
+      <script crossorigin="anonymous" src="https://assets-cdn.github.com/assets/frameworks-dabc650f8a51dffd1d4376a3522cbda5536e4807e01d2a86ff7e60d8d6ee3029.js" type="text/javascript"></script>
+      <script async="async" crossorigin="anonymous" src="https://assets-cdn.github.com/assets/github-fa2f009761e3bc4750ed00845b9717b09646361cbbc3fa473ad64de9ca6ccf5b.js" type="text/javascript"></script>
+      
+      
+  </body>
+</html>
+

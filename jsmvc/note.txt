@@ -1,0 +1,41 @@
+1、对doom的绑定操作需要，dom出现在之后绑定
+
+//#addBtn为静态结点
+$('#addBtn').on('click',this.add);
+
+
+//父节点静态，内部.edit可以为动态结点
+var userlistView = this.$userlistView;
+userlistView.on('click','.edit',this.edit);
+
+2、定义App script在head中
+执行App.init()需要在文档末尾，等所有的doom加载完成以后，再运行，head中运行会出错
+  $(document).ready(function(){
+	App.init();
+	App.getdata();
+  });
+  
+3、$.each返回值
+	editResult:function(){
+		//alert('edit-r');
+		var $new_name = $('#edit_name').val();
+		var $new_age = $('#edit_age').val();
+		var $new_sex = $('#edit_sex').val();
+		var $id = $('#edit_id').val();
+
+		$.each(App.userdata, function (i, user) {
+			console.log(i+':'+user);
+			//debugger;
+			if(user.id == $id){
+				user.name = $new_name;
+				user.age = $new_age;
+				user.sex = $new_sex;
+				//userResult =  user;
+				return false;//return user unuseful go out circle,return user equals return true then equal will go on
+			}
+		});
+		App.render();
+	},
+	
+	操作函数定义中 return user 不生效，跳出循环用return false,继续执行用return true
+	计算函数可以return user 生效，返回object类型

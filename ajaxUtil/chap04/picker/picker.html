@@ -1,0 +1,115 @@
+<html>
+  <head>
+    <title>Stock Picker</title>
+
+    <script type="text/javascript" src="ajaxkit.js"> </script>
+    <script type="text/javascript" src="domkit.js"> </script>
+    <script type="text/javascript">
+      function handleStockListRequest() {
+        if (request.readyState == 4 && request.status == 200) {
+          // Store the XML response data
+          var xmlData = request.responseXML.getElementsByTagName("stocks")[0];
+
+          // Isolate the data for the current stock type
+          var listData = xmlData.getElementsByTagName(
+            document.getElementById('stocktype').options[document.getElementById('stocktype').selectedIndex].value);
+
+          // Clear the stock list
+          var stockSel = document.getElementById('stock');
+          while (stockSel.length > 0)
+            stockSel.remove(0);
+
+          // Fill the stock list with stock symbols
+          for (var i = 0; i < listData[0].childNodes.length; i++) {
+            if (listData[0].childNodes[i].nodeType == 1) {
+              var symbol = getText(listData[0].childNodes[i]);
+              stockSel.add(new Option(symbol, symbol, false, false), null);
+            }
+          }
+
+          // Select the first stock in the list
+          stockSel.selectedIndex = 0;
+
+          // Load the info for the first stock in the list
+          loadStockInfo(stockSel[0].value);
+        }
+        ajaxUpdateState();
+      }
+
+      function handleStockInfoRequest() {
+        if (request.readyState == 4 && request.status == 200) {
+          // Store the XML response data
+          var xmlData = request.responseXML.getElementsByTagName("Stock")[0];
+
+          // Display the detailed stock info
+          replaceText(document.getElementById("stockname"),
+            getText(xmlData.getElementsByTagName("Name")[0]) +
+            " (" + getText(xmlData.getElementsByTagName("Symbol")[0]) + ")");
+          replaceText(document.getElementById("stockprice"),
+            "$" + getText(xmlData.getElementsByTagName("Last")[0]));
+          replaceText(document.getElementById("stockcap"),
+            "$" + getText(xmlData.getElementsByTagName("MktCap")[0]));
+          replaceText(document.getElementById("stockvolume"),
+            getText(xmlData.getElementsByTagName("Volume")[0]) + " shares");
+          replaceText(document.getElementById("stockchange"),
+            getText(xmlData.getElementsByTagName("PercentageChange")[0]));
+          if (getText(xmlData.getElementsByTagName("PercentageChange")[0]).charAt(0) == '+')
+            document.getElementById("stockchange").style.color = "#009900";
+          else if (getText(xmlData.getElementsByTagName("PercentageChange")[0]).charAt(0) == '-')
+            document.getElementById("stockchange").style.color = "#990000";
+          replaceText(document.getElementById("stockpe"),
+            getText(xmlData.getElementsByTagName("P-E")[0]));
+          replaceText(document.getElementById("stockdatetime"),
+            getText(xmlData.getElementsByTagName("Time")[0]) + " - " +
+            getText(xmlData.getElementsByTagName("Date")[0]));
+        }
+        ajaxUpdateState();
+      }
+
+      function loadStockList() {
+        // Send the Ajax request to load the new stock list
+        ajaxSendRequest("GET", "stocks.xml", handleStockListRequest);
+      }
+
+      function loadStockInfo(stock) {
+        // Clear the previous stock info text
+        replaceText(document.getElementById("stockname"), "Loading...");
+        replaceText(document.getElementById("stockprice"), "");
+        replaceText(document.getElementById("stockcap"), "");
+        replaceText(document.getElementById("stockvolume"), "");
+        replaceText(document.getElementById("stockchange"), "");
+        document.getElementById("stockchange").style.color = "#000000";
+        replaceText(document.getElementById("stockpe"), "");
+        replaceText(document.getElementById("stockdatetime"), "");
+
+        // Send the Ajax request to load the new stock info
+        ajaxSendRequest("GET", "quoter.php?symbol=" + encodeURIComponent(stock), handleStockInfoRequest);
+      }
+    </script>
+  </head>
+
+  <body onload="document.getElementById('stocktype').selectedIndex = 0; loadStockList()">
+    <div id="ajaxState" style="display:none"></div>
+    <br />
+    <div>Select type: 
+      <select id="stocktype" onchange="loadStockList()">
+        <option value="hot">Hot Stocks</option>
+        <option value="cold">Cold Stocks</option>
+        <option value="safe">Safe Stocks</option>
+      </select>
+    </div>
+    <br />
+    <div>Select stock:
+      <select id="stock" onchange="loadStockInfo(this[this.selectedIndex].value);">
+      </select>
+    </div>
+    <br />
+    <div id="stockname" style="font-size:large; font-weight:bold"></div>
+    Share price: <span id="stockprice" style="font-weight:bold"></span><br />
+    Market cap: <span id="stockcap" style="font-weight:bold"></span><br />
+    Trading volume: <span id="stockvolume" style="font-weight:bold"></span><br />
+    % change: <span id="stockchange" style="font-weight:bold"></span><br />
+    P/E ratio: <span id="stockpe" style="font-weight:bold"></span><br />
+    <div id="stockdatetime" style="font-style:italic"></div>
+  </body>
+</html>

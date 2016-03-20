@@ -1,0 +1,53 @@
+var t = new Date()
+undefined
+t
+Thu Oct 30 2014 14:43:37 GMT+0800 (中国标准时间)
+t.getTime()
+1414651417110
+
+t.toDateString()\
+Uncaught SyntaxError: Unexpected token ILLEGAL VM2483:732
+t.toDateString()
+"Thu Oct 30 2014"
+t.toLocaleTimeString（）
+Uncaught SyntaxError: Unexpected token ILLEGAL VM2483:732
+t.toLocaleTimeString()
+"下午2:43:37"
+t.toTimeString()
+"14:43:37 GMT+0800 (中国标准时间)"
+t.toUTCString()
+"Thu, 30 Oct 2014 06:43:37 GMT"
+t.toISOString()
+"2014-10-30T06:43:37.110Z"
+t.toString()
+"Thu Oct 30 2014 14:43:37 GMT+0800 (中国标准时间)"
+t.toLocaleTimeString().slice(2,0)
+""
+
+t.toLocaleTimeString().slice(2,-1)
+"2:43:3"
+t.toLocaleTimeString().slice(2,-0)
+""
+t.toLocaleTimeString().slice(2)
+"2:43:37"
+t.toLocaleTimeString().slice(0.2)
+"下午2:43:37"
+t.toLocaleTimeString().slice(0,2)
+"下午"
+t.toLocaleTimeString()
+"下午2:43:37"
+t.toLocaleTimeString().slice(0,-3)
+"下午2:43"
+t.toLocaleDateString()
+"2014/10/30"
+t.toLocaleDateString().split("/")
+["2014", "10", "30"]
+t.toLocaleDateString().split("/")[0]
+"2014"
+
+
+"2014/06/31-"
+str.replace(/\//,'-')
+"2014-06/31"
+str.replace(/\//g,'-')
+"2014-06-31"

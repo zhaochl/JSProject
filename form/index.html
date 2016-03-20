@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="../js/jquery-1.10.2.js"></script>
+<script typpe="text/javascript">
+$(function(){
+	alert('tt');
+	$('#bfbID').click(function(){
+		$('#fblist_ul').toggle();
+		if($('#bfbID').prop('checked')){
+			$('#bzbID').attr('disabled','disabled');
+		}else{
+			$('#bzbID').removeAttr('disabled');
+		}
+	});
+	$('#bzbID').click(function(){
+		if($('#bzbID').prop('checked')){
+			$('#bfbID').attr('disabled','disabled');
+		}else{
+			$('#bfbID').removeAttr('disabled');
+		}
+	});
+	$('#addFBID').click(function(){
+		$('#subFBNumID').val('');
+		$('#subFBNumID').attr('disabled','disabled');
+	});
+	$('#subFBID').click(function(){
+		$('#addFBNumID').val('');
+		if($('#subFBID').prop('checked')){
+			$('#addFBNumID').prop('disabled','disabled');
+			$('#subFBNumID').prop('disabled','');
+		}else{
+			$('#subFBNumID').prop('disabled','');
+		}
+	});
+	$('#addFBID').click(function(){
+		$('#subFBNumID').val('');
+		if($('#addFBID').prop('checked')){
+			$('#subFBNumID').prop('disabled','disabled');
+			$('#addFBNumID').prop('disabled','');
+		}else{
+			$('#subFBNumID').prop('disabled','');
+		}
+		
+	});
+	$('#go').click(function(){
+		$("input[name='copyItem']").each(function(){
+			console.log($(this).attr('rel'));
+			if($(this).prop("checked")){
+				//reprintListArr.push($(this).prop('rel'));
+				
+			}
+		});
+		return false;
+	});
+});
+</script>
+</head>
+<body>
+<h4>Hi,Form-Util><~~</h4>
+<form action="/hi" id="demo">
+	<input type="text" value="" name="username" id="username"/>
+	<input type="text" value="" name="password" id="password"/>
+	<input type="button" value="submit" id="go"/>
+
+<input name="cpWkChangecert.changecertSign" type="radio" value="1" id="addFBID" width="10%">增副本
+<input id="addFBNumID" name="cpWkChangecert.takeCopyNo" class=" x-form-text x-form-field" style="WIDTH: 50px;"/>本
+                          <br/>
+<input name="cpWkChangecert.changecertSign" type="radio" value="0" id="subFBID" width="10%"/>减副本
+<input id="subFBNumID" name="cpWkChangecert.takeCopyNo" class=" x-form-text x-form-field" style="WIDTH: 50px;" />本
+
+<div id="fblist_box">
+	<input name="cpWkChangecert.changecertSign" type="checkbox" id="bzbID" width="10%">补正本
+    <input name="cpWkChangecert.changecertSign" type="checkbox" id="bfbID" width="10%">补副本
+   	<ul id="fblist_ul" style="margin-top:10px;padding:2px;border:1px solid #CCC; width:430px;display:none;">
+       	<li class="fblist_li"><input name="copyItem" type="checkbox" rel="1" value="1" id="radio0" width="10%">副本2-1</li>
+        <li class="fblist_li"><input name="copyItem" type="checkbox" rel="2" value="1" id="radio0" width="10%">副本2-1</li>
+	</ul>
+</div>
+</form>                          
+</body>
+</html>

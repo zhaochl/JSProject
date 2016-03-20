@@ -1,0 +1,72 @@
+<html>
+  <head>
+    <title>Completer</title>
+
+    <script type="text/javascript" src="ajaxkit.js"> </script>
+    <script type="text/javascript" src="domkit.js"> </script>
+    <script type="text/javascript">
+      var currentInput;
+
+      function handleCompletionRequest() {
+        if (request.readyState == 4 && request.status == 200) {
+          // Grab the response text and kill any trailing whitespace
+          var completion = request.responseText.replace(/\s*$/g, "");
+
+          // Only issue an Ajax request if the input control still has the current input
+          var inputControl = document.getElementById("name");
+          if (completion && (inputControl.value == currentInput)) {
+            if (inputControl.setSelectionRange) {
+              // Add the completion to the input control for non-IE browsers
+              var inputLen = inputControl.value.length;
+              inputControl.value += completion;
+              inputControl.setSelectionRange(inputLen, inputControl.value.length);
+            }
+            else if (inputControl.createTextRange) {
+              // Add the completion to the input control for IE
+              var sel = inputControl.createTextRange();
+              sel.text += completion;
+              sel.moveStart("character", -completion.length); 
+              sel.moveEnd("character", 0); 
+              sel.select();
+            }
+          }
+        }
+        ajaxUpdateState();
+      }
+
+      function getCompletion(inputControl, evt) {
+        evt = evt ? evt : (event ? event : null);
+        if (evt) {
+          // Ignore keys that don't factor in to the text entry
+          var key = evt.charCode ? evt.charCode : evt.keyCode;
+          if (key < 32 || (key >= 33 && key <= 46) || (key >= 112 && key <= 123))
+            return;
+
+          // Store away the current input
+          currentInput = inputControl.value;
+
+          // Send the Ajax request to load the completion
+          ajaxSendRequest("GET", "completer.php?input=" +
+            encodeURIComponent(inputControl.value), handleCompletionRequest);
+        }
+      }
+
+      function showBiography() {
+        // Open a link in Wikipedia based upon the historical name entered
+        if (document.getElementById("name").value != "")
+          window.location = "http://en.wikipedia.org/wiki/" +
+            encodeURIComponent(document.getElementById("name").value);
+      }
+    </script>
+  </head>
+
+  <body onload="document.getElementById('name').value = ''; document.getElementById('name').focus()">
+    <div id="ajaxState" style="display:none"></div>
+    <br />
+    <div>
+      Enter a historical name: 
+      <input id="name" type="text" size="32" onkeyup="getCompletion(this, event)" />
+      <input id="learnButton" type="button" value="Learn More..." onclick="showBiography()" />
+    </div>
+  </body>
+</html>

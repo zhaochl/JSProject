@@ -1,0 +1,38 @@
+<html>
+  <head>
+    <title>Booker E-Book Viewer</title>
+
+    <script type="text/javascript" src="ajaxkit.js"> </script>
+    <script type="text/javascript" src="domkit.js"> </script>
+    <script type="text/javascript">
+      function handleRequest() {
+        if (request.readyState == 4 && request.status == 200) {
+          replaceText(document.getElementById("booktext"), request.responseText);
+        }
+        ajaxUpdateState();
+      }
+
+      function loadBook(title) {
+        replaceText(document.getElementById("booktext"), "Loading...");
+        ajaxSendRequest("GET", "book_" + title + ".txt", handleRequest);
+      }
+    </script>
+  </head>
+
+  <body style="background:#EEEEEE" onload="document.getElementById('book').selectedIndex = 0;
+    loadBook(document.getElementById('book').options[document.getElementById('book').selectedIndex].value)">
+    <div id="ajaxState" style="display:block"></div>
+    <br />
+    <div style="margin-left:10%">Select book: 
+      <select id="book" onchange="loadBook(this.options[this.selectedIndex].value)">
+        <option value="alicewonderland">Alice's Adventure's in Wonderland by Lewis Carroll</option>
+        <option value="frankenstein">Frankenstein by Mary Shelley</option>
+        <option value="mobydick">Moby Dick by Herman Melville</option>
+        <option value="warandpeace">War and Peace by Leo Tolstoy</option>
+        <option value="warofworlds">The War of the Worlds by H.G. Wells</option>
+      </select>
+    </div>
+    <br />
+    <div id="booktext" style="margin-left:10%; margin-right:10%; padding:2%; background:#FFFFFF; border:thin solid #333333"></div>
+  </body>
+</html>

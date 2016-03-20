@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+
+<script type="text/javascript" src="js/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="js/eval.js"></script>
+<script type="text/javascript" src="js/jsmvc.js"></script>
+<script type="text/javascript" src="js/lib.js"></script>
+
+</head>
+<body>
+<h2>http://localhost/JSProject/index.html</h2>
+<script type="text/javascript">
+//$sql = "CREATE TABLE `oak_customer` (`customer_id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,`fa_id` INTEGER,`name` TEXT, `email` TEXT, `phone` TEXT, `customer_name` TEXT, `city` TEXT, `user_type` INTEGER, `status` INTEGER, `create_time` INTEGER,	`update_time` INTEGER, `is_deleted` INTEGER, `delete_time` INTEGER, `description` TEXT,`qq` TEXT,`weixin` TEXT);";
+//alert($sql);
+
+function add(a,b){
+	return a+b;
+}
+
+function add(a,b,callback){
+	return a+b;
+	if(typeof(callback)=='function'){
+	 callback();
+	}
+}
+add(1,2)
+</script>
+
+<ol>
+	<li>eval() 函数可计算某个字符串，并执行其中的的 JavaScript 代码</li>
+</ol>
+<div>
+<a href="catchTowerIcons/icons.html">捕捉tower图片</a>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var model = new ListModel(['PHP', 'JavaScript']),
+
+    view = new ListView(model, {
+        'list' : $('#list'), 
+        'addButton' : $('#plusBtn'), 
+        'delButton' : $('#minusBtn')
+    }),
+
+    controller = new ListController(model, view);        
+    view.show();
+});
+</script>
+<div>
+<select id="list" size="10" style="width: 15em"></select><br/>
+<button id="plusBtn">  +  </button>
+<button id="minusBtn">  -  </button>
+</div>
+
+<a href="on.html">测试On-trigger触发器链</a>
+
+</body>
+</html>

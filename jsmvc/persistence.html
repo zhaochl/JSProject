@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <META http-equiv=Content-Type content="text/html; charset=utf-8">
+    <title>js-mvc-handlebars</title>
+    <script type="text/javascript" src="js/jquery.js"></script>
+        <!--插件引用-->
+    <!--<script type="text/javascript" src="js/base.js"></script>-->
+    
+    <script type="text/javascript" src="js/handlebars-1.0.0.beta.6.js"></script>
+    
+    <script src="persistence.js"></script>
+    <script src="persistence.store.sql.js"></script>
+    <script src="persistence.store.websql.js"></script>
+<!--
+    <script src="js/persistencelib/persistence.js"></script>
+    <script src="js/persistencelib/persistence.store.sql.js"></script>
+    <script src="js/persistencelib/persistence.store.websql.js"></script>
+    <script src="js/persistencelib/persistence.store.memory.js"></script>
+    <script src="js/persistencelib/persistence.jquery.js"></script>
+    <script src="js/persistencelib/persistence.jquery.mobile.js"></script>
+-->
+    <!--<script type="text/javascript" src="js/app.js"></script>-->
+	<script type="text/javascript">
+	var Utils = {
+		fields:{},
+		uuid: function () {
+			/*jshint bitwise:false */
+			var i, random;
+			var uuid = '';
+
+			for (i = 0; i < 32; i++) {
+				random = Math.random() * 16 | 0;
+				if (i === 8 || i === 12 || i === 16 || i === 20) {
+					uuid += '-';
+				}
+				uuid += (i === 12 ? 4 : (i === 16 ? (random & 3 | 8) : random)).toString(16);
+			}
+
+			return uuid;
+		},
+		pluralize: function (count, word) {
+			return count === 1 ? word : word + 's';
+		},
+		store: function (namespace, data) {
+			if (arguments.length > 1) {
+				return localStorage.setItem(namespace, JSON.stringify(data));
+			} else {
+				var store = localStorage.getItem(namespace);
+				if(typeof(store)=="object"){
+					return (store && JSON.parse(store)) || [];
+				} else{
+					localStorage.setItem(namespace, '');
+					return [];
+				}
+			}
+		},
+		//v2
+		
+		connect:function(db,desc,size){
+			if (window.openDatabase) {
+				persistence.store.websql.config(persistence, db, desc, size);
+			} else {
+				persistence.store.memory.config(persistence);
+			}
+		},
+		create:function (table,fields) {
+			if(typeof(fields)=='object'){
+				persistence.define(table, fields);
+      			persistence.schemaSync();
+			}else{
+				alert('null table');
+			}
+		},
+		D :function (table) {
+			return persistence.define(table,this.fields);
+		},
+		add: function (obj){
+			persistence.add(obj); 
+			persistence.flush();
+		},
+		save :function (obj) {
+			persistence.save(obj); 
+			persistence.flush();
+		},
+		remove:function (obj){
+			//User.load(id, function(user){ 
+				persistence.remove(obj); 
+				persistence.flush();
+			//}); 
+		},
+		findByid:function(id){
+
+		}
+		
+	};
+    var App = {
+    	init:function (){
+    		    var data = {
+                    "student": [
+                        {
+                            "name": "张三",
+                            "sex": "0",
+                            "age": 18
+                        },
+                        {
+                            "name": "李四",
+                            "sex": "0",
+                            "age": 22
+                        },
+                        {
+                            "name": "妞妞",
+                            "sex": "1",
+                            "age": 18
+                        }
+                    ]
+                };
+                //Utils.store('userdata',data);
+    			this.userdata = Utils.store('userdata');
+    			//v2-start
+    			this.userdatadb = Utils.connect('userdata','userlist',5 * 1024 * 1024);
+    			Utils.create('student',{'name':"TEXT",sex:"TEXT",age:"TEXT"});
+    			//Utils.fields = {'name':"TEXT",sex:"TEXT",age:"TEXT"};
+    			var Student = Utils.D('student');
+
+    			var mark = new Student({
+                        	"id":Utils.uuid(),
+                            "name": "张三",
+                            "sex": "0",
+                            "age": 18
+                        }); 
+				//persistence.add(mark); 
+				//persistence.flush();
+				//v2-end
+
+				this.cacheElements();
+				this.bindEvents();
+				this.render();
+    			//this.data = {'a':'a','b':'b'};
+    		},
+    	getdata:function (){
+    			//console.log(this.data);
+    			//alert(this.data);
+    		},
+    	cacheElements: function () {
+			this.userVolistTemplate = Handlebars.compile($('#userVolistTemplate').html());
+			this.$userlistView = $('#userlistView');
+			//this.$dataList = this.$dataTable.find('#dataList');
+
+			/*
+			this.todoTemplate = Handlebars.compile($('#todo-template').html());
+			this.footerTemplate = Handlebars.compile($('#footer-template').html());
+			this.$todoApp = $('#todoapp');
+			this.$header = this.$todoApp.find('#header');
+			this.$main = this.$todoApp.find('#main');
+			this.$footer = this.$todoApp.find('#footer');
+			this.$newTodo = this.$header.find('#new-todo');
+			this.$toggleAll = this.$main.find('#toggle-all');
+			this.$todoList = this.$main.find('#todo-list');
+			this.$count = this.$footer.find('#todo-count');
+			this.$clearBtn = this.$footer.find('#clear-completed');
+			*/
+		},
+		bindEvents: function(){
+			/*
+			var list = this.$todoList;
+			this.$newTodo.on('keyup', this.create);
+			this.$toggleAll.on('change', this.toggleAll);
+			this.$footer.on('click', '#clear-completed', this.destroyCompleted);
+			list.on('change', '.toggle', this.toggle);
+			list.on('dblclick', 'label', this.edit);
+			list.on('keypress', '.edit', this.blurOnEnter);
+			list.on('blur', '.edit', this.update);
+			list.on('click', '.destroy', this.destroy);
+			*/
+			$('#addBtn').on('click',this.add);
+			
+			//$('#editResultBtn').on('click',this.editResult);//unuseful
+			//alert('bind');
+
+			var userlistView = this.$userlistView;
+			userlistView.on('click','.edit',this.edit);
+			userlistView.on('click','#editResultBtn',this.editResult);//usefull
+			userlistView.on('click','.del',this.del);//usefull
+
+		},
+		render: function () {
+
+			//debugger;
+			this.$userlistView.html(this.userVolistTemplate(this.userdata));
+			Utils.store('userdata', this.userdata);
+			
+			//this.userVolistTemplate = Handlebars.compile($('#userVolistTemplate').html());
+			//var myTemplate = Handlebars.compile($("#table-template").html());
+        
+        	//$('#tableList').html(myTemplate(data));
+
+			/*
+			this.$todoList.html(this.todoTemplate(this.todos));
+			this.$main.toggle(!!this.todos.length);
+			this.$toggleAll.prop('checked', !this.activeTodoCount());
+			this.renderFooter();
+			Utils.store('todos-jquery', this.todos);
+			*/
+		},		
+		create: function (e) {
+			var $input = $(this);
+			var val = $.trim($input.val());
+
+			if (e.which !== App.ENTER_KEY || !val) {
+				return;
+			}
+
+			App.todos.push({
+				id: Utils.uuid(),
+				title: val,
+				completed: false
+			});
+
+			$input.val('');
+			App.render();
+		},
+		add: function(){
+			//alert('add');
+			//debugger;
+			var $new_name = $('#new_name').val();
+			var $new_age = $('#new_age').val();
+			var $new_sex = $('#new_sex').val();
+			var $new_id = Utils.uuid();
+			App.userdata.push({
+				id:$new_id,
+				name:$new_name,
+				age:$new_age,
+				sex:$new_sex
+			});
+			$('#new_name').val('');
+			$('#new_age').val('');
+			$('#new_sex').val('');
+			//v2-start
+			var Student = Utils.D('student');
+			var mark = new Student({
+                    	"id":$new_id,
+                        "name": $new_name,
+                        "sex": $new_sex,
+                        "age": $new_age
+                    }); 
+			//persistence.add(mark); 
+			//persistence.flush();
+			Utils.add(mark);
+			//v2-end
+			App.render();
+		},
+		edit:function(e){
+			var _this = this;
+			//var id = _this.
+			console.log(this);
+			//console.log(id);
+			var aid = $(this).closest('a').attr('rel');
+			var user = App.findByid(aid);
+			console.log(user);
+
+			//var user2 = Utils.store('7f53be06-b1f0-4bdf-9c43-f9011c1fedb2');
+			//console.log(user2);
+
+			//alert('edit '+aid);
+			var str ='<input type="hidden" name="edit_id" id="edit_id" value="'+user.id+'" style="width:30px;"/>';
+				str+= '<input type="text" name="new_name" id="edit_name" value="'+user.name+'" style="width:30px;"/>';
+    			str+='<input type="text" name="new_sex" id="edit_sex" value="'+user.sex+'" style="width:30px;"/>';
+    			str+='<input type="text" name="new_age" id="edit_age" value="'+user.age+'" style="width:30px;"/>';
+    			str+='<input type="button" value="edit" id="editResultBtn"/>';
+    		var trID = $(this).closest('tr');
+    		//trID.html();
+    		trID.html(str);
+		},
+		editResult:function(){
+			//alert('edit-r');
+			var $new_name = $('#edit_name').val();
+			var $new_age = $('#edit_age').val();
+			var $new_sex = $('#edit_sex').val();
+			var $id = $('#edit_id').val();
+
+			$.each(App.userdata, function (i, user) {
+				console.log(i+':'+user);
+				//debugger;
+				if(user.id == $id){
+					user.name = $new_name;
+					user.age = $new_age;
+					user.sex = $new_sex;
+					//userResult =  user;
+					return false;//return user unuseful go out circle,return user equals return true then equal will go on
+				}
+			});
+			/*
+var user = new User({firstname: "Joe", lastname: "Doo"});
+
+// setter   
+$(user).data('firstname', "Mike") 
+
+// getter
+console.log($(user).data('firstname')); // => Mike
+			*/
+			//v2-start
+			var Student = Utils.D('student');
+			 //var Stu = persistence.define('student',{'name':"TEXT",'sex':"TEXT",'age':"TEXT"});
+			 //persistence.schemaSync();
+
+			/*
+			//fail
+			Student.load($id, function(user){ 
+				//persistence.remove(obj); 
+				//persistence.flush();
+				//Utils.remove(user);
+				console.log(user);
+				$(user).data('name', $new_name);
+				$(user).data('age', $new_age);
+				$(user).data('sex', $new_sex);
+				console.log(user);
+				Student.save(user);
+			});*/ 
+			
+			//fail
+			/*
+			var mark = new Student({
+               	"id":$id,
+                "name": $new_name,
+                "sex": $new_sex,
+                "age": $new_age
+            });
+			*/
+            //Utils.save(mark);//fail
+            //persistence.save(mark,$id);//fail
+            //persistence.flush();//fail
+            
+            /*
+            Student.load($id, function(user){ 
+				//persistence.remove(obj); 
+				//persistence.flush();
+				Utils.remove(user);
+
+				
+			});
+			var mark = new Student({
+                "id": $id,
+                "name": $new_name,
+                "sex": $new_sex,
+                "age": $new_age
+            }); 
+            Utils.add(mark);
+            alert('edit-websql-undone');
+			*/
+			//success
+			
+			Student.all().filter('id','=',$id).one(function(item){
+				//alert(item);
+				console.log(item);
+				//debugger;
+				item.name = $new_name;
+				item.age = $new_age;
+				item.sex = $new_sex;
+				persistence.flush();
+			});
+			
+			//v2-end
+			App.render();
+		},
+		del:function(){
+			var aid = $(this).closest('a').attr('rel');
+			alert('del:'+aid);
+			if(confirm('Are you sure to delete?')){
+				$.each(App.userdata, function (i, user) {
+					console.log(i+':'+user);
+					//debugger;
+					if(user.id == aid){
+						App.userdata.splice($.inArray(user,App.userdata),1);
+						return false;//return user unuseful
+					}
+				});
+			}
+			//v2-start
+			var Student = Utils.D('student');
+			Student.load(aid, function(user){ 
+				//persistence.remove(obj); 
+				//persistence.flush();
+				Utils.remove(user);
+			}); 
+			//v2-end
+			App.render();
+		},
+		findByid:function(id){
+			var userResult = {};
+			$.each(App.userdata, function (i, user) {
+				console.log(i+':'+user);
+				//debugger;
+				if(user.id == id){
+					userResult =  user;
+					return false;//return user unuseful
+				}
+			});
+			//Utils.store('userdata')[id];
+			return userResult;
+		},
+		findAll:function(){
+
+		}
+
+    };
+    
+	</script>
+  </head>
+  <body>
+    <h1>persistence</h1>
+
+
+<!--//------------------------------------------------------------------------------------//ss-->
+<hr>
+<h1>add new</h1>
+<h2><a href="index.html">Return to index</a></h2>
+<h2><a href="coresmart persistencejs.html">docx</a></h2>
+<h2><a href="persistencetools.html">persistencetools</a></h2>
+    <input type='text' name="new_name" id="new_name" value="ming" />
+    <input type='text' name="new_sex" id="new_sex" value="boy" />
+    <input type='text' name="new_age" id="new_age" value="12" />
+    <input type='button' value="add" id="addBtn"/>
+<h2>userTable.table</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>姓名</th>
+          <th>性别</th>
+          <th>年龄</th>
+          <td>编辑</td>
+          <td>删除</td>
+        </tr>
+      </thead>
+      <tbody id="userlistView">
+        
+      </tbody>
+    </table>
+    <script id="userVolistTemplate" type="text/x-handlebars-template">
+      {{#this}}
+        <tr>
+          <td>{{name}}</td>
+          <td>{{sex}}</td>
+          <td>{{age}}</td>
+          <td><a class='edit' rel='{{id}}'>编辑</a></td>
+          <td><a class='del' rel='{{id}}'>删除</a></td>
+        </tr> 
+      {{/this}}
+    </script>
+
+	<script type="text/javascript">
+    //
+      $(document).ready(function(){
+      	App.init();
+    	App.getdata();
+      });
+
+    </script>
+
+
+  </body>
+</html>

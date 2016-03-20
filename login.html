@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html class="h-full">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">   
+        <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="css/ui-oak.css">
+        <link rel="stylesheet" href="fa/css/font-awesome.min.css">
+		<script src="js/oak-media.js"></script>
+		<script src="js/jquery-1.11.1.min.js"></script>
+		<script src="js/jquery.mobile.custom.js"></script>		
+		<script type="text/javascript" src="http://192.168.1.100:8888/target/target-script-min.js#phone"></script>
+        <title>财富桥</title>
+    </head>
+    <body class="h-full">
+		<div data-role="page" id="login" class="page100 dp-box bo-ver ftf-ch">
+			<div data-role="header" class="lnh117 ta-c bgc-white">
+				<div class="h-header pos-relative pdh-1 lnh-96 bs-1">
+                    <div id="cancel" class="pos-absolute left0 mgl-m ftc-orange"><i class="fa fa-angle-left fts-32 ftw-bold mgr-xs"></i><span class="fts-30">返回</span></div>
+                    <h1 class="fts1 ftw-normal">账户</h1>
+                </div>
+				<div class="sec-nav w100 h-81 pdv-18 pos-relative bs-1">
+                    <div class="w100 dp-box">
+                        <div id="sn_user" class="w100 bf-1 ta-c">
+                            <i class="fa fa-unlink fts-47 ftc-gray3 lnh1"></i>
+                            <div class="mgt-xsx fts-24 ftc-gray2 lnh1">未登录</div>
+                        </div>
+                        <div id="sn_communication" class="w100 bf-1 ta-c">
+                            <div class="fts-48 ftc-blue lnh1">1201</div>
+                            <div class="mgt-xsx fts-24 ftc-gray2 lnh1">沟通记录</div>
+                        </div>
+                        <div id="sn_calendar" class="w100 bf-1 ta-c">
+                            <div class="fts-48 ftc-blue lnh1">68</div>
+                            <div class="mgt-xsx fts-24 ftc-gray2 lnh1">日程</div>
+                        </div>
+                        <div id="sn_customer" class="w100 bf-1 ta-c">
+                            <div class="fts-48 ftc-blue lnh1">108</div>
+                            <div class="mgt-xsx fts-24 ftc-gray2 lnh1">客户</div>
+                        </div> 
+                    </div>
+                    <div style="left:0;" class="dpnone pos-absolute btm0 w-25 h-6 bgc-orange"></div>
+                </div>
+			</div>
+
+			<div data-role="content" class="bf-1 bgc-gray1">
+				<div class="mgt-s pdh-l bgc-white clearfix">
+                    <div class="dpin f-l w144 lnh-117 fts1 ftc-gray2">用户名</div>
+                    <div class="dpin f-l mgv-22d5 lnh-72 bd-gray3 fts1">
+                    	<input id="username" type="text" class="fts-30 ftc-gray1" placeholder="登录名/手机/邮箱">
+                    </div>            
+                </div>
+                <div class="pdh-l bdt-gray bgc-white clearfix">
+                    <div class="dpin f-l w144 lnh-117 ftc-gray2 fts1">密码</div> 
+                    <div class="dpin f-l mgv-22d5 lnh-72 bd-gray3 fts1">
+                    	<input id="password" type="password" class="fts-30 ftc-gray1" placeholder="密码">
+                    </div>            
+                </div>
+                <div id="login_caifuqiao" class="mgt-s pdh-l bgc-white lnh-117 fts1 ftc-orange clearfix">登录</div>
+                <div id="btn_retrieve_pw" class="mgt-s pdh-l bgc-white lnh-117 fts1 ftc-orange clearfix">找回密码</div>
+                <div class="mgt-s pdh-l bgc-white lnh-117 fts1 ftc-orange clearfix">新建帐户</div>
+			</div>
+
+
+			<div data-role="footer"></div>
+		</div> 
+        <script type="text/javascript" src="js/index.js"></script>        
+        <script type="text/javascript">
+	        //app.initialize();
+			$("#btn_customer").on("touchend",function(){
+				setTimeout('location.href="listCustomer.html"',100);
+			});
+			$("#cancel").on("touchend",function(){
+                setTimeout('location.href="index.html"',100);
+            });
+            $("#btn_retrieve_pw").on("touchend",function(){
+                setTimeout('location.href="retrievePw.html"',100);
+            });
+
+           
+        </script>
+        
+        <script type="text/javascript" src="js/cordova-1.9.0.js"></script>
+        <script type="text/javascript">
+	      	
+			$("#btn_tools").on("touchend",function(){
+                setTimeout('location.href="tools.html"',100);
+            });
+
+			$("#sn_user, #btn_me").on("touchend",function(){
+                setTimeout('location.href="index.html"',100);
+            });
+
+			$("#sn_communication").on("touchend",function(){
+                setTimeout('location.href="listCommunication.html"',100);
+            });
+
+            $("#sn_calendar").on("touchend",function(){
+                setTimeout('location.href="listCalendar.html"',100);
+            });
+
+            $("#sn_user").on("touchend",function(){
+                setTimeout('location.href="index.html"',100);
+            });
+
+            $("#sn_customer").on("touchend",function(){
+                setTimeout('location.href="listCustomer.html"',100);
+            });
+        </script>
+		
+		<script>
+			$("#login_caifuqiao").on("click",function(){
+				$.ajax({
+					async : false,
+					url : 'http://tb.caifuqiao.cn/index.php?m=user&a=loginApp&callback=?',
+					type : 'GET',
+					dataType : 'jsonp',
+					jsonp : 'jsoncallback',
+					data : {
+						username:$("#username").val(),
+						password:$("#password").val()
+					},
+					timeout : 5000,
+					success : function(json) {
+						if ( json.status == 1 ) {
+							alert("login yes!")
+						}else{
+							console.log(json);
+						}
+					},
+					error : function(xhr) {
+						alert("请求出错(请检查相关度网络状况.)");
+					}
+				});
+			});
+		
+		</script>
+    </body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<script src="jquery-1.11.0.min.js"></script>
+	</head>
+	<body>
+	<div id="count" style="height:50px;background:#34495E;text-align:center;color:#fff;font-weight:bold;font-size:30px;font-family:Tahoma;margin:10px 0px;"></div>
+	<div id="file_ext"></div>
+	<div id="images"></div>
+		<script>
+			$("#count").width("0%");
+			var imgBed=new Array();
+			var srcStr=new Array();
+			var validImg=new Array();
+			var sum=1;
+			var lettercombin = new Worker('lettercombin.js');
+			var count=0;
+			var hit=1;
+			var _i=0;
+			var file_ext="";
+			
+			function DisplayProcess(){
+				var percent=parseInt(count*100/sum);
+				$("#count").text(percent.toString()+"%");
+				$("#count").animate({width:percent.toString()+"%"},500);
+				$("#file_ext").html(file_ext);
+			}
+			
+					
+			
+			function ImageMaker(){
+				window.alert("ImageMaker!");
+				$("#images").html("");
+				for (var i=0;i<sum;i++) {
+					imgBed[i]=new Image();
+					imgBed[i].src=srcStr[i];
+					if (imgBed[i].width>0) {
+						//$("#images").append("<img src="+imgBed[i].src+" />");
+					}
+					else {
+						imgBed[i]=null;
+					}
+				}
+				window.alert("ImageMaker End!");
+			}
+			
+			lettercombin.onmessage = function(event){
+				var message=event.data;
+				if (message=="EndOfWorker") {
+					window.alert("EndOfWorker: Waiting for 1s to run ImageMaker");
+					$("#count").animate({width:"100%"},1000);
+					var timer_ImageMaker=setTimeout("ImageMaker()",1000);
+				}
+				else if (message[0]=="sum") {
+					sum=message[1];
+					window.alert("Total: "+sum);
+				}
+				else {
+					file_ext+=message[1]+"<br>";
+					count=message[0];
+					srcStr[count]="https://tower.im/assets/file_icons/file_extension_"+message[1]+".png";
+				}
+			}
+			
+			/*
+			function addImg(isrc) 
+			{ 
+			var Img = new Image(); 
+			Img.src = isrc; 
+			Img.onload = function () 
+			{ 
+			document.body.appendChild(Img); 
+			} 
+			} 
+			for (var i=0;i<FileExt.length;i++) {
+				document.write("<img src='https://tower.im/assets/file_icons/file_extension_"+FileExt[i]+".png' /><br>");
+			}
+			*/
+		</script>
+	</body>
+</html>

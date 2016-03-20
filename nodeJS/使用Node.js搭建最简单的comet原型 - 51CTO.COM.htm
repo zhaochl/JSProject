@@ -1,0 +1,601 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<meta http-equiv="x-ua-compatible" content="ie=7" />
+
+<title>使用Node.js搭建最简单的comet原型 - 51CTO.COM</title>
+<meta name="description" content="Comet, 据IBM这篇文章介绍,是基于HTTP长连接的“服务器推”技术. 和AJAX类似, 这是一种改善WEB用户体验的通讯技术. 其实早在CGI盛行的时代, 有种叫做"Server-Push"的技术, 和Comet本质是一回事, 都是基于长连接来实现. Server-Push更具体, 强调使用multipart/x-mixed-replace的Conent-Type技巧, 使得服务器能替换浏览器的内容. Comet包含面更广泛, 只要是有长连接和HTTP chunked的实现, 都算作其中. 这篇文章详细介绍了Comet的各种形态,值得一读"/>
+<meta name="keywords" content="Node.js"/>
+<base target="_blank" />
+<link href="http://images.51cto.com/images/art1105/css/grid.css" rel="stylesheet" type="text/css" />
+<link type="text/css" rel="stylesheet" href="http://images.51cto.com/images/art/css/art_master_top.css" />
+<link href="http://book.51cto.com/images/bookspec/css/css3.css" rel="stylesheet" type="text/css" />
+<script language="javaScript" src="http://www.51cto.com/php/base_art.js"></SCRIPT>
+<script src="http://www.51cto.com/images/homepage/index_1_down.js"></script>
+<style type="text/css">
+.bds_tools a{ padding:0; margin:0;}
+</style>
+</head>
+<body >
+<!-- 导航 开始-->
+<div id="home_top">    <div class="top_nav">        <div class="left" style="width:400px"><div class="logo_51cto" title="51CTO.COM - 技术成就梦想 -  中国领先的IT技术网站"></div><a href="http://www.51cto.com/">首页</a><img width="16" height="25" align="absmiddle" src="http://home.51cto.com/public/themes/blue/images/top_bg_xian.gif" style="padding-top: 2px;"><a onmouseover="show(1,this);" onmouseout="popupClose();" href="http://www.51cto.com/col/35/" target="_blank">技术频道<img align="absmiddle" src="http://images.51cto.com/images/art/top_images/nav_ico1.gif" style="padding-left: 4px;"></a><img width="16" height="25" align="absmiddle" src="http://home.51cto.com/public/themes/blue/images/top_bg_xian.gif"><a onmouseover="show(2,this);" onmouseout="popupClose();" href="http://www.51cto.com" target="_blank">51CTO旗下网站<img align="absmiddle" src="http://images.51cto.com/images/art/top_images/nav_ico1.gif" style="padding-left: 4px;"></a><img width="16" height="25" align="absmiddle" src="http://home.51cto.com/public/themes/blue/images/top_bg_xian.gif"><a href="http://www.51cto.com/about/map.htm" target="_blank">地图</a> <a href="http://www.51cto.com/about/rss.html" target="_blank"><img src="http://images.51cto.com/files/uploadimg/20110922/143749870.gif" style="vertical-align:middle; margin-bottom: 5px; margin-left:5px;"></a>       </div>        <div class="right">            <div class="more"><img width="27" height="16" align="absmiddle" src="http://home.51cto.com/public/themes/blue/images/top_shequ.gif">社区：<a href="http://edu.51cto.com/" target="_blank" style="color:#CC0000">学院</a><a href="http://down.51cto.com" target="_blank">下载</a><a href="http://bbs.51cto.com" target="_blank">论坛</a><a href="http://blog.51cto.com" target="_blank">博客</a><a onmouseover="show(3,this)" onmouseout="popupClose()" href="javascript:viod(0);">更多<img align="absmiddle" src="http://images.51cto.com/images/art/top_images/nav_ico1.gif" style="padding-left: 4px;"></a>            </div>            <span id="login_status"><div class="login" id="login_status"></div>    </span>                </div>    </div></div>
+<div class="subMenu1" id="s1" onmouseover="popupNoClose();" onmouseout="popupClose();">
+<ul>
+<li><a href="http://network.51cto.com" target="_blank">网络</a></li>
+<li><a href="http://netsecurity.51cto.com" target="_blank">安全</a></li>
+<li><a href="http://developer.51cto.com" target="_blank">开发</a></li>
+<li><a href="http://database.51cto.com" target="_blank">数据库</a></li>
+<li><a href="http://server.51cto.com" target="_blank">服务器</a></li>
+<li><a href="http://os.51cto.com" target="_blank">系统</a></li>
+<li><a href="http://virtual.51cto.com" target="_blank">虚拟化</a></li>
+<li><a href="http://cloud.51cto.com" target="_blank">云计算</a></li>
+<li><a href="http://developer.51cto.com/embed/" target="_blank">嵌入式</a></li>
+<li><a href="http://mobile.51cto.com/" target="_blank">移动开发</a></li>
+</ul>
+</div> 
+<div class="subMenu2" id="s2" onmouseover="popupNoClose()" onmouseout="popupClose()">
+<ul>
+<li><a href="http://www.51cto.com" target="_blank" title="中国领先的IT技术网站">51CTO.COM</a></li>
+<li><a href="http://www.cioage.com" target="_blank" title="中国首个专门服务于CIO的专业网站">CIOage.com</a></li>
+<li><a href="http://www.watchstor.com/" target="_blank"  title="领先的中文存储网络媒体">WatchStor.com</a></li>
+<li><a href="http://www.hc3i.cn/" target="_blank"  title="中国首家专注于数字医疗及医疗信息化的专业网站">HC3i.cn</a></li>
+</ul>
+</div>
+<script src="http://www.51cto.com/js/jquery-1.8.3.min.js"></script>
+<script>
+$(function(){
+	$(".bann").height(265);	 
+	$(".bann").css("background-color","white");
+});
+var edunum=2;
+$(function(){
+	$("#change").click(function(){
+		$("#edu > ul").css("display","none");
+		var eduid='edu'+edunum;
+		$("#" + eduid).css("display","block");	
+		if(edunum<4){
+			edunum++;	
+		}else{
+			edunum=1;	
+		}							
+	});  
+});
+</script>
+
+<script src="http://www.51cto.com/head_art_more1.js"></script>
+<!-- 登陆信息 -->
+<!-- 导航 结束--> 
+ <div class="g_39 mb10">
+	<div id="tonglanad" class="fl"></div>
+	<div id="list4" class="fr">
+		<ul>
+			<li id="wordlinkad1"></li>
+			<li id="wordlinkad2"></li>
+			<li id="wordlinkad3"></li>
+			<li id="wordlinkad4"></li>
+		</ul>
+	</div>
+<br class="dle"/>
+</div>
+
+<div class="g_39 menu">
+<DIV class=subNav_logo><IMG src="http://www.51cto.com/images/sunbanner/kaifa_logo.gif"></DIV>
+<DIV class=subNav_l><A href="http://developer.51cto.com/">首页</A> | <A href="http://developer.51cto.com/java/">Java</A> | <A href="http://developer.51cto.com/net/">.NET</A> | <A href="http://developer.51cto.com/web/">Web</A> | <A href="http://developer.51cto.com/col/1315/">XML</A> | <A href="http://developer.51cto.com/col/585/">语言工具</A> | <A href="http://developer.51cto.com/col/1312/">测试</A> | <A href="http://developer.51cto.com/col/1314/" target=_blank>游戏</A> | <A href="http://developer.51cto.com/col/583/" target=_blank>移动</A> | <A href="http://developer.51cto.com/col/1308/">架构</A> | <A href="http://developer.51cto.com/col/586/">项目管理</A> | <A href="http://publish.51cto.com/list/460/">全部文章</A></DIV>
+  
+<div class="search fr">
+<dl>
+<form name=searchform action="http://www.51cto.com/php/search.php" target="_blank" method=post style="margin:0px; padding:0px;">
+<dt class="fl"><input name="keyword" type="text" class="searchInput f14 input" value="请输入关键字" onfocus="doempty(this, '请输入关键字');" onblur="doempty(this, '请输入关键字');" /></dt>
+<dd class="fl"><input type="image" src="http://images.51cto.com/images/art/newart1012/images/search.gif" /></dd></form>
+</dl>
+</div>
+<br class="dle"/>
+</div>
+<div class="g_39 b3-s-4273B3 rel">
+<!--width : 26*25 - 15 = 635px-->
+<div class="g_26 fl m_l">
+<div class="brief bgF8F8F8">
+<p class="crumb ">您所在的位置：<a href='http://developer.51cto.com'>开发</a> &gt; <a href='http://developer.51cto.com/web/'>Web</a> &gt; <a href='http://developer.51cto.com/col/1445/'>Javascript</a> &gt;  <b>使用Node.js搭建最简单的comet原型</b> </p>
+<h1>使用Node.js搭建最简单的comet原型</h1>
+<div class="msg">
+<div>2012-02-06 10:36  duzhigang  duzhigang的博客 <span class="f12-a"><a href="#commment" target="_self"></a></span> 字号：<span class="f14-b"><a href="javascript:setfont(12);" target="_self">T</a></span> | <span class="f16-b"><a href="javascript:setfont(16);" target="_self">T</a></span></div>
+<div class='artHd' id='books' style='padding:5px 25px;display:none;'></div>
+<div class="fav"><a href="javascript:favorBox('open');" title="一键收藏，随时查看，分享好友！" target="_self"><img src="http://images.51cto.com/images/art/newart1012/images/Fav.gif" alt="一键收藏，随时查看，分享好友！" border="0" /></a></div>
+</div>
+<div class="brieftext">
+<p class="f14 green">Comet, 据IBM这篇文章介绍,是基于HTTP长连接的“服务器推”技术. 和AJAX类似, 这是一种改善WEB用户体验的通讯技术. 其实早在CGI盛行的时代, 有种叫做"Server-Push"的技术, 和Comet本质是一回事, 都是基于长连接来实现. Server-Push更具体, 强调使用multipart/x-mixed-replace的Conent-Type技巧, 使得服务器能替换浏览器的内容. Comet包含面更广泛, 只要是有长连接和HTTP chunked的实现, 都算作其中. 这篇文章详细介绍了Comet的各种形态,值得一读</p>
+<p class="ad">AD：<script src="http://www.51cto.com/js/article/keywords_ad_new.js"></script>
+</p>
+</div>
+</div>
+<div class="tag bgF8F8F8" id="indexlist" style="display:none;">
+<ul id="indexliststr">
+</ul>
+<br class="dle"/>
+</div>
+<div class="content bgF8F8F8 f14">
+<div id="content">
+<p><p>什么是Comet</p>
+<p>Comet, 据IBM这篇文章介绍,是基于HTTP长连接的&ldquo;服务器推&rdquo;技术. 和AJAX类似, 这是一种改善WEB用户体验的通讯技术. 其实早在CGI盛行的时代, 有种叫做&quot;Server-Push&quot;的技术, 和Comet本质是一回事, 都是基于长连接来实现. Server-Push更具体, 强调使用multipart/x-mixed-replace的Conent-Type技巧, 使得服务器能替换浏览器的内容. Comet包含面更广泛, 只要是有长连接和HTTP chunked的实现, 都算作其中. 这篇文章详细介绍了Comet的各种形态,值得一读.</p>
+<p>51CTO推荐专题：<a href="http://developer.51cto.com/art/201109/290443.htm" target="_blank">Node.js专区</a></p>
+<p>Comet虽然能让浏览器达到及时的响应, 但是由于基于长连接实现, 服务器成本很高. 最近这种技术之所以火起来, 主要还是牛人们探索到了各种降低服务器成本的方法. 这个叫amix的家伙对此有较多的研究.</p>
+<p><a target="_blank" href="http://developer.51cto.com/art/201109/288849.htm">什么是NodeJs</a></p>
+<p>nodejs号称Evented I/O for V8 JavaScript, 是基于V8的一款神器, 让我们可以使用javascript轻松进行服务器端编程.</p>
+<p>最简单的Comet原型</p>
+<p>我用一下午的时间, 使用nodejs搞了一个简单的不能再简单的Comet原型. 在这个demo里面, 我假定使用iframe实现Comet, 但是忽略了iframe的父窗口和客户端js库, 只考虑服务器如何将HTTP chunked push到客户端.</p>
+<p>我定义了一种Comet资源: http://{host}/{pathname}?[{query_string}] . 其中{pathname}直接当作客户端id来使用(在程序里面它被叫做resid). {query_string}用来做消息内容. 这样, 原型就简化成了两种操作:</p>
+<p>HTTP GET : http://{host}/{pathname} 用来模拟iframe长连接, 不断接收到新数据.</p>
+<p>HTTP PUT : http://{host}/{pathname}?{query_string} 用来模拟业务操作, 直接将{query_string}当作数据投递到上面的长连接里面.</p>
+<p>具体实现</p>
+<p>好, 主角登场, 用nodejs实现最简单的Comet:</p>
+<pre><ol class="dp-c"><li class="alt"><span><span>global.messages&nbsp;=&nbsp;{ &nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="comment">//'resid':[] </span><span>&nbsp;</span></li><li class="alt"><span>}; &nbsp;</span></li><li><span class="keyword">var</span><span>&nbsp;char500&nbsp;=&nbsp;(</span><span class="keyword">function</span><span>(){&nbsp;</span><span class="keyword">var</span><span>&nbsp;i=0;&nbsp;</span><span class="keyword">var</span><span>&nbsp;arr&nbsp;=&nbsp;[];&nbsp;</span><span class="keyword">for</span><span>(i=0;&nbsp;i&lt;500;&nbsp;i++)&nbsp;{&nbsp;arr.push(&nbsp;</span><span class="string">'&nbsp;'</span><span>&nbsp;);&nbsp;}&nbsp;</span><span class="keyword">return</span><span>&nbsp;arr.join(</span><span class="string">''</span><span>);&nbsp;})(); &nbsp;</span></li><li class="alt"><span class="keyword">var</span><span>&nbsp;http_method_funs&nbsp;=&nbsp;{ &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="string">'GET'</span><span>:&nbsp;</span><span class="keyword">function</span><span>(resid,&nbsp;data,&nbsp;request,&nbsp;response)&nbsp;{ &nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keyword">if</span><span>(global.messages[resid]&nbsp;==&nbsp;undefined)&nbsp;{ &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;global.messages[resid]&nbsp;=&nbsp;[]; &nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;response.writeHead(200,&nbsp;{</span><span class="string">'content-type'</span><span>:&nbsp;</span><span class="string">'text/plain'</span><span>}); &nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keyword">var</span><span>&nbsp;interval&nbsp;=&nbsp;setInterval(myoutput,&nbsp;500&nbsp;); &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;response.connection.on(</span><span class="string">'end'</span><span>,&nbsp;</span><span class="keyword">function</span><span>(){ &nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.log(</span><span class="string">&quot;GET\t&quot;</span><span>&nbsp;+&nbsp;resid&nbsp;+&nbsp;</span><span class="string">&quot;\tclosed&quot;</span><span>); &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;clearInterval(interval); &nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}); &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;myoutput(); &nbsp;</span></li><li class="alt"><span class="keyword">function</span><span>&nbsp;myoutput(){ &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keyword">var</span><span>&nbsp;msgs&nbsp;=&nbsp;global.messages[resid]; &nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keyword">if</span><span>(msgs.length){ &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keyword">var</span><span>&nbsp;str&nbsp;=&nbsp;msgs.join(</span><span class="string">&quot;\n\n\n&quot;</span><span>)&nbsp;+&nbsp;</span><span class="string">&quot;\n\n\n&quot;</span><span>; &nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;str&nbsp;=&nbsp;(str.length&nbsp;&lt;&nbsp;500&nbsp;)&nbsp;?&nbsp;(&nbsp;str&nbsp;+&nbsp;char500&nbsp;)&nbsp;:&nbsp;str;&nbsp;</span><span class="comment">//for&nbsp;MTU </span><span>&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;response.write(str); &nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;global.messages[resid]&nbsp;=&nbsp;[]; &nbsp;</span></li><li><span>&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;} &nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;}, &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="string">'PUT'</span><span>:&nbsp;</span><span class="keyword">function</span><span>(resid,&nbsp;data&nbsp;,&nbsp;request,&nbsp;response)&nbsp;{ &nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keyword">if</span><span>(global.messages[resid]&nbsp;==&nbsp;undefined)&nbsp;{ &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;global.messages[resid]&nbsp;=&nbsp;[]; &nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;global.messages[resid].push(data); &nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.log(global.messages); &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;response.writeHead(200,&nbsp;{</span><span class="string">'content-type'</span><span>:&nbsp;</span><span class="string">'text/plain'</span><span>}); &nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;response.end(&nbsp;</span><span class="string">'ok\n'</span><span>); &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;}, &nbsp;</span></li><li class="alt"><span>}; &nbsp;</span></li><li><span class="comment">//method&nbsp;function&nbsp; </span><span>&nbsp;</span></li><li class="alt"><span>require(</span><span class="string">'http'</span><span>).createServer(</span><span class="keyword">function</span><span>&nbsp;(request,&nbsp;response)&nbsp;{ &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keyword">var</span><span>&nbsp;urlinfo&nbsp;=&nbsp;require(</span><span class="string">'url'</span><span>).parse(request.url); &nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keyword">var</span><span>&nbsp;resid&nbsp;=&nbsp;urlinfo[</span><span class="string">'pathname'</span><span>]; &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keyword">var</span><span>&nbsp;data&nbsp;=&nbsp;(urlinfo[</span><span class="string">'query'</span><span>])&nbsp;?&nbsp;urlinfo[</span><span class="string">'query'</span><span>]&nbsp;:&nbsp;0&nbsp;; &nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keyword">var</span><span>&nbsp;method&nbsp;=&nbsp;request.method; &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.log(method&nbsp;+&nbsp;</span><span class="string">&quot;\t&quot;</span><span>&nbsp;+&nbsp;resid&nbsp;); &nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keyword">if</span><span>(</span><span class="keyword">typeof</span><span>&nbsp;http_method_funs[method]&nbsp;==&nbsp;</span><span class="string">'function'</span><span>)&nbsp;{ &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;http_method_funs[method].call(</span><span class="keyword">null</span><span>,&nbsp;resid,&nbsp;data,&nbsp;request,&nbsp;response); &nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keyword">else</span><span>&nbsp;{ &nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;response.writeHead(400); &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;response.end(</span><span class="string">&quot;unsupport&nbsp;method\n&quot;</span><span>); &nbsp;</span></li><li class="alt"><span>&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} &nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}).listen(18124); &nbsp;</span></li><li><span>console.log(</span><span class="string">'server&nbsp;running&nbsp;at&nbsp;http://127.0.0.1:18124/'</span><span>);&nbsp;</span></li></ol></pre>
+<p>测试方法</p>
+<p>上面的代码保存到文件, 我们在第一个终端启动这个服务:</p>
+<pre><ol class="dp-xml"><li class="alt"><span><span>shell</span><span class="tag">&gt;</span><span>&nbsp;node&nbsp;hello.js&nbsp;</span></span></li></ol></pre>
+<p>我们在第二个终端模拟iframe的数据流.输入命令, 观察收到的数据:</p>
+<pre><ol class="dp-xml"><li class="alt"><span><span>telnet&nbsp;127.0.0.1&nbsp;18124 &nbsp;</span></span></li><li><span>GET&nbsp;/mymessages&nbsp;HTTP/1.1 &nbsp;</span></li><li class="alt"><span>HTTP/1.1&nbsp;200&nbsp;OK &nbsp;</span></li><li><span>content-type:&nbsp;text/plain &nbsp;</span></li><li class="alt"><span>Connection:&nbsp;keep-alive &nbsp;</span></li><li><span>Transfer-Encoding:&nbsp;chunked&nbsp;</span></li></ol></pre>
+<p>我们在第三个终端输入curl -X PUT命令, 模拟发送两条消息:</p>
+<pre><ol class="dp-c"><li class="alt"><span><span>shell&gt;&nbsp;curl&nbsp;-X&nbsp;PUT&nbsp;</span><span class="string">&quot;http://127.0.0.1:18124/mymessages?a=1&amp;b=2&amp;c=3&quot;</span><span>&nbsp;</span></span></li><li><span>ok &nbsp;</span></li><li class="alt"><span>shell&gt;&nbsp;curl&nbsp;-X&nbsp;PUT&nbsp;</span><span class="string">&quot;http://127.0.0.1:18124/mymessages?a=4&amp;b=5&amp;c=6&quot;</span><span>&nbsp;</span></li><li><span>ok&nbsp;</span></li></ol></pre>
+<p>观察第二个终端, 会发现已经收到两条HTTP chunked. (为了避免测试数据小于MTU, 我实际上多输出了一些空格,但这里省去了.)</p>
+<pre><ol class="dp-c"><li class="alt"><span><span>202 &nbsp;</span></span></li><li><span>a=1&amp;b=2&amp;c=3 &nbsp;</span></li><li class="alt"><span>202 &nbsp;</span></li><li><span>a=4&amp;b=5&amp;c=6&nbsp;</span></li></ol></pre>
+<p><strong>总结</strong></p>
+<p>在这个原型中, 我省掉了Comet iframe方案内无关紧要的东西, 只用HTTP PUT/GET来演示一个最简单的原型. 用NodeJs轻松搭建了它.</p>
+<p>可以看到, 用javascript event的风格写服务器, 简直是明白如话, 散文那样自然.</p>
+<p>我用global.messages对象来存储消息, key是resid(上面说的客户端id), value是个array, 里面存储客户端收到的messages.</p>
+<p>我为GET/PUT两种操作分别实现了两个函数.</p>
+<p>PUT函数, 收到请求就将query_string当作message存到对应resid的array中, 然后断开HTTP连接.</p>
+<p>GET函数, 收到请求就启动一个定时器, 轮询global.messages里面自己的消息队列(array). 如果遇到数据则在HTTP response输出http chunked. HTTP连接不主动关闭, 但如果被异常关闭则清除定时器对象.</p>
+<p>就这么一个简单功能, 如果用C和select来开发, 那么一个全局的客户端句柄队列是免不了要实现的, 当io事件到来时, 如何恢复之前中断的上下文,进行正确的io操作, 也是一件头疼的事情.</p>
+<p>而我们看这个实现里面的myoutput定时器函数. 由于局部变量resid,response在函数的定义时环境内, 所以函数被执行时, 很自然就使用这些上下文信息. 相比来说, C的实现里面专门为此设计一个客户端句柄队列就太突兀了.</p>
+<p>javascript通过函数式和闭包, 轻而易举的完成了一个非阻塞服务器. 如果说libevent是通过库来实现了事件的封装, 那么nodejs所宣称的&quot;Evented I/O for V8 JavaScript&quot;, 则是借语言本身的优雅特性获得自然的收获.</p>
+<p>原文：http://club.cnodejs.org/topic/4f16442ccae1f4aa27001115</p>
+<p>【编辑推荐】</p>
+<ol>
+    <li><a href="http://developer.51cto.com/art/201109/288849.htm" target="_blank">什么是Node.js？</a></li>
+    <li><a href="http://developer.51cto.com/art/201109/290213.htm" target="_blank">Node.js初探之hello world</a></li>
+    <li><a href="http://developer.51cto.com/art/201109/290268.htm" target="_blank">揭秘Node.js事件</a></li>
+    <li><a href="http://developer.51cto.com/art/201112/309361.htm" target="_blank">走近Node.js的异步代码设计</a></li>
+    <li><a href="http://developer.51cto.com/art/201111/301206.htm" target="_blank">Node.js提速指南</a></li>
+</ol><DIV align=right>【责任编辑：<A class=ln href="mailto:chenyx@51cto.com">陈贻新</A> TEL：（010）68476606】</DIV><br> 
+<p class="blank10"></p> 
+ 
+ 
+
+
+<div class="f12"> <span class="fl">原文：<a href="http://developer.51cto.com/art/201202/315327.htm" class="blue"><b>使用Node.js搭建最简单的comet原型</b></a></span> <span class="fr"><a href="http://developer.51cto.com">返回开发首页</a></span> </div>
+<p class="blank1"></p>
+</div>
+<iframe width="600" height="239" frameborder="0" scrolling="no" src="http://widget.weibo.com/relationship/bulkfollow.php?language=zh_cn&amp;uids=1708729084,1706976420,3812432787,1422974343,1927494533,1734475394&amp;wide=0&amp;color=C2D9F2,FFFFFF,0082CB,666666&amp;showtitle=1&amp;showinfo=1&amp;sense=0&amp;verified=1&amp;count=6&amp;refer='+encodeURIComponent(location.href)+'&amp;dpc=1"></iframe>
+<div class="tips">
+<div style="float:left;">
+<span style="float:left; margin-top:4px;">分享到：</span>
+<!-- Baidu Button BEGIN -->
+    <div id="bdshare" class="bdshare_t bds_tools get-codes-bdshare" style="margin-right:5px; float:left;">
+        <a class="bds_qzone"></a>
+        <a class="bds_tsina"></a>
+        <a class="bds_tqq"></a>
+        <a class="bds_renren"></a>
+        <a class="bds_t163"></a>
+        <span class="bds_more"></span>
+		<a class="shareCount"></a>
+
+</div>
+<!--<div class="fl"> 
+    </div>
+--><script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=585532" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+	var bds_config = {'snsKey':{'tsina':'2378297317'}};
+	document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?t=" + new Date().getHours();
+</script>
+<!-- Baidu Button END -->
+
+
+
+</div><div class="fr blue"><a href="javascript:AddFavorite(document.location.href,document.title);" target="_self">收藏</a>|<a href="javascript:window.print();" target="_self">打印</a>|<a id="msnqqcopy" title="分享本资源给好友" target="_self">复制</a></div>
+</div>
+</div>
+<!--内容 end-->
+<div class="topbiaoqing">
+<div class="biaoqing fixfloat pad" >
+<ul>
+<li><a href='javascript:getcountscom(315327,1)' target="_self"><img src="http://images.51cto.com/images/art1105/images/bq1.jpg" /></a>
+<div><a href='javascript:getcountscom(315327,1)' target="_self">给力</a></div>
+<span id="315327_1">(0票)</span></li>
+<li><a href='javascript:getcountscom(315327,2)'  target="_self"><img src="http://images.51cto.com/images/art1105/images/bq2.jpg" /></a>
+<div><a href='javascript:getcountscom(315327,2)'  target="_self">动心</a></div>
+<span id="315327_2">(0票)</span></li>
+<li><a href='javascript:getcountscom(315327,3)'  target="_self"><img src="http://images.51cto.com/images/art1105/images/bq3.jpg" /></a>
+<div><a href='javascript:getcountscom(315327,3)'  target="_self">废话</a></div>
+<span id="315327_3">(0票)</span></li>
+<li><a href='javascript:getcountscom(315327,4)'  target="_self"><img src="http://images.51cto.com/images/art1105/images/bq4.jpg" /></a>
+<div><a href='javascript:getcountscom(315327,4)'  target="_self">专业</a></div>
+<span id="315327_4">(0票)</span></li>
+<li><a href='javascript:getcountscom(315327,5)'  target="_self"><img src="http://images.51cto.com/images/art1105/images/bq5.jpg" /></a>
+<div><a href='javascript:getcountscom(315327,5)'  target="_self">标题党</a></div>
+<span id="315327_5">(0票)</span></li>
+<li><a href='javascript:getcountscom(315327,6)'  target="_self"><img src="http://images.51cto.com/images/art1105/images/bq6.jpg" /></a>
+<div><a href='javascript:getcountscom(315327,6)'  target="_self">路过</a></div>
+<span id="315327_6">(0票)</span></li>
+</ul>
+</div>
+<script language="javascript"> 
+getcountscom(315327,11);
+
+</script>
+</div>
+<p class="blank10"></p>
+<!--reltag end-->
+
+<p class="blank10"></p>
+<div class="uyan">
+<div id="uyan_frame"></div>
+<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1609262"></script>
+</div>
+<!--box end-->
+
+<div class="bor">
+<div class="titbg pl15">关于<a href='http://www.51cto.com/php/search.php?keyword=Node.js' target='_blank' class='underline'>Node.js</a>的更多文章</div>
+<div class="reltag">
+<ul class="fl list02">
+  <li><a href="http://developer.51cto.com/art/201311/415056.htm" title="理解 Node.js">理解 Node.js</a></li><li><a href="http://developer.51cto.com/art/201310/413755.htm" title="Node.js开发指南：利用Socket.IO与doT提升性能表现">Node.js开发指南：利用Socket.IO与doT提升</a></li><li><a href="http://developer.51cto.com/art/201308/407192.htm" title="HTML5 WebSockets node.js实例教程">HTML5 WebSockets node.js实例教程</a></li><li><a href="http://developer.51cto.com/art/201307/402559.htm" title="编码规范是技术上的遮羞布">编码规范是技术上的遮羞布</a></li><li><a href="http://developer.51cto.com/art/201306/401085.htm" title=".NET 和 Node.js 的性能比较">.NET 和 Node.js 的性能比较</a></li>
+</ul>
+<div class="fr">
+<div class="h5 f12"><a href="http://developer.51cto.com/art/201109/290443.htm" title="Node.js专区"><b>Node.js专区</b></a></div>
+<a href="http://developer.51cto.com/art/201109/290443.htm" title="Node.js专区"><img src="http://images.51cto.com/files/uploadimg/20110909/144205571.jpg" alt="Node.js专区" width="100" height="80" border="0" /></a>
+<p class="c666">Node.js是一个使用了Google高性能V8引擎的服务器端JavaScript实<a class="blue"href="http://developer.51cto.com/art/201109/290443.htm" title="Node.js专区">[详细]</a></p>
+</div>
+</div></div>
+
+<p class="blank10"></p>
+
+
+
+<div class="relart fl bor">
+<div class="titbg">
+<h3 class="fl t1">栏目热门</h3>
+<a href="/click/1445" class="tmore">更多&gt;&gt;</a></div>
+<ul>
+  
+	  <li><a href="http://developer.51cto.com/art/201309/409990.htm" title="谷歌的Dart语言能否解决JavaScript的速度与规模难题？">谷歌的Dart语言能否解决JavaScript的速度与</a></li>
+	  
+	  <li><a href="http://developer.51cto.com/art/201309/410741.htm" title="解耦HTML、CSS和JavaScript">解耦HTML、CSS和JavaScript</a></li>
+	  
+	  <li><a href="http://developer.51cto.com/art/201309/411902.htm" title="统治网络：JavaScript的胜利">统治网络：JavaScript的胜利</a></li>
+	  
+	  <li><a href="http://developer.51cto.com/art/201310/414749.htm" title="对于现代开发来说，JavaScript就是一种垃圾语言">对于现代开发来说，JavaScript就是一种垃圾</a></li>
+	  
+	  <li><a href="http://developer.51cto.com/art/201309/412140.htm" title="少了这些工具，JavaScript将变得更难于使用">少了这些工具，JavaScript将变得更难于使用</a></li>
+	  
+</ul>
+</div>
+<div class="cathot fr bor">
+<div class="titbg">
+<h3 class="fl t1">同期最新</h3>
+<a href="/col/1445" class="tmore">更多&gt;&gt;</a></div>
+<ul>
+	
+	  <li><a href="http://developer.51cto.com/art/201202/315071.htm" title="8个最新的JavaScript脚本资源强烈推荐">8个最新的JavaScript脚本资源强烈推荐</a></li>
+	  
+	  <li><a href="http://developer.51cto.com/art/201202/315066.htm" title="当Shell遇上了Node.js">当Shell遇上了Node.js</a></li>
+	  
+	  <li><a href="http://developer.51cto.com/art/201202/314679.htm" title="用Eclipse调试Node.js代码">用Eclipse调试Node.js代码</a></li>
+	  
+	  <li><a href="http://developer.51cto.com/art/201202/314248.htm" title="8款超赞的响应式jQuery幻灯片插件推荐">8款超赞的响应式jQuery幻灯片插件推荐</a></li>
+	  
+	  <li><a href="http://developer.51cto.com/art/201201/312920.htm" title="jQuery LigerUI使用教程入门篇">jQuery LigerUI使用教程入门篇</a></li>
+	  
+</ul>
+</div>
+<p class="blank10"></p>
+<div class="bor">
+<div class="titbg">
+<h3 class="fl t1"><a href="http://developer.51cto.com">开发</a></h3>
+<span class="pl10">频道导航</span></div>
+ <ul class="xtlist">
+<li><span class="tit">Java</span>
+<div><a href="http://developer.51cto.com/java/">Java开发</a>|<a href="http://developer.51cto.com/col/1005/">Java基础</a>|<a href="http://developer.51cto.com/col/1014/">Java EE开发</a>|<a href="http://developer.51cto.com/col/1004/">Java框架</a>|<a href="http://developer.51cto.com/col/1007/">设计模式</a></div>
+</li>
+<li><span class="tit">WEB开发</span>
+<div><a href="http://developer.51cto.com/col/1441/">PHP开发</a>|<a href="http://developer.51cto.com/col/1455/">Python</a>|<a href="http://developer.51cto.com/col/1552/">Ruby</a>|<a href="http://developer.51cto.com/col/1552/">JSP</a>|<a href="http://developer.51cto.com/art/200907/133407.htm">HTML 5</a>|<a href="http://developer.51cto.com/col/1450/">DIV+CSS</a></div>
+</li>
+<li class="last"><span class="tit">综合</span>
+<div><a href="http://developer.51cto.com/net/">.NET开发</a>|<a href="http://developer.51cto.com/embed/">嵌入式开发</a>|<a href="http://developer.51cto.com/col/586/">项目管理</a>|<a href="http://developer.51cto.com/col/1308/">架构设计</a></div>
+</li>
+</ul> 
+</div> 
+<p class="blank10"></p>
+<DIV class=leftbotcon>
+<DIV class="bor jdlist">
+<DIV class=titbg>
+<H3 class=t2>热点推荐</H3></DIV>
+<UL>
+<LI><A onclick="javascript: _gaq.push(['_trackPageview', '/51cto/neirong/d-t-4']);" href="http://mobile.51cto.com/mobile-182392.htm"><IMG src="http://images.51cto.com/files/uploadimg/20100202/153546162.jpg"></A> 
+<DIV class=name><A onclick="javascript: _gaq.push(['_trackPageview', '/51cto/neirong/d-t-4']);" href="http://mobile.51cto.com/mobile-182392.htm">Android开发应用详解</A></DIV></LI>
+<LI><A onclick="javascript: _gaq.push(['_trackPageview', '/51cto/neirong/d-t-4']);" href="http://developer.51cto.com/art/201106/266369.htm"><IMG src="http://images.51cto.com/files/uploadimg/20110608/133620622.jpg"></A> 
+<DIV class=name><A onclick="javascript: _gaq.push(['_trackPageview', '/51cto/neirong/d-t-4']);" href="http://developer.51cto.com/art/201106/266369.htm">那些性感的让人尖叫的程序员</A></DIV></LI>
+<LI><A href="http://developer.51cto.com/art/200907/133407.htm"><IMG src="http://images.51cto.com/files/uploadimg/20090702/134217922.jpg"></A> 
+<DIV class=name><A href="http://developer.51cto.com/art/200907/133407.htm">HTML5 下一代Web开发标准详解</A></DIV></LI>
+<LI><A href="http://developer.51cto.com/art/201104/257581.htm"><IMG src="http://images.51cto.com/files/uploadimg/20110426/123123954.jpg"></A> 
+<DIV class=name><A href="http://developer.51cto.com/art/201104/257581.htm">高性能WEB开发应用指南</A></DIV></LI>
+<LI><A href="http://os.51cto.com/art/200706/49181.htm"><IMG src="http://images.51cto.com/files/uploadimg/20070613/195816929.jpg"></A> 
+<DIV class=name><A href="http://os.51cto.com/art/200706/49181.htm">Ubuntu开源技术交流频道</A></DIV></LI></UL></DIV>
+<P class=blank10></P>
+<DIV class="bor hotTag"><STRONG>热门标签：</STRONG> <A onclick="javascript: _gaq.push(['_trackPageview', '/51cto/neirong/d-2]);" href="http://os.51cto.com/windows/">windows频道</A><A onclick="javascript: _gaq.push(['_trackPageview', '/51cto/neirong/d-w']);" href="http://mobile.51cto.com/">移动开发</A><A onclick="javascript: _gaq.push(['_trackPageview', '/51cto/neirong/d-w']);" href="http://cloud.51cto.com/">云计算</A><A onclick="javascript: _gaq.push(['_trackPageview', '/51cto/neirong/d-w']);" href="http://mobile.51cto.com/mobile/objc/">objective-c</A><A onclick="javascript: _gaq.push(['_trackPageview', '/51cto/neirong/d-w']);" href="http://network.51cto.com/art/200909/151122.htm">tp-link路由器设置图解</A><A onclick="javascript: _gaq.push(['_trackPageview', '/51cto/neirong/d-w']);" href="http://developer.51cto.com/art/200907/133407.htm">html5</A> </DIV></DIV>
+<div class="leftbotbox"> </div>
+</div>
+<!--left end-->
+<div class="g_13 fr">
+<div class="focus fixfloat"> 
+ <img width="298" style="border: 1px solid #CCCCCC; margin:5px 0px 5px;" src="http://www.51cto.com/images/weixin.png"><div class="hot">
+<ul>
+<li class="tit"><em>头条</em> <a href="http://developer.51cto.com/art/201405/438832.htm">《开发专刊》2014年4月刊发布</a> </li>
+<li class="con"><dl><dt><a href="http://developer.51cto.com/art/201405/438832.htm"><img border="0" src="http://s5.51cto.com/wyfs02/M01/26/F1/wKioL1NvvUaxFIvQAAAX2THaVGw231.jpg"/></a></dt>
+<dd>本次的专刊为大家提供了Oracle最新推出的Java SE 8详细的开发教程，从解读到探究Java 8最新</dd>
+</dl></li></ul><ol class="hotlist"><li><a href="http://developer.51cto.com/art/201403/434342.htm">《开发专刊》2014年3月刊发布</a></li><li><a href="http://developer.51cto.com/art/201312/423275.htm">《开发月刊》2013年11月刊发布</a></li></ol></div>
+<p id="hzh_one">
+<script language="JavaScript" src="http://www.51cto.com/ad/art/hzh/ad.js" type="text/javascript"></script>
+</p>
+</div>
+<div class="rank">
+<div class="tlt">
+      <h3>文章排行</h3>
+      <a onmouseover="change_top10(3);" id="top_3">本月</a><a onmouseover="change_top10(2);" id="top_2">本周</a><a onmouseover="change_top10(1);" class="myon" id="top_1">24小时</a> </div>
+ <div id="top10_1" style="display: block;" class="list"><ul>
+<li><a href="http://developer.51cto.com/art/201409/450355.htm" target="_blank" title="下一波下岗的将是 “IT技术支持人士”">下一波下岗的将是 “IT技术支持人士”</a>
+<li><a href="http://developer.51cto.com/art/201408/449789.htm" target="_blank" title="如何开发属于自己的框架">如何开发属于自己的框架</a>
+<li><a href="http://developer.51cto.com/art/201409/450358.htm" target="_blank" title="10个帮程序员和站长减压放松的良心网站">10个帮程序员和站长减压放松的良心网站</a>
+<li><a href="http://developer.51cto.com/art/201007/214478.htm" target="_blank" title="Eclipse插件大全 挑选最牛的TOP30">Eclipse插件大全 挑选最牛的TOP30</a>
+<li><a href="http://developer.51cto.com/art/201408/449680.htm" target="_blank" title="IEEE：2014各大编程语言排行">IEEE：2014各大编程语言排行</a>
+<li><a href="http://developer.51cto.com/art/200906/128274.htm" target="_blank" title="Java数组声明、创建、初始化">Java数组声明、创建、初始化</a>
+<li><a href="http://developer.51cto.com/art/201409/450248.htm" target="_blank" title="容器与虚拟机管理程序之战刚开始打响">容器与虚拟机管理程序之战刚开始打响</a>
+<li><a href="http://developer.51cto.com/art/201409/450356.htm" target="_blank" title="看图说话：架构设计分享之权限系统">看图说话：架构设计分享之权限系统</a>
+<li><a href="http://developer.51cto.com/art/200903/117512.htm" target="_blank" title="详解Java解析XML的四种方法">详解Java解析XML的四种方法</a>
+<li><a href="http://developer.51cto.com/art/201408/449857.htm" target="_blank" title="你真的该换一台新电脑的 14 种迹象">你真的该换一台新电脑的 14 种迹象</a>
+</ul></div>
+<div id="top10_2" style="display: none;" class="list"><ul>
+<li><a href="http://developer.51cto.com/art/201408/449857.htm" target="_blank" title="你真的该换一台新电脑的 14 种迹象">你真的该换一台新电脑的 14 种迹象</a>
+<li><a href="http://developer.51cto.com/art/201408/449852.htm" target="_blank" title="2014 年最火的 21 个 JavaScript 框架">2014 年最火的 21 个 JavaScript 框架</a>
+<li><a href="http://developer.51cto.com/art/201409/450248.htm" target="_blank" title="容器与虚拟机管理程序之战刚开始打响">容器与虚拟机管理程序之战刚开始打响</a>
+<li><a href="http://developer.51cto.com/art/201408/449995.htm" target="_blank" title="HTML5：Network Information API详解">HTML5：Network Information API详解</a>
+<li><a href="http://developer.51cto.com/art/201408/450082.htm" target="_blank" title="调查显示：OpenStack和Docker雄冠云计">调查显示：OpenStack和Docker雄冠云计</a>
+<li><a href="http://developer.51cto.com/art/201408/449991.htm" target="_blank" title="生于忧患而死于安乐：程序员如何走出安">生于忧患而死于安乐：程序员如何走出安</a>
+<li><a href="http://developer.51cto.com/art/201408/450086.htm" target="_blank" title="有效领导创业型员工的8种方式">有效领导创业型员工的8种方式</a>
+<li><a href="http://developer.51cto.com/art/201408/449867.htm" target="_blank" title=".NET程序的性能要领和优化建议">.NET程序的性能要领和优化建议</a>
+<li><a href="http://developer.51cto.com/art/201409/450255.htm" target="_blank" title="千万别理程序员">千万别理程序员</a>
+<li><a href="http://developer.51cto.com/art/201408/449978.htm" target="_blank" title="囧之有道：残酷现实中的巾帼程序员">囧之有道：残酷现实中的巾帼程序员</a>
+</ul></div>
+<div id="top10_3" style="display: none;" class="list"><ul>
+<li><a href="http://developer.51cto.com/art/201408/447341.htm" target="_blank" title="PHP终于迎来自己的正式语言规范">PHP终于迎来自己的正式语言规范</a>
+<li><a href="http://developer.51cto.com/art/201408/448142.htm" target="_blank" title="2014年8月编程语言排行榜：Swift降到20">2014年8月编程语言排行榜：Swift降到20</a>
+<li><a href="http://developer.51cto.com/art/201408/448409.htm" target="_blank" title="程序员不可不知的7款编程工具">程序员不可不知的7款编程工具</a>
+<li><a href="http://developer.51cto.com/art/201408/448405.htm" target="_blank" title="一个数据挖掘大牛，用程序算法做人生选">一个数据挖掘大牛，用程序算法做人生选</a>
+<li><a href="http://developer.51cto.com/art/201408/448609.htm" target="_blank" title="Java 专业人士必备的书籍和网站列表">Java 专业人士必备的书籍和网站列表</a>
+<li><a href="http://developer.51cto.com/art/201408/447561.htm" target="_blank" title="报告：新毕业程序员平均年薪暴涨44%">报告：新毕业程序员平均年薪暴涨44%</a>
+<li><a href="http://developer.51cto.com/art/201408/449789.htm" target="_blank" title="如何开发属于自己的框架">如何开发属于自己的框架</a>
+<li><a href="http://developer.51cto.com/art/201408/447865.htm" target="_blank" title="2014年最流行的应用服务器">2014年最流行的应用服务器</a>
+<li><a href="http://developer.51cto.com/art/201408/447346.htm" target="_blank" title="程序员生存定律：打造属于自己的稀缺性">程序员生存定律：打造属于自己的稀缺性</a>
+<li><a href="http://developer.51cto.com/art/201408/449857.htm" target="_blank" title="你真的该换一台新电脑的 14 种迹象">你真的该换一台新电脑的 14 种迹象</a>
+</ul></div>
+ 
+ </div>
+<p class="blank1"></p>
+
+<div class="bor">
+<div class="titbg">
+<h3 class="fl t1">热点专题</h3>
+<a href="http://developer.51cto.com/speclist/1445" class="tmore">更多&gt;&gt;</a></div>
+<ul class="plist01">
+<li><a href="http://developer.51cto.com/art/201309/410688.htm" title="开发频道2013年9月第2周重点内容推荐：一个神奇的网站12306..."><img src="http://s7.51cto.com/wyfs01/M01/1E/B9/wKioOVIyvZyiF7GkAAAVndC91Ew541.jpg" alt="开发频道2013年9月第2周重点内容推荐：一个神奇的网站12306..." width="100" height="80" /></a>
+<h5><a href="http://developer.51cto.com/art/201309/410688.htm" title="开发频道2013年9月第2周重点内容推荐：一个神奇的网站12306...">开发频道2013年9月第2</a></h5>
+<div class="c666">今天是被国际上众多科技公司和软件企业承认的业内人士</div>
+</li><li><a href="http://developer.51cto.com/art/201309/410360.htm" title="抢票再度上演：一个神奇的网站12306..."><img src="http://s2.51cto.com/wyfs01/M01/1D/67/wKioJlIxN5LwRiOtAAAVeoy04FY387.jpg" alt="抢票再度上演：一个神奇的网站12306..." width="100" height="80" /></a>
+<h5><a href="http://developer.51cto.com/art/201309/410360.htm" title="抢票再度上演：一个神奇的网站12306...">抢票再度上演：一个神</a></h5>
+<div class="c666">互联网一大真理便是，有痛点的地方就有机会。现在最想</div>
+</li><li><a href="http://developer.51cto.com/art/201309/410286.htm" title="Eclipse常用插件安装问题汇总"><img src="http://s1.51cto.com/wyfs01/M01/1C/ED/wKioOVIwJ77iXsmpAAAVpn5UEFI371.jpg" alt="Eclipse常用插件安装问题汇总" width="100" height="80" /></a>
+<h5><a href="http://developer.51cto.com/art/201309/410286.htm" title="Eclipse常用插件安装问题汇总">Eclipse常用插件安装</a></h5>
+<div class="c666">Eclipse 是一个开源的、可扩展的集成开发环境。平台本</div>
+</li> 
+</ul>
+</div>
+<p class="blank10"></p>
+<div class="tagCloud">
+<div class="tlt">
+<h3>热点标签</h3>
+</div>
+<div class="taglist"><A title=编程语言排行榜 href="http://developer.51cto.com/art/200911/165281.htm">编程语言排行榜</A> <A title=敏捷开发 href="http://developer.51cto.com/art/200803/68222.htm">敏捷开发</A> <A title=Eclipse href="http://developer.51cto.com/art/201006/207407.htm">Eclipse 3.6</A> <A title=PHP设计模式 href="http://developer.51cto.com/art/201004/195765.htm">PHP设计模式</A> <A title=NetBeans7 href="http://developer.51cto.com/art/201105/259431.htm">NetBeans 7</A> <A title=Java7 href="http://developer.51cto.com/art/201001/175830.htm">Java7</A> <A title=Scala编程语言 href="http://developer.51cto.com/art/200906/127830.htm">Scala编程语言</A> <A title=Python编程世界 href="http://developer.51cto.com/art/201011/234347.htm">Python编程世界</A> <A title=Ruby On Rails开发 href="http://developer.51cto.com/art/201007/215101.htm">Ruby On Rails开发</A> <A class=imp title=LINQ href="http://developer.51cto.com/art/200911/165090.htm">LINQ</A> <A title=ASP.NET视频教程 href="http://developer.51cto.com/art/200904/120314.htm">ASP.NET视频教程</A> <A title="Visual Studio" href="http://developer.51cto.com/art/201004/194262.htm">Visual Studio</A> <A title="智能手机" href="http://p.linkphone.cn/">智能手机</A> <A title="软件下载" href="http://download.linkphone.cn/">软件下载</A></div>
+</div>
+<div class="rss">
+<ul>
+<li class="lin f12-c"><a href="http://news.51cto.com/col/1323/"><strong>点击这里查看样刊</strong></a></li>
+<li>
+<dl>
+<dt> </dt>
+<dd><a href="http://home.51cto.com/index.php?s=/Subscribe"><img src="http://images.51cto.com/images/art0910/images/dingy.gif" /></a></dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="bor">
+<div class="titbg">
+<h3 class="t1">全站热点</h3>
+</div>
+<div class="webhot fixfloat">
+<ul>
+
+<li>
+  <a href="http://network.51cto.com/network/ruijie/newton-video/"  title="网络世界的Newton"><img src="http://s8.51cto.com/wyfs01/M01/17/6A/wKioOVIdcMfwql8tAACW4jbaj_M992.jpg" /></a>
+  <div><a href="http://network.51cto.com/network/ruijie/newton-video/"  title="网络世界的Newton">网络世界的Newton</a></div>
+</li>
+
+<li>
+  <a href="http://network.51cto.com/network/content2013/5gwifi/"  title="企业如何备战802.11ac"><img src="http://s2.51cto.com/wyfs01/M01/16/43/wKioOVIW2dOgub5LAABZtwznUdA440.jpg" /></a>
+  <div><a href="http://network.51cto.com/network/content2013/5gwifi/"  title="企业如何备战802.11ac">企业如何备战802.11ac</a></div>
+</li>
+
+</ul>
+</div>
+<p class="blank1"></p>
+<ul class="list03">
+
+<li><a href="http://server.51cto.com/Storage-407057.htm"  title="调整虚拟硬盘大小时有哪些限制？">调整虚拟硬盘大小时有哪些限制？</a></li>
+
+<li><a href="http://server.51cto.com/Storage-407051.htm"  title="Hyper-V中直通式SCSI磁盘的局限性">Hyper-V中直通式SCSI磁盘的局限性</a></li>
+
+<li><a href="http://server.51cto.com/sManage-407049.htm"  title="用专用服务器跑关键应用的注意事项">用专用服务器跑关键应用的注意事项</a></li>
+
+<li><a href="http://server.51cto.com/Review-407048.htm"  title="云端裸机服务器作用几何?">云端裸机服务器作用几何?</a></li>
+
+<li><a href="http://mobile.51cto.com/android-407018.htm"  title="Android开发常见“疑难杂症”解决方案大汇总">Android开发常见“疑难杂症”解决方</a></li>
+
+</ul>
+</div>
+<p class="blank10"></p>
+<div class="bor">
+<div class="titbg">
+<h3 class="t1">读书</h3>
+</div>
+  
+<div class="catbook"><a href="http://book.51cto.com/art/200704/46224.htm" title="数据库系统概念"><img src="http://images.51cto.com/files/uploadimg/20070420/143447447.jpg" width="66" height="98" border="0" /></a>
+<h5><a href="http://book.51cto.com/art/200704/46224.htm">数据库系统概念</a></h5>
+<div class="c666 text">本书是数据库系统方面的经典教材之一。国际上许多著名大学包括斯坦福大学、耶鲁大学、得克萨斯大学、康奈尔大学、伊利诺伊大学、</div>
+</div>
+
+
+<ul class="list03">
+
+<li><a href="http://book.51cto.com/art/200706/50163.htm" title="程序设计实践双语版">程序设计实践双语版</a></li>
+
+<li><a href="http://book.51cto.com/art/200706/50249.htm" title="高质量程序设计指南：C++/C语言(第3版)">高质量程序设计指南：C++/C语言(第3版)</a></li>
+
+<li><a href="http://book.51cto.com/art/200707/50269.htm" title="游戏开发核心技术--剧本和角色创造">游戏开发核心技术--剧本和角色创造</a></li>
+
+<li><a href="http://book.51cto.com/art/200707/50367.htm" title="程序员密码学">程序员密码学</a></li>
+
+</ul>
+</div>
+<p class="blank10"></p>
+<div class="bor">
+<div class="titbg">
+<h3 class="t1 fl">博文推荐</h3>
+<a class="tmore" href="http://blog.51cto.com/">更多&gt;&gt;</a></div>
+
+<ul class="list03">
+ <li><a href="http://kingzoo.blog.51cto.com/246280/47674/" target="_blank" title="简单方法辨别电脑是否感染病毒">简单方法辨别电脑是否感染病毒</a></li><li><a href="http://edify.blog.51cto.com/122316/47660/" target="_blank" title="[原创]DHCP实验之帮助地址">[原创]DHCP实验之帮助地址</a></li><li><a href="http://waringid.blog.51cto.com/65148/47655/" target="_blank" title="Linux下oracle 9i图文安装一">Linux下oracle 9i图文安装一</a></li><li><a href="http://wangjierui.blog.51cto.com/186879/47650/" target="_blank" title="GridView在线编辑纯手工打造">GridView在线编辑纯手工打造</a></li>
+</ul>
+</div>
+<p class="blank10"></p>
+<div class="tj">
+<div class="tlt">
+<h3>最新热帖</h3>
+<a class="more" href="http://bbs.51cto.com/hotthreads.php">更多&gt;&gt;</a></div>
+<ul>
+<li><a href="http://bbs.51cto.com/thread-682482-1.html" target="_blank" title="一道局域网布线的基础题目">一道局域网布线的基础题目</a></li><li><a href="http://bbs.51cto.com/thread-550558-1.html" target="_blank" title="【JAVA EE企业级开发四步走完全攻略】">【JAVA EE企业级开发四步走完全攻略</a></li><li><a href="http://bbs.51cto.com/thread-26429-1.html" target="_blank" title="通用WAP网站生成系统(PowerDiamond) v.1">通用WAP网站生成系统(PowerDiamond) </a></li><li><a href="http://bbs.51cto.com/thread-11063-1.html" target="_blank" title="八类大学毕业生求职时不受欢迎">八类大学毕业生求职时不受欢迎</a></li><li><a href="http://bbs.51cto.com/thread-6946-1.html" target="_blank" title="IT人为什么难以拿到高薪？【转帖】">IT人为什么难以拿到高薪？【转帖】</a></li>
+</ul>
+</div>
+<div class="picAD">
+<script language="JavaScript" src="http://www.51cto.com/ad/art/baidugoogle/ad.js" type="text/javascript"></script>
+</div>
+</div>
+<p class="blank1"></p> 
+<!--leftbotcon end-->
+</div> 
+<div class="subweb">
+<h4>51CTO旗下网站</h4>
+<div>
+<a target="_blank" href="http://www.51cto.com/">领先的IT技术网站 51CTO</a>
+<a target="_blank" href="http://www.watchstor.com/">领先的中文存储媒体 WatchStor</a>
+<a target="_blank" href="http://www.cioage.com/">中国首个CIO网站 CIOage</a>
+<a target="_blank" href="http://www.hc3i.cn/">中国首家数字医疗网站 HC3i</a>
+</div>
+</div>
+<div id="ft"><div id="foot" align="center"><script src="http://images.51cto.com/images/copy_right/copy_right.js"></script></div></div>
+<script src="http://logs.51cto.com/rizhi/count/count.js"></script>
+<!-- START GA.js -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-20883758-1']);
+  _gaq.push(['_setDomainName', 'none']);
+  _gaq.push(['_setAllowLinker', true]);
+  _gaq.push(['_addOrganic', 'baidu', 'word']);
+  _gaq.push(['_addOrganic', 'google', 'q']);
+  _gaq.push(['_addOrganic', 'soso', 'w']);
+  _gaq.push(['_addOrganic', '3721', 'name']);
+  _gaq.push(['_addOrganic', 'yodao', 'q']); 
+  _gaq.push(['_addOrganic', 'vnet', 'kw']);
+  _gaq.push(['_addOrganic', 'sogou', 'query']);
+  _gaq.push(['_trackPageview']);
+  _gaq.push(['_trackPageLoadTime']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<!-- END GA.js -->
+
+
+<script type="text/javascript">
+
+	$("#uyan_cmt_list").next().remove();	
+	$("#uyan_cmt_list").next().css("display","none");	
+</script>
+<style>
+.Nfloat {
+    position: fixed;
+    right: 2%;
+    top: 35%;
+    z-index: 801;
+}
+</style>
+<!--学院广告
+<div class="Nfloat" style="width:127px; height:197px;" id="fullYearfloatPic">
+	<img width="127" border="0" src="http://img1.51cto.com/edu/images/floatpic.png" usemap="#Map">
+	<map name="Map" id="Map">
+	  <area shape="rect" coords="11,83,120,117" target="_blank" href="http://edu.51cto.com/course/courseList/id-all-field-toll-isLecturer-0-difficulty-all.html" onfocus="isfox ? void(0) : blur(this);">
+	  <area shape="rect" coords="6,120,119,144" target="_blank" href="http://edu.51cto.com/member/index.html" onfocus="isfox ? void(0) : blur(this);">
+	  <area shape="rect" coords="9,149,117,178" target="_blank" href="http://bbs.51cto.com/viewthread.php?tid=1113099&amp;page=1&amp;extra=#pid5675432" onfocus="isfox ? void(0) : blur(this);">
+	  <area shape="circle" coords="118,25,9" href="javascript:void(0);" onclick="document.getElementById('fullYearfloatPic').style.display='none';return false;" onfocus="isfox ? void(0) : blur(this);">
+	</map>
+</div>
+学院广告end-->
+<!-- 新监测代码 -->
+<!-- 新监测代码 -->
+<div id="MyMoveAd" style="display:none">
+<span id="wordlink_1"><script src="http://www.51cto.com/ad/art/wordlink/wordlink1.js"></script></span>
+<span id="wordlink_2"><script src="http://www.51cto.com/ad/art/wordlink/wordlink2.js"></script></span>
+<span id="wordlink_3"><script src="http://www.51cto.com/ad/art/wordlink/wordlink3.js"></script></span>
+<span id="wordlink_4"><script src="http://www.51cto.com/ad/art/wordlink/wordlink4.js"></script></span>
+<span id="pinglun"><script language="JavaScript" src="http://www.51cto.com/php/getArtCount.php?artid=315327&type=all"></script></span>
+<span id="tonglan"><script language="JavaScript" src="http://www.51cto.com/ad/art/tonglan/ad.js"></script></span>
+<span id="wordlink"><script language="JavaScript" src="http://www.51cto.com/ad/art/wordlink/ad.js"></script></span>
+<script src="http://www.51cto.com/ad/art/wordlink/ad.js"></script>
+<span id="bookss"><script language="JavaScript" src="http://www.51cto.com/php/getBookData.php?artid="></script></span>
+</div>   
+<script language="javascript" src="http://www.51cto.com/js/article/favorite.js"></script>
+
+<script language="javaScript" src="http://www.51cto.com/php/dialog_utf8.js"></SCRIPT>
+<script language="javaScript" src="http://www.51cto.com/mail.js"></script>  
+<script type="text/javascript" src="http://home.51cto.com/apps/favorite/Tpl/default/Public/js/favorbox.js"></script>
+<script language="javascript" src="http://images.51cto.com/images/art/newart1012/clipboard.js"></script>
+<script language="javaScript"> 
+	var thistid=315327; 
+	
+	//收藏按钮
+	var favor_url = 'http://developer.51cto.com/art/201202/315327.htm';  // 如：http://bbs.51cto.com/thread-789649-1.html
+	var favor_title = '使用Node.js搭建最简单的comet原型';       //  
+	
+	//绑定复制按钮
+	copy('msnqqcopy', 'http://developer.51cto.com/art/201202/315327.htm', '分享到MSN/QQ的链接复制成功!');
+//	copy('bbscopy', '[url=http://developer.51cto.com/art/201202/315327.htm][u]使用Node.js搭建最简单的comet原型[/u][/url]', '分享到论坛的UBB代码复制成功!');
+
+</script> 
+<script src=" http://home.51cto.com/index.php?s=/Index/getLoginStatus/reback/http%253A%252F%252Fdeveloper.51cto.com%252Fart%252F201202%252F315327.htm" charset='utf-8'></script>
+<script src="http://www.51cto.com/php/count.php?view=yes&artID=315327" language="javascript"></script>
+<script language="javascript">
+document.getElementById('books').innerHTML = document.getElementById("bookss").innerHTML; 
+</script>
+
+</body>
+</html>

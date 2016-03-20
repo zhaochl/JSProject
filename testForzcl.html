@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+	<div id="counter"></div>
+	<div id="calculation"></div>
+	<div style="height:600px;overflow:hidden;position:relative;margin-top:20px;">
+		<div style="position:absolute;bottom:0px;" id="result">
+		</div>
+	</div>
+	<script>
+		/*private*/
+		var _counter = 0;
+		var _trigger = false;
+		
+		/*public*/
+		var startTimestamp = 30;	//开始时间
+		var endTimestamp = 40;	//结束时间
+		var interval = 100;		//重复间隔
+		var preset = 5;			//提前提醒时间
+		var error = 10;
+		
+		function WaitReminding(now) {
+			if ( Math.abs( ( now - ( startTimestamp - preset ) )%interval )  <= 10 ) return true;
+			return false;
+		}
+		
+		var run = function(){
+			if ( WaitReminding(_counter) ) {
+				if (!_trigger) {
+					document.getElementById("result").innerHTML += "<p><span style='font-weight:bold;color:green;'>|</span> <span style='font-weight:bold;color:yellow;'>(</span> <b>" + _counter + "</b> - (" + startTimestamp + " - " + preset + ") <span style='font-weight:bold;color:yellow;'>)</span>% " + interval + " <span style='font-weight:bold;color:green;'>|</span>" + " == " +Math.abs( ( _counter - ( startTimestamp - preset ) )%interval )  + "</p>";
+					_trigger = true;
+				}
+			}else {
+				_trigger = false;
+			}
+			
+			document.getElementById("calculation").innerHTML = " Math.abs( ( now - ( startTimestamp - preset ) )%interval )  == " +  Math.abs( ( _counter - ( startTimestamp - preset ) )%interval ) ;
+		};
+		
+		var runtimer = setInterval(run,1173);
+		var heartBeat = setInterval(function(){
+			_counter++;
+			document.getElementById("counter").innerHTML = _counter;
+		},200);
+		
+		document.onkeydown = function(){
+			if ( event.keyCode==27 ) {  //Key on backtick call the panel showout.
+				clearInterval(runtimer);
+				clearInterval(heartBeat);
+			}
+		};
+	</script>
+</body>
+</html>

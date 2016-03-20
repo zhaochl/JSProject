@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<!-- saved from url=(0077)https://www.superfish.com/ws/co/register_server_layer.html?version=14.09.03.1 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <title>Checkout Observer Register server layer</title>
+
+    <script type="application/javascript">
+
+        var CheckoutObserverRegister =
+        {
+            initialize: function()
+            {
+                if (window.localStorage && window.JSON && window.addEventListener)
+                {
+                    window.addEventListener("message", this.messagesRouter.bind(this), false);
+                }
+            },
+
+            registerOfferClick: function(data)
+            {
+                localStorage.setItem('__sfCheckoutObserverData', this.jsonStringify(data));
+            },
+
+            messagesRouter: function(event)
+            {
+                var eventData = event.data || '';
+                var data;
+
+                eventData = (typeof eventData === 'string') && eventData.split('__similarproductsCheckoutNamespaceMarker')[1] || null;
+
+                if (eventData)
+                {
+                    data = this.jsonParse(eventData);
+
+                    if (data && data.fn && typeof this[data.fn] === 'function')
+                    {
+                        this[data.fn](data.data, event);
+                    }
+                }
+            },
+
+            jsonParse: function(strData)
+            {
+                try
+                {
+                    strData = (typeof strData === 'string') && strData.trim() || null;
+                    return JSON.parse(strData)
+                }
+                catch(e)
+                {
+                    return null;
+                }
+            },
+
+            jsonStringify: function(data)
+			{
+				try
+				{
+					return JSON.stringify(data)
+				}
+				catch(e)
+				{
+					return '';
+				}
+			}
+        };
+
+        CheckoutObserverRegister.initialize();
+
+    </script>
+</head>
+<body>
+
+</body></html>

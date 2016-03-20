@@ -1,0 +1,71 @@
+<link rel="stylesheet"
+	href="todomvc/bower_components/todomvc-common/base.css">
+<link rel="stylesheet" href="todomvc/css/app.css">
+<div ui-content-for="title">
+	<span>Scroll</span>
+</div>
+
+<div class="scrollable" ui-state="searchBar">
+	<!-- <input
+    ng-if="Ui.active('searchBar')"
+    type="search"
+    class="form-control scrollable-header"
+    placeholder="Search.." />
+
+  <div class="scrollable-content" ui-scroll-bottom='bottomReached()'>
+    <div class="list-group">
+      <a ng-repeat="item in scrollItems" href="#" class="list-group-item">
+        {{ item }} <i class="fa fa-chevron-right pull-right"></i>
+      </a>
+    </div>
+  </div>
+
+  <a class="btn btn-block btn-lg btn-primary scrollable-footer" ui-toggle='searchBar'>
+    <i class="fa fa-search"></i> 
+    <span ui-hide="searchBar">Show</span>
+    <span ui-show="searchBar">Hide</span>
+    Search Bar
+  </a> -->
+	<section id="todoapp">
+			<header id="header">
+				<h1>todos</h1>
+				<input id="new-todo" placeholder="What needs to be done?" autofocus>
+			</header>
+			<section id="main">
+				<input id="toggle-all" type="checkbox">
+				<label for="toggle-all">Mark all as complete</label>
+				<ul id="todo-list"></ul>
+			</section>
+			<footer id="footer">
+				<span id="todo-count"><strong>0</strong> item left</span>
+				<button id="clear-completed">Clear completed</button>
+			</footer>
+		</section>
+
+		<footer id="info">
+			<p>Double-click to edit a todo</p>
+			<p>Created by <a href="http://github.com/sindresorhus">Sindre Sorhus</a></p>
+			<p>Part of <a href="http://todomvc.com">TodoMVC</a></p>
+		</footer>
+		
+		<script id="todo-template" type="text/x-handlebars-template">
+		{{#this}}
+		<li {{#if completed}}class="completed"{{/if}} data-id="{{id}}">
+			<div class="view">
+				<input class="toggle" type="checkbox" {{#if completed}}checked{{/if}}>
+				<label>{{title}}</label>
+				<button class="destroy"></button>
+			</div>
+			<input class="edit" value="{{title}}">
+		</li>
+		{{/this}}
+		</script>
+		<script id="footer-template" type="text/x-handlebars-template">
+		<span id="todo-count"><strong>{{activeTodoCount}}</strong> {{activeTodoWord}} left</span>
+		{{#if completedTodos}}<button id="clear-completed">Clear completed ({{completedTodos}})</button>{{/if}}
+		</script>
+		<script src="todomvc/bower_components/todomvc-common/base.js"></script>
+		<script src="todomvc/bower_components/jquery/jquery.js"></script>
+		<script src="todomvc/bower_components/handlebars/handlebars.js"></script>
+		<script src="todomvc/js/app.js"></script>
+</div>

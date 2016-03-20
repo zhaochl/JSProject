@@ -1,0 +1,29 @@
+#infowin {
+  position : absolute;
+  left : 0px;
+  top : 0px;
+  background-color : #FFFFFF;
+  opacity : 0.9;
+  border : 2px solid #333333;
+  padding : 6px;
+  z-index : 1001;
+  overflow : auto;
+  cursor : default;
+}
+
+a.info:link {
+  color : #333333;
+  text-decoration : none;
+  border-bottom: 3px double;
+}
+
+a.info:visited {
+  color : #AAAAAA;
+  text-decoration : none;
+  border-bottom: 3px double;
+}
+
+a.info:hover, a.info:active {
+  background : #EEEEEE;
+  border-bottom: 3px double;
+}

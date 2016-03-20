@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script type="text/javascript" src="js/sea/sea.js"></script>
+<title>Insert title here</title>
+
+</head>
+<body>
+
+<script>
+
+	// Set configuration
+	seajs.config({
+		base: "./js/sea/",
+		alias: {
+		  "$": "jquery-1.10.2.js",
+		  "jquery": "jquery-1.10.2.js",
+		  //"underscore": "gallery/underscore/1.4.4/underscore.js",
+		  //"backbone": "gallery/backbone/1.0.0/backbone.js"
+		}
+	});
+	//http://localhost/JSProject/seajs.html
+	
+  	//http://localhost/JSProject/js/sea/sea/main.js 404 (Not Found) 
+	// 所有模块都通过 define 来定义
+define(function(require, exports, module) {
+
+	// 通过 require 引入依赖
+	var $ = require('jquery');
+	var Spinning = require('./spinning');
+	//GET http://localhost/JSProject/js/sea/spinning.js 404 (Not Found) 
+	
+	// 通过 exports 对外提供接口
+	//exports.doSomething = ...
+	
+	// 或者通过 module.exports 提供整个接口
+	//module.exports = ...
+
+});
+	seajs.use("main");
+</script>
+</body>
+</html>

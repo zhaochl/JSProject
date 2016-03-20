@@ -1,0 +1,143 @@
+<html>
+  <head>
+    <title>USPS Shipping Calculator Example</title>
+
+    <style type="text/css">
+      td.heading { background-color:#AAAAAA; text-align:center; font-size:120%; }
+      td.label { text-align:right; }
+      td.value { text-align:left; }
+    </style>
+
+    <script type="text/javascript" src="ajaxkit.js"> </script>
+    <script type="text/javascript" src="domkit.js"> </script>
+    <script type="text/javascript">
+      // Shopping cart variables
+      var origZip = "10022"; // Origination ZIP code
+      var itemDesc = "Popcorn Holiday Feast";
+      var itemPrice = 29.99;
+      var weightLb = "10";
+      var weightOz = "5";
+      var container = "Flat Rate Box";
+      var size = "Large";
+
+      function initForm() {
+        replaceText(document.getElementById("item"), itemDesc);
+        replaceText(document.getElementById("price"), itemPrice);
+      }
+
+      function handleRequest() {
+        ajaxUpdateState();
+        if (request.readyState == 4 && request.status == 200) {
+          var shipRate = request.responseText;
+          if (parseFloat(shipRate) != 0.0) {
+            replaceText(document.getElementById("zipCodeErr"), "");
+            updateTotal(shipRate);
+          }
+          else {
+            replaceText(document.getElementById("zipCodeErr"), "Cannot ship to this ZIP code.");
+            updateTotal("0.00");
+          }
+        }
+      }
+
+      function getShipRate() {
+        // Display the wait image
+        document.getElementById("shiprate").innerHTML = "<img src='wait.gif' alt='Looking up shipping rate...' />";
+
+        // Assemble the shipping info request string
+        var shipInfo = "userID=YOURUSPSUSERID" +
+          "&origZip=" + encodeURIComponent(origZip) +
+          "&destZip=" + encodeURIComponent(document.getElementById("zipCode").value) +
+          "&weightLb=" + encodeURIComponent(weightLb) +
+          "&weightOz=" + encodeURIComponent(weightOz) +
+          "&container=" + encodeURIComponent(container) +
+          "&size=" + encodeURIComponent(size) +
+          "&mailService=" + encodeURIComponent(document.getElementById("mailService").value);
+        ajaxSendRequest("GET", "shipper.php?" + shipInfo, handleRequest);
+      }
+
+      function updateTotal(shipRate) {
+        document.getElementById("shiprate").innerHTML = shipRate;
+        var total = itemPrice + parseFloat(shipRate);
+        replaceText(document.getElementById("total"), "$" + total);
+      }
+    </script>
+  </head>
+
+  <body onload="initForm()">
+    <div id="ajaxState" style="display:none"></div>
+    <br />
+    <div style="width:500px; color:#AA0000; font-style:italic">You must set your own user ID in the JavaScript code for this page in order for the shipping rate lookup to work. Replace the text <strong>YOURUSPSUSERID</strong> in the code with the ID provided to you by the USPS. You can obtain this ID from the <a href="http://www.usps.com/webtools/">USPS Web Tools site</a>.</div>
+    <br />
+    <table width="500px">
+      <tr>
+        <td class="heading" colspan="3">Shipping Information</td>
+      </tr>
+      <tr>
+        <td class="label">Name:</td>
+        <td class="value" colspan="2"><input type="text" id="name" size="30" /></td>
+      </tr>
+      <tr>
+        <td class="label">Address 1:</td>
+        <td class="value" colspan="2"><input type="text" id="addr1" size="30" /></td>
+      </tr>
+      <tr>
+        <td class="label">Address 2:</td>
+        <td class="value" colspan="2"><input type="text" id="addr2" size="30" /></td>
+      </tr>
+      <tr>
+        <td class="label">City:</td>
+        <td class="value" colspan="2"><input type="text" id="city" size="20" /></td>
+      </tr>
+      <tr>
+        <td class="label">State/Province/Region:</td>
+        <td class="value" colspan="2"><input type="text" id="state" size="3" /></td>
+      </tr>
+      <tr>
+        <td class="label">ZIP/Postal Code:</td>
+        <td class="value"><input type="text" id="zipCode" size="10" onchange="getShipRate()" /></td>
+        <td class="label" width="50%"><span id="zipCodeErr" style="font-size:80%; color:#BB0000;"></span></td>
+      </tr>
+      <tr>
+        <td class="label">Country:</td>
+        <td class="value" colspan="2"><input type="text" id="country" size="25" value="USA" readonly="readonly" /></td>
+      </tr>
+      <tr>
+        <td class="label">Phone Number:</td>
+        <td class="value" colspan="2"><input type="text" id="phone" size="10" /></td>
+      </tr>
+    </table>
+    <br />
+    <table width="500px">
+      <tr>
+        <td colspan="3" class="heading">Order Summary</td>
+      </tr>
+      <tr>
+        <td class="label">Item:</td>
+        <td class="label"><span id="item"></span></td>
+        <td class="label"><span id="price"></span></td>
+      </tr>
+      <tr>
+        <td class="label">Shipping & Handling:</td>
+        <td class="label">
+          <select id="mailService" onchange="getShipRate()">
+            <option value="Parcel Post">Parcel Post</option>
+            <option value="Priority Mail" selected="selected">Priority Mail</option>
+            <option value="Express Mail to PO Addressee">Express Mail</option>
+          </select>
+        </td>
+        <td class="label"><span id="shiprate">0.00</span></td>
+      </tr>
+      <tr>
+        <td class="label">Total:</td>
+        <td class="label"></td>
+        <td class="label"><span id="total"></span></td>
+      </tr>
+    </table>
+    <table width="500px">
+      <tr>
+        <td class="heading"><input type="button" value="Proceed with Checkout" /></td>
+      </tr>
+    </table>
+  </body>
+</html>

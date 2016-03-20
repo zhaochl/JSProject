@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+
+<script type="text/javascript" src="phprpc_client.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+/*
+
+oak-cache common.php
+function tt($salt){
+	echo 'addList';
+	$Redis = new RedisModel('list:user');
+	$data =  array('username'=>'zcl2','password'=>'zclpwd','salt'=>$salt);
+	//$data = array(1,2,3);
+	//$data = 'zcl';
+	//$result = $Redis->add($data);
+	//echo $result;
+	$jsondata = json_encode($data);
+	$Redis->add($jsondata);
+	//$Redis->add('zcl2');
+	var_dump($Redis->getLastSql());
+}
+ */
+
+//声明要使用的函数
+//var fun = ['tt','sha1','addCacheDataQueue','getCacheDataVersion','md5'];
+ var fun = ['hello'];
+//var client = new PHPRPC_Client('http://cache.caifuqiao.cn/index.php?m=cacheQueue&a=enQueue',fun);
+var client = new PHPRPC_Client('http://localhost:8888/OakCenter/API?action=rpc',fun);
+
+//设置密钥长度(可选)
+client.setKeyLength(256);  
+//设置加密类型(可选)
+//client.setEncryptMode(3);  
+function test () {
+	//前面的参数为原函数的参数,最后一个参数为回调函数，
+	//回调函数参数依次为:
+	//第一个参数 result 是服务器端方法（函数）的返回值，它可以是任意类型。
+	//第二个参数 args 是方法调用的参数，如果这个调用是一个引用参数传递的调用，参数也有可能被修改，这时候，你可以通过 args 来获得修改后的参数，关于引用参数传递的调用我们后面会做进一步说明。
+	//第三个参数 output 是服务器端输出的内容，它是字符串类型的。
+	//第四个参数 warning 是服务器端发生的警告错误（目前只有 PHP 服务器会产生警告错误），一般只调试过程中可能会用到。
+	//使用PHP的MD5函数
+	/* client.md5("admin:",function (result, args, output, warning){
+		alert("md5:"+result);
+	}); */ 
+	client.hello('ss',function(result, args, output, warning){
+		console.log('result:'+result);
+	});
+}
+test();
+</script>
+<h2>Hi,js-rpc ><~~</h2>
+<p>run success!</p>
+</body>
+</html>

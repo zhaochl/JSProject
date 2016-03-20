@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html class="h-full">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        
+		<!--<link rel="stylesheet" type="text/css" href="css/jquery.mobile.custom.structure.css">-->
+        <link rel="stylesheet" type="text/css" href="css/ui-oak.css">
+        <link rel="stylesheet" href="fa/css/font-awesome.min.css">
+		<script src="js/oak-media.js"></script>
+		<script src="js/jquery-1.11.1.min.js"></script>
+		<script src="js/underscore-min.js"></script>
+		<script type="text/javascript" src="js/cordova-1.9.0.js"></script>
+		<!--重要！消除Android载入白屏闪烁 start-->
+		<script>  
+		$(document).bind("mobileinit", function()
+		{
+			if (navigator.userAgent.indexOf("Android") != -1) {
+				$.mobile.defaultPageTransition = 'none';
+				$.mobile.defaultDialogTransition = 'none';
+			}
+		});
+		</script>
+		<!--重要！消除Android载入白屏闪烁 end-->
+		<script src="js/jquery.mobile.custom.js"></script>
+		<script src="js/jquery.scrollTo.min.js"></script>
+        <title>财富桥</title>
+    </head>
+    <body class="h-full">
+		<div data-role="page" id="pageone" class="page100 dp-box bo-ver ftf-ch">
+
+			<div data-role="header" class="cf ta-c bgc-white">
+                <div class="h-header pos-relative pdh-1 lnh-96 bs-1">
+                <div id="attachment" class="pos-absolute right0 pdr-m minw-108 ta-r fts-30 ftc-orange">附件</div>
+                <div id="cancel" class="pos-absolute left0 pdl-m minw-108 ta-l ftc-orange"><i class="fa fa-angle-left fts-32 ftw-bold mgr-xs"></i><span class="fts-30">返回</span></div>
+                <h1 class="to-top fts1 ftw-normal">通黔11号</h1>
+                </div>
+			</div>
+
+			<div data-role="content" id="content" class="bf-1 bgc-gray1 minh2">
+				
+				<div class="pdh-l bgc-white bdb-gray">
+					<div class="list-item xintuo mgl-m pdv-18">
+						<div class="clearfix">
+							<div class="dpin f-r pdh-15 h-m lnh-36 bgc-orange ftc-white">
+								<div class="fts-27 dpnone">登录查看</div>
+								<div class="fts-27">10.3%</div>
+							</div>
+							<div class="dpin f-l lnh1 fts1 ftc-orange">通黔11号</div>
+						</div>								
+						<div class="clearfix mgt-6">
+							<div class="dpin f-r">
+								<div class="fts-30 ftc-gray2 lnh1">10%</div>
+							</div>
+							<div class="dpin f-l list-tag-wrap">
+								<div class="f-l fts-27 lnh1 ftc-gray3">中融信托</div>
+								<div class="f-l w-18 ta-c">
+									<div class="fts-27 lnh1 ftc-blue">|</div>
+								</div>
+								<div class="f-l fts-27 lnh1 ftc-gray3">100万</div>
+								<div class="f-l w-18 ta-c">
+									<div class="fts-27 lnh1 ftc-blue">|</div>
+								</div>
+								<div class="f-l fts-27 lnh1 ftc-gray3">24个月</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="view_product">
+					<div class="">
+						<div class="pdl-m pdl-xl lnh-72">
+							<div class="fts-30 ftc-orange">产品亮点</div>
+						</div>
+						<div class="pdl-m pdl-xl lnh-72 bgc-white bdb-gray">
+							<div class="fts-30 ftc-gray3">客户收益：<span class="ftc-red1">9.5% - 13.5%</span></div>
+						</div>
+						<div class="pdl-m pdl-xl lnh-72 bgc-white bdb-gray">
+							<div class="fts-30 ftc-gray3">粤商集团 （资产超过50亿）</div>
+						</div>
+						<div class="pdl-m pdl-xl lnh-72 bgc-white bdb-gray">
+							<div class="fts-30 ftc-gray3">不超过50%的深圳土地质押</div>
+						</div>
+						<div class="pdl-m pdl-xl lnh-72 bgc-white bdb-gray">
+							<div class="fts-30 ftc-gray3">极具前景的冷链产业</div>
+						</div>
+					</div>
+					<div class="">
+						<div class="pdl-m pdl-xl lnh-72">
+							<div class="fts-30 ftc-orange">收益及佣金</div>
+						</div>
+						<div class="pdl-m pdl-xl lnh-72 bgc-white bdb-gray clearfix">
+							<div class="dpin f-l w225">
+								<div class="fts-30 ftc-gray3">预计打款金额</div>
+							</div>
+							<div class="dpin f-l w207">
+								<div class="fts-30 ftc-gray3">客户收益</div>
+							</div>
+							<div class="dpin f-l">
+								<div class="fts-30 ftc-gray3">服务费</div>
+							</div>	
+						</div>
+						<div class="pdl-m pdl-xl lnh-72 bgc-white bdb-gray clearfix">
+							<div class="dpin f-l w225">
+								<div class="fts-30 ftc-gray2">50-100万</div>
+							</div>
+							<div class="dpin f-l w207">
+								<div class="fts-30 ftc-gray2">9.5%</div>
+							</div>
+							<div class="dpin f-l">
+								<div class="fts-30 ftc-gray2">3.5%</div>
+							</div>	
+						</div>
+						<div class="pdl-m pdl-xl lnh-72 bgc-white bdb-gray clearfix">
+							<div class="dpin f-l w225">
+								<div class="fts-30 ftc-gray2">100-300万</div>
+							</div>
+							<div class="dpin f-l w207">
+								<div class="fts-30 ftc-gray2">10.5%</div>
+							</div>
+							<div class="dpin f-l">
+								<div class="fts-30 ftc-gray2">3.5%</div>
+							</div>	
+						</div>
+						<div class="pdl-m pdl-xl lnh-72 bgc-white bdb-gray clearfix">
+							<div class="dpin f-l w225">
+								<div class="fts-30 ftc-gray2">300-600万</div>
+							</div>
+							<div class="dpin f-l w207">
+								<div class="fts-30 ftc-gray2">11.5%</div>
+							</div>
+							<div class="dpin f-l">
+								<div class="fts-30 ftc-gray2">3.5%</div>
+							</div>	
+						</div>
+						<div class="pdl-m pdl-xl lnh-72 bgc-white bdb-gray clearfix">
+							<div class="dpin f-l w225">
+								<div class="fts-30 ftc-gray2">600-1000万</div>
+							</div>
+							<div class="dpin f-l w207">
+								<div class="fts-30 ftc-gray2">12.5%</div>
+							</div>
+							<div class="dpin f-l">
+								<div class="fts-30 ftc-gray2">3.5%</div>
+							</div>	
+						</div>
+						<div class="pdl-m pdl-xl lnh-72 bgc-white bdb-gray clearfix">
+							<div class="dpin f-l w225">
+								<div class="fts-30 ftc-gray2">1000万以上</div>
+							</div>
+							<div class="dpin f-l w207">
+								<div class="fts-30 ftc-gray2">13.5%</div>
+							</div>
+							<div class="dpin f-l">
+								<div class="fts-30 ftc-gray2">3.5%</div>
+							</div>	
+						</div>
+					</div>
+					<div class="pdb-xxl">
+						<div class="pdl-m pdl-xl lnh-72">
+							<div class="fts-30 ftc-orange">基本信息</div>
+						</div>
+						<div class="pdl-m pdl-xl lnh-72 bgc-white bdb-gray clearfix">
+							<div class="dpin f-l w225">
+								<div class="fts-30 ftc-gray3">产品类型</div>
+							</div>
+							<div class="dpin f-l">
+								<div class="fts-30 ftc-gray2">信托产品</div>
+							</div>	
+						</div>
+						<div class="pdl-m pdl-xl lnh-72 bgc-white bdb-gray clearfix">
+							<div class="dpin f-l w225">
+								<div class="fts-30 ftc-gray3">期限</div>
+							</div>
+							<div class="dpin f-l">
+								<div class="fts-30 ftc-gray2">24个月</div>
+							</div>	
+						</div>
+						<div class="pdl-m pdl-xl lnh-72 bgc-white bdb-gray clearfix">
+							<div class="dpin f-l w225">
+								<div class="fts-30 ftc-gray3">投资门槛</div>
+							</div>
+							<div class="dpin f-l">
+								<div class="fts-30 ftc-gray2">100万</div>
+							</div>	
+						</div>
+						<div class="pdl-m pdl-xl lnh-72 bgc-white bdb-gray clearfix">
+							<div class="dpin f-l w225">
+								<div class="fts-30 ftc-gray3">融资方</div>
+							</div>
+							<div class="dpin f-l">
+								<div class="fts-30 ftc-gray2">美赛达</div>
+							</div>	
+						</div>
+						<div class="pdl-m pdl-xl lnh-72 bgc-white bdb-gray clearfix">
+							<div class="dpin f-l w225">
+								<div class="fts-30 ftc-gray3">资金用途</div>
+							</div>
+							<div class="dpin f-l">
+								<div class="fts-30 ftc-gray2">为美赛达上市提供资源支持</div>
+							</div>	
+						</div>
+						<div class="pdl-m pdl-xl lnh-72 bgc-white bdb-gray clearfix">
+							<div class="dpin f-l w225">
+								<div class="fts-30 ftc-gray3">还款来源</div>
+							</div>
+							<div class="dpin f-l">
+								<div class="fts-30 ftc-gray2">美赛达上市并购重组收益</div>
+							</div>	
+						</div>
+						<div class="pdl-m pdl-xl lnh-72 bgc-white bdb-gray clearfix">
+							<div class="dpin f-l w225">
+								<div class="fts-30 ftc-gray3">风控措施</div>
+							</div>
+							<div class="dpin f-l">
+								<div class="fts-30 ftc-gray2">房产抵押</div>
+							</div>	
+						</div>
+					</div>			
+				</div>
+				
+				<!-- productlist end -->
+				<div class="dpnone net-error mgt-360 mgh-90 w-540 h-270 lnh-270 ta-c bgc-gray2">
+					<div class="fts-27 ftc-white">对不起&nbsp;您的网络错误!</div>
+				</div>
+			</div><!-- //end content -->
+
+			<div data-role="footer"></div>
+
+		</div>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript">
+            
+            
+			function GetQueryString(name) {
+				var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+				var r = window.location.search.substr(1).match(reg);
+				if (r != null) {
+					return unescape(r[2]);
+				}
+				return null;
+			}
+			var pid=GetQueryString("product_id");
+			alert('view pid='+pid);
+            $(".to-top").on("touchend",function(){
+				$("#content").scrollTo(0);
+			});
+
+
+			$("#attachment").on("touchend",function(){
+				setTimeout('location.href="listAttachment.html"',100);
+			});
+          	
+			
+        </script>
+		
+		<script src="js/oak-pageinit.js"></script>
+		
+		
+		<script type="text/javascript" src="js/tochinesespell.js"></script>
+		<script>
+			
+		</script>
+    </body>
+</html>

@@ -1,0 +1,5 @@
+<?
+	echo "OK";
+	exit();
+?>
+NOK

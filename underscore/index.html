@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Underscore</title>
+	<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="format-detection" content="telephone=no"/>
+	<link href="index.css" rel="stylesheet" type="text/css" />
+	<script src="jquery.js"></script>
+	<script src="underscore.js"></script>
+</head>
+
+<body>
+
+<h3><a href="underscoreUtil.html">UnderscoreUtil.html</a></h3>
+<div id="showID"></div>
+</body>
+</html>
+
+<!--ace-template demo-->		
+	<script id="t2" type="text/template">
+		<%_.each(datas1, function(item) {%>
+			<div class="outer">
+				<div class="title">
+					<span ><%=item.film%></span>
+				</div>
+				<ul class="ul">
+					<%_.each(datas1, function(item) {%>
+						<li>
+							<a href="<%=item.url%>">【<%=item.title%>】</a>
+						</li>
+					<%});%>
+				</ul>						
+			</div>
+		<%});%>
+	</script>
+
+<!--数据 -->
+	<script>
+		var datas1 = [
+			{
+				title: "一九四二",
+				url: "http://www.baidu.com",
+				film:"电影1"
+			},
+			{
+				title: "少年派的漂流",
+				url: "http://www.baidu.com",
+				film:"电影2"
+			},
+			{
+				title: "教父",
+				url: "http://www.baidu.com",
+				film:"电影3"
+			},
+			{
+				title: "肖申克的救赎",
+				url: "http://www.baidu.com",
+				film:"电影4"
+			},
+			{
+				title: "3d2012",
+				url: "http://www.baidu.com",
+				film:"电影5"
+			}
+		];	
+			
+		$("#showID").html( _.template($("#t2").html(), datas1));
+
+	</script>
+
+<!--点击下拉事件-->
+	<script type="text/javascript">
+			$('.ul').hide();
+			$('.ul>li:last-child').addClass('last-li');
+			$('body>div:first-child>ul').show();
+			$('.title').click(function(){
+				$(this).siblings().toggle();
+				$(this).parent().siblings().children('.ul').hide();
+			})
+			$('.title').hover(function(){
+				$(this).toggleClass('hover');
+			})
+			$('.ul>li').hover(function(){
+				$(this).toggleClass('hover');
+			})
+	</script>
+
+
+
+
+
+
+
+		
+		

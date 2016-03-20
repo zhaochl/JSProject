@@ -1,0 +1,43 @@
+div.feedtitle {
+  padding-left : 5px;
+  background-color : #EEEEEE;
+  font-size : 22px;
+  font-weight : bold;
+}
+
+div.feedtitle a {
+  color : #666677;
+  text-decoration : none;
+}
+
+div.feedtitle a:hover {
+  color : #333344;
+  text-decoration : none;
+}
+
+li {
+  font-size : 18px;
+  padding-left : 25px;
+  background : url(newspaper.gif) no-repeat;
+  list-style : none;
+}
+
+a:link {
+  color : #333344;
+  text-decoration : none;
+}
+
+a:visited {
+  color : #9999AA;
+  text-decoration : none;
+}
+
+a:hover, a:active {
+  background : #EEEEEE;
+  text-decoration : none;
+}
+
+span.itemdate {
+  font-style : italic;
+  color : #CCCCDD;
+}

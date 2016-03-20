@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <META http-equiv=Content-Type content="text/html; charset=utf-8">
+    <title>js-mvc-handlebars</title>
+    <script type="text/javascript" src="js/jquery.js"></script>
+        <!--插件引用-->
+    <script type="text/javascript" src="js/handlebars-1.0.0.beta.6.js"></script>
+    <script src="js/persistence.js"></script>
+    <script src="js/persistence.store.sql.js"></script>
+    <script src="js/persistence.store.websql.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/cache.js"></script>
+    <script src="js/app.js"></script>
+    
+	<script type="text/javascript">
+
+    
+	</script>
+  </head>
+  <body>
+    <h1>Hello Js Factory</h1>
+	<h1><a href="OakJsAPI.html">OakJSAPI</a></h1>
+
+	<script type="text/javascript">
+	
+$(document).ready(function(){
+	//App.init();
+	//var Cache = Utils.D('cache');
+	//for (var i=0;i<10;i++){
+		//var cache = new Cache({
+	 			//cid: "2",
+	 			//uid: "4",
+/* 	 			tb: "1",
+	 			op: "A",
+	 			data: "{a:1}",
+	 			fr: "M",
+	 			to: "C",
+	 			nv: "2",
+	 			pv: "1",
+	 			dataid: "-1",
+	 			ut: "12345678" */
+	 		//}); 
+    	
+  	//var Student = Utils.D('student');
+
+	//persistence.add(mark); 
+	//persistence.flush();
+	
+		//Utils.add(cache);
+		//persistence.flush();
+	//}
+	persistence.store.websql.config(persistence, 'ptest', 'A database description', 5 * 1024 * 1024);
+	console.log('-1');
+	var Task = persistence.define('Task', {
+		  name: "TEXT",
+		  done: "BOOL"
+		});
+	var Cache = persistence.define('Cache',{
+		cid: "TEXT",
+		uid: "TEXT"
+		});
+	//persistence.reset();
+	//persistence.schemaSync();
+	console.log('0');
+	//persistence.reset(function(){
+		//alert('reset-drop-tables');
+		//persistence.schemaSync(function(){
+			//alert('schemaSync-generate define tables');
+			var task = new Task();
+			task.name = "Task x";
+			task.done = false;
+			//persistence.add(task);
+			//persistence.flush();
+			console.log('1.5-add');
+			
+			var cache = new Cache();
+			cache.cid = '123';
+			cache.uid = '43';
+			
+			var cache2 = new Cache({
+	 			cid: "2",
+	 			uid: "4",
+			});
+			persistence.add(cache2);
+			persistence.flush();
+		//});
+	//});
+	
+	//var P=persistence;
+	//P.reset(function(){
+	/* persistence.reset(function(){
+		alert('reset-drop-tables');
+		persistence.schemaSync(function(){
+			alert('schemaSync-generate define tables');
+			for(var i=1;i<=2;i++){
+				var task = new Task();
+				task.name = "Task " + i;
+				task.done = false;
+				persistence.add(task);
+				//commit dummy tasks to database
+				persistence.flush(function(){
+					alert('flush-add data');
+					//retrieve all tasks from database
+					Task.all().list(function(tasks){
+						//callback counter
+						var taskCounter = tasks.length;
+						console.log();
+					});
+				});
+			}
+		});
+	}); */
+	/*
+	console.log('1-add');
+	
+	var task = new Task();
+	task.name = "Task x";
+	task.done = false;
+	persistence.add(task);
+	persistence.flush();
+	console.log('1.5-add');
+	
+	var cache = new Cache();
+	cache.cid = '123';
+	cache.uid = '43';
+	persistence.add(task);
+	persistence.flush();
+	
+	console.log('2-query-all');
+	
+	Task.all().list(function(tasks){
+		//callback counter
+		var taskCounter = tasks.length;
+		console.log(tasks);
+	});
+	console.log('3-del');
+	Task.all().filter('done','=',true).destroyAll();
+	console.log('4-update');
+	
+	Task.all().list(function(tasks){
+		console.log('5-all');
+		tasks.forEach(function(task){
+			console.log('6-updating');			
+			//randomly set items to done
+			task.done = Math.round(Math.random());
+			if(task.done==0){
+				console.log(0);				
+				task.name='update';
+			}
+			persistence.flush();
+		});
+	});
+	console.log('7-over');
+  	//App.getdata();
+  	*/
+});
+
+    </script>
+
+
+  </body>
+</html>

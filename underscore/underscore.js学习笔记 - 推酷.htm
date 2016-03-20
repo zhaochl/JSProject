@@ -1,0 +1,625 @@
+<!DOCTYPE HTML>
+
+<!--
+ ______________ 
+< TUICOOL.COM >
+ -------------- 
+        \   ^__^
+         \  (**)\__$__$__
+            (__)\       )\/\
+             U  ||------|
+                ||     ||
+-->
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta content="authenticity_token" name="csrf-param" />
+<meta content="HoBWRpYZgDF0jLogJnEaQITVWFgOX9h1kDARxmTGkRc=" name="csrf-token" />
+    <title>
+            underscore.js学习笔记 - 推酷
+   </title>
+    <meta name="description" content="underscore.js学习笔记"/>
+    <meta property="qc:admins" content="2040660764645137746375" />
+  <link rel="shortcut icon" href="http://static0.tuicool.com/favicon.ico" type="image/x-icon" />
+  <link href="/assets/application-ebf4884936f57069810638519b1c333f.css" media="all" rel="stylesheet" type="text/css" />
+  <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
+  <script src="/assets/application-61d1c7246a69bb8df23db91b79804c02.js" type="text/javascript"></script>
+
+  <!--[if IE 7]>
+  <link rel="stylesheet" href="/assets/font-awesome-ie7.min.css">
+  <![endif]--> 
+    <script type="text/javascript" src="http://static2.tuicool.com/assets/tip.js"></script> 
+    <!-- <script src="/assets/tip-7e76acb8a247fb13df0955fe93ab7801.js" type="text/javascript"></script> -->
+  
+  <script type="text/javascript" src="http://cbjs.baidu.com/js/m.js"></script>
+<script type="text/javascript" src="http://static1.tuicool.com/assets/spin.min.js"></script>
+<link rel="stylesheet" href="http://static0.tuicool.com/assets/github.css">
+
+</head>
+<body>
+  
+  <div id="header" class="navbar-fixed-top">
+    <div class="container">
+      <div class="navbar">
+        <div class="navbar-inner">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> 
+            <span class="icon-bar"></span> 
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span> 
+          </a>
+          <a href="/" class="brand">推酷</a>        
+		      <nav class="nav-collapse collapse">
+            <ul class="nav navbar primary-nav">                            
+              <li class="">
+                <a href="/ah">
+                  文章
+                </a>
+              </li>              
+              <li class="">
+                <a href="/topics">
+                  主题
+                </a>
+              </li>
+              <li class="">
+				<a href="/sites/hot">
+                  站点
+                </a>
+              </li>
+              <li class="">
+                <a href="/huodong">
+                  活动
+                </a>
+              </li>
+              <li class="">
+                <a href="/mobile">
+                  客户端
+                </a>
+              </li>
+              <li class="dropdown  ">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">周刊 <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="/mags">编程狂人</a></li>
+                  <li><a href="/mags/design">设计匠艺</a></li>                  
+                </ul>
+              </li>
+			  
+			   <li class="dropdown  ">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">更多 <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="/bbs">讨论区</a></li>  
+                  <li><a href="/about">关于我们</a></li>                 
+                </ul>
+              </li>
+			  
+	          </ul>
+            <form class="navbar-search pull-left" action="/topics/search">
+              <input type="text" class="search-query span2" name="kw" placeholder="搜索主题">
+            </form>
+            <ul class="nav pull-right">
+                <li><a href="/login">登录</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+	   </div>	
+	</div>
+  <div id ="flash_container" class="noPrint">    
+    <!-- <a href='#'' class='close' data-dismiss='alert'>×</a> -->
+  </div>
+    
+<div class="container-fluid">  
+  <!-- body start-->
+  <div class="row-fluid">
+    <!--show start-->
+    <div class="span8 contant">
+        <h1>underscore.js学习笔记</h1>
+        <div class="article_meta">
+            <span class="timestamp">时间&nbsp;2014-04-21 17:06:11
+            </span>
+            <span class="from">
+                <i class="icon-globe"></i>
+                    <a class="cut cut28 from" href="/sites/vQZRB3" target="_blank">CSDN博客
+                    </a>
+            </span>
+            <span id="dup-cnt"><a href="/articles/dup?id=rUzya2" target="_blank">相似文章</a> (<i id="dup">0</i>)</span>
+            <span class="source" style="display:block;"><i style="float:left;">原文</i>&nbsp; 
+                <a class="cut cut70" href="http://blog.csdn.net/napolunyishi/article/details/23695477" style="display:inline-block;">http://blog.csdn.net/napolunyishi/article/details/23695477</a>
+            </span>
+            <a href="#add-article-to-kan" id="add-article-to-kan-btn" class="btn" data-toggle="modal" style="display:none;">添加到推刊</a>
+            <!-- add_article to kan -->
+<div id="add-article-to-kan" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <span class="add-title">收藏到推刊</span>
+    <a href="#new-kan" class="btn pull-right" data-toggle="modal">创建推刊</a>
+    <i class="clearfix"></i>
+  </div>
+  <div class="modal-body">
+    <ul id="add-kan-list">
+    </ul>
+  </div>
+  <div class="modal-footer">
+    <input type="hidden" value="rUzya2" class="article-id" /> 
+    <button class="btn btn-primary pull-left add-to-btn">  收 藏  </button>
+    <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+  </div>
+</div>
+<div class="add-article-to-kan-alert">
+  已收藏到推刊！
+</div>
+
+            <div id="new-kan" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<!--
+    <a href="new-kan" class="btn" data-toggle="modal">创建推刊</a>
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Modal header</h3>
+  </div>
+-->
+  <div class="modal-body">
+    <input type="text" name="name" id="new-kan-name"  placeholder="推刊名(必填)" required data-validation-required-message="请填写推刊名" />
+    <span class="new-ness-name">请填写推刊名</span>
+    <br/>
+    <textarea name="desc" id="desc" rows="6" placeholder="推刊描述"></textarea>
+    <span class="new-ness-desc">描述不能大于100个字符!</span>
+    <br/>
+    权限设置：<input type="radio" name="type" value="1" checked="checked" /> 公开
+    <input type="radio" name="type" value="0"> 仅自己可见
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary pull-left create-kan-btn" disabled>创建</button>
+    <button class="btn dismiss-new-kan" data-dismiss="modal" aria-hidden="true">取消</button>
+  </div>
+</div>
+
+
+        </div>
+        <div class="article_body" id="nei">
+            <div>
+  <p>
+    学习新知识有时候很难决定是做深度遍历还是广度遍历，比如那么多javascript框架，是先都走马观花看一遍呢还是逮着一个看下去，完了再看另一个呢？我觉得主要是看兴趣，至少目前我是这种状态    <img alt="快哭了" src="http://img0.tuicool.com/jEnEZn.gif" />
+    。  </p>
+  <p>几个月前老吴同学在构建自己的一个应用时用到underscore，当时他给我演示了一下，但是没啥概念，只知道是个类库。最近看backbone.js时很多人提到喜欢backbone.js其实是喜欢underscore.js，我就有些好奇，underscore.js到底是啥玩意捏？（女儿2岁多，说话大舌头，“呢”总是发成“捏”，挺好玩）</p>
+  <p>几年前就有人说javascript是最被低估一种编程语言，自从nodejs出来后，全端(All Stack/Full Stack)概念日渐兴起，现在恐怕没人再敢低估它了。javascrip是一种类C的语言，有C语言基础就能大体理解javascript的代码，但是作为一种脚本语言，javascript的灵活性是C所远远不及的，这也会造成学习上的一些困难，本文主要记录我在学习underscore.js过程中的发现一些知识点以及对部分源码的剖析。</p>
+  <p>现在可以用nodejs很方便地运行和调试javascript，nodejs调试javascript的命令是node debug filename。更多请参考</p>
+  <p>
+    <a target="_blank" href="http://www.cnblogs.com/moonz-wu/archive/2012/01/15/2322120.html" rel="nofollow,noindex">http://www.cnblogs.com/moonz-wu/archive/2012/01/15/2322120.html</a>
+    <br/>
+  </p>
+  <p>登录underscore的官方网站可以看到类库分为几大类：Collections，Arrays，Functions，Objects，Utility和Chaining，前几类比较明显的是按照函数适用的对象类型来分类的。大概过一遍提供的函数后就发现underscore跟C++的STL非常类似，C++因为是强类型，所以STL有对vector，list，set，map等集合对象的操作函数，以及一些通用的algorithm函数，这些在underscore中都能找到影子，而且underscore的功能似乎更强大一些。</p>
+  <h2>数据类型</h2>
+  <p>STL需要对vector、list等进行区分是因为不同的数据结构需要或者可以进行不同的实现，但underscore里面Collections和Arrays分开是什么道理呢？这也要从javascript的数据类型说起，看下图。</p>
+  <p>
+    <img src="http://img1.tuicool.com/nemumi.png" alt="" />
+    <br/>
+  </p>
+  <p>这里不对所有类型进行详细解释，有兴趣可以读一下</p>
+  <p>
+    <a target="_blank" href="https://developer.mozilla.org/zh-CN/docs/JavaScript/Guide/Predefined_Core_Objects" rel="nofollow,noindex">https://developer.mozilla.org/zh-CN/docs/JavaScript/Guide/Predefined_Core_Objects</a>
+  </p>
+  <h2>分类知识点</h2>
+  <h3>Collections</h3>
+  <p>Collections是集合，指那些由单个元素组成，能够使用下标操作的数据类型的统称，比如Array，Object，String等，从underscore的源码来看，这一类函数只用到最基本的[]运算符和for循环，以及对由此构成的新方法的组合运用。这一类方法有：each、map、reduce、find等。</p>
+  <h3>Arrays</h3>
+  <p>相对Collections的鸟枪而言，Arrays有了小钢炮，能够使用Array内置的方法，比如slice。underscore的Arrays方法不仅适用于Array类型，也适用于String和Array-like类型的对象。这一类方法有：union、intersection、difference、indexOf等。</p>
+  <p>简单介绍一下Array-like，顾名思义，就是像Array而不是Array的一种数据类型，它的特点是能够通过数字下标（0、1、2 ...）访问，有length属性，但是不能使用Array的内置方法。这类里面比较常见的是arguments，就是函数的参数列表，Object.getOwnPropertyNames(arguments)的返回值除了参数列表外，还有length和callee两个属性。那么对这种类型如果要想用Array的内置方法怎么办呢？可以通过数组泛化来调用，有两种方式：</p>
+  <p>
+    1. Array.    <em>method</em>
+    (obj, function(){});    <br/>
+    2. Array.prototype.    <em>method</em>
+    .call(obj, function(){});  </p>
+  <p>在underscore里面主要用了call的方式。既然提到了call，就再对call进行一下解释。</p>
+  <p>在javascript中call和apply常用于实现继承机制，二者很类似，只有第二个参数略有差异。调用 call() 方法时，调用者是需要执行的函数对象，第一个参数就是要执行函数中的 this变量，后面的参数都会作为参数传递给要执行函数。举例来说：</p>
+  <pre class="prettyprint">var me = {
+    name: &quot;Alex&quot;,
+    City: &quot;Beijing&quot;,
+};
+function sayHello(comments) {console.log(&quot;Hi, &quot; + this.name + comments)};
+sayHello.call(me, &quot;, you are great!&quot;);</pre>
+  <p>执行后会打印出“Hi, Alex, you are great!”。在比如，a.func().call(b), 就相当于b继承了a, 结果就是b调用了a的func()方法。</p>
+  <p>在Collections部分的源码中经常要对Array或Array-like类型与Object类型分开来处理，用到了一个技巧</p>
+  <div>
+    <pre class="prettyprint">if (obj.length === +obj.length) {}</pre>
+    对于前者而言，返回为true，而Object没有length属性，obj.length返回的是undefined，&quot;+&quot;是将其他类型转化为数字或者NaN，等同于Number(obj.length)，+undefined的结果是NaN，因此整个表达式返回false。这里有一个知识点是null, false, undefined, NaN的关系，参考  </div>
+  <p>
+    <a target="_blank" href="http://www.mapbender.org/JavaScript_pitfalls:_null,_false,_undefined,_NaN" rel="nofollow,noindex">http://www.mapbender.org/JavaScript_pitfalls:_null,_false,_undefined,_NaN</a>
+  </p>
+  <div>
+    <h3>Functions</h3>
+    underscore中Functions部分提供了一些与Function相关的函数，在javascript里，函数本身也是一种变量类型，函数名只是指向函数对象的引用值，跟其他变量有一样的行为。  </div>
+  <p>函数本身也有length属性，代表函数能够接受的参数个数；相对而言，arguments.length表示的是实际传入的参数个数，二者数量可以不同。如果实参比形参要少，没有的参数被赋值为undefined。</p>
+  <p>Functions部分的函数有些使用了闭包(closure)，用于保存状态或者作为缓存，比如once、after和memoize等。闭包是javascript的一大特色，原理是根据链式作用域(chain scope)的原则，上级变量对下级可见。如果在对象或者函数内部再定义函数，而内部的函数使用了上级的变量，当将这个函数被作为返回值时，返回的函数就成为闭包，而上级的变量因为仍旧被使用因此会一直保存在内存中。</p>
+  这一类的函数包括：bind、memorize、debounce、throttle等。  <br/>
+  <h3>Objects</h3>
+  <p>Objects部分最复杂的一个函数是内部用的equal，可能也是整个underscore最复杂的一个，这里最重要的知识点就是javascript的判等，注意引用类型不能直接使用“==”或“===”，需要使用迭代函数转化成原始类型进行比较。underscore的isEqual函数与javascript的完全等同(===)或相等(==)不太一样，更符合人的直觉。根据源码简单总结一下规则，有顺序，前面的规则没有匹配才匹配后面的：</p>
+  <ol>
+    <li>如果两个变量完全等同，且不为0，则返回true。如果是0的话，要保证符号一样(0和-0认为不相等)，来源于egal：http://wiki.ecmascript.org/doku.php?id=harmony:egal</li>
+    <li>如果两个变量都是null或都是undefined，返回true</li>
+    <li>如果两个变量的类型不一样，返回false，类型使用Object.prototype.toString.call()来获得</li>
+    <li>对于String类型，原始类型和包装类型，只要值一样，认为相等“5” isEqual new String(&quot;5&quot;)</li>
+    <li>两个变量都是NaN返回true，判断是否是NaN依据Object.prototype.toString.call()为[object Number]，且a!=+a；其他Number类型依据egal原则判断</li>
+    <li>对于Date和Boolean类型转化为原始的数字类型进行比较</li>
+    <li>RegExp类型要比较source、global、multiline和ignoreCase几个属性</li>
+    <li>函数变量认为不相等(引用指向同一个函数的情况已经在第一条规则排除了)</li>
+    <li>对于数组和普通对象类型，基于上面的规则递归判断，所有子对象都相等才返回true</li>
+  </ol>
+  <p>Objects部分的函数包括：keys、values、has、isEqual以及一对isType判断类型的函数。</p>
+  <h3>Utility</h3>
+  <p>Utility部分根据比较有用的是生成随机数和生成ID，还包括增加自定义函数的mixin，转义html的escape，以及一个简单的html模板函数。</p>
+  <h3>OO方式</h3>
+  <p>除了使用函数风格的underscore外，还可以使用面向对象的方式，在这种方式下，underscore支持链式调用。通过_.chain(obj) 将变量用underscore包装，然后可以调用所有函数的OO版本，且可以一直“点”下去，类似于_.chain(obj).func1().func2().func3().value()，注意最后要用value获取返回值。</p>
+  <h2>部分源码注释</h2>
+  <p>each</p>
+  <pre class="prettyprint">//_.each是underscore.js的基础方法，基于集合的方法很多有需要用到each
+  _.each = _.forEach = function(obj, iterator, context) {                  //别名是forEach，context是可选参数，如果要修改iterator的调用对象为context，即函数中this为context，就传递这个参数，否则context为undefined
+    if (obj == null) return obj;
+    if (obj.length === +obj.length) {                                      //判断是否是数组或字符串，实际上function类型的变量也有length属性，但是function的[i]返回undefined，所以后面相当于对undefined进行变换
+      for (var i = 0, length = obj.length; i &lt; length; i++) {
+        if (iterator.call(context, obj[i], i, obj) === breaker) return;    //breaker是undercore定义的一个空对象，用于跳出循环，注意{}==={}返回false
+      }
+    } else {                                                               //其余类型，包括很多标准的内置对象
+      var keys = _.keys(obj);                                              //只有Object才有key-value对，才进行处理，其他类型的对象不处理
+      for (var i = 0, length = keys.length; i &lt; length; i++) {
+        if (iterator.call(context, obj[keys[i]], keys[i], obj) === breaker) return;
+      }
+    }
+    return obj;                                                             //返回obj自身，未经任何处理
+  };</pre>
+  map  <pre class="prettyprint">_.map = _.collect = function(obj, iterator, context) {
+	var results = [];
+	if (obj == null) return results;
+	_.each(obj, function(value, index, list) {				   //这里函数的三个传入参数分别是obj的一个成员的值，key或者index，和obj自己，由each函数决定
+	  results.push(iterator.call(context, value, index, list));  //保存处理结果
+	});
+	return results;
+  };</pre>
+  some  <pre class="prettyprint">_.some = _.any = function(obj, predicate, context) {		   //如果obj是Object类型的话，会判断其每一个属性的值是否满足prediacte，这是由each方法决定的
+	predicate || (predicate = _.identity);					   //如果predicate为空，则将predicate赋值为空函数[Function]
+	var result = false;
+	if (obj == null) return result;
+	_.each(obj, function(value, index, list) {
+	  if (result || (result = predicate.call(context, value, index, list))) return breaker;//这里发现一个问题，就是each循环无法break，必须将全部的对象都遍历一遍，应该是一个可改进的地方
+	});
+	return !!result;											  //两次取反，保证返回的是boolean类型，0/null/undefined进行两次取反都会返回false
+  };</pre>
+  every  <pre class="prettyprint">_.every = _.all = function(obj, predicate, context) {
+	predicate || (predicate = _.identity);
+	var result = true;
+	if (obj == null) return result;
+	_.each(obj, function(value, index, list) {
+	  if (!(result = result && predicate.call(context, value, index, list))) return breaker;   //开始没看明白，“result=result”是什么意思？后来想到运算符优先级才看明白，“=”的优先级比“&&”要低，javascript为了减小文件大小，多余的运算符一概不要，能不能在开发版不要这么省啊
+	});
+	return !!result;
+  };</pre>
+  indexOf  <pre class="prettyprint">_.indexOf = function(array, item, isSorted) {
+    if (array == null) return -1;
+    var i = 0, length = array.length;
+    if (isSorted) {
+      if (typeof isSorted == 'number') {       //如果是数字，则从数字开始，逐个元素与item对比，直到找到
+        i = (isSorted &lt; 0 ? Math.max(0, length + isSorted) : isSorted);
+      } else {         //如果isSorted是true，使用二分查找，由sortedIndex实现。实际上没有对isSorted进行过多校验，由开发者自己保证正确性
+        i = _.sortedIndex(array, item);
+        return array[i] === item ? i : -1;
+      }
+    }
+    for (; i &lt; length; i++) if (array[i] === item) return i;
+    return -1;
+  };</pre>
+  invoke  <pre class="prettyprint">_.invoke = function(obj, method) {
+    var args = slice.call(arguments, 2);             //invoke方法接受多于两个参数作为函数参数，从第3个参数开始将作为被调用函数的参数
+    var isFunc = _.isFunction(method);
+    return _.map(obj, function(value) {
+      return (isFunc ? method : value[method]).apply(value, args);  //method可以是对象的属性名，这种情况就是调用对象自己属性名为method的方法
+    });
+  };</pre>
+  toArray  <pre class="prettyprint">_.toArray = function(obj) {
+    if (!obj) return [];
+    if (_.isArray(obj)) return slice.call(obj);            //slice.call会将Array-like对象转化为Array，难道isArray判断有问题？
+    if (obj.length === +obj.length) return _.map(obj, _.identity);  //其他有length属性的对象，_identity返回参数自己，组成新数组。但是不清楚什么类型的对象会走到这里？
+    return _.values(obj);                                           //Object，返回属性的value组成数组
+  };</pre>
+  <p>memoize(不知道是不是拼写错误，也改不了了)</p>
+  <pre class="prettyprint">_.memoize = function(func, hasher) {
+	var memo = {};
+	hasher || (hasher = _.identity);
+	return function() {
+	  var key = hasher.apply(this, arguments);
+	  return _.has(memo, key) ? memo[key] : (memo[key] = func.apply(this, arguments));   //利用闭包来保存结果，好处在大量运算时避免了对func函数的相同参数情况下的重复调用，只要执行过一次，以后直接取结果
+	};
+  };</pre>
+  isType  <pre class="prettyprint">_.each(['Arguments', 'Function', 'String', 'Number', 'Date', 'RegExp'], function(name) {    
+  //定义了一批isType函数，each没有返回值，但是相当于循环展开
+    _['is' + name] = function(obj) {
+      return toString.call(obj) == '[object ' + name + ']';
+    };
+  });</pre>
+  <pre class="prettyprint">_.isUndefined = function(obj) {
+    return obj === void 0;                                  // void 0就是undefined，但是为什么不直接用undefined呢？没搞清楚
+  };</pre>
+  <h2>推荐的创建对象方式</h2>
+  跟underscore关系不大，来源于w3school，解决了一些问题，建议任选一种创建对象  <h3>混合的构造函数/原型方式</h3>
+  <pre class="prettyprint">function Car(sColor,iDoors,iMpg) {
+  this.color = sColor;
+  this.doors = iDoors;
+  this.mpg = iMpg;
+  this.drivers = new Array(&quot;Mike&quot;,&quot;John&quot;);
+}
+
+Car.prototype.showColor = function() {
+  alert(this.color);
+};
+
+var oCar1 = new Car(&quot;red&quot;,4,23);
+var oCar2 = new Car(&quot;blue&quot;,3,25);
+
+oCar1.drivers.push(&quot;Bill&quot;);
+
+alert(oCar1.drivers);   //输出 &quot;Mike,John,Bill&quot;
+alert(oCar2.drivers);   //输出 &quot;Mike,John&quot;</pre>
+  <h3>动态原型方法</h3>
+  <pre class="prettyprint">function Car(sColor,iDoors,iMpg) {
+  this.color = sColor;
+  this.doors = iDoors;
+  this.mpg = iMpg;
+  this.drivers = new Array(&quot;Mike&quot;,&quot;John&quot;);
+  
+  if (typeof Car._initialized == &quot;undefined&quot;) {
+    Car.prototype.showColor = function() {
+      alert(this.color);
+    };
+        
+    Car._initialized = true;
+  }
+}</pre>
+  <p>
+    这两种方式都解决了经典方式中成员方法会生成多份的问题或者新建对象的属性成员指向同一个引用对象的问题。而问题的根因在于function和object是引用类型，作为属性的object需要创建多份，而方法为节省空间在内存中应该只有一份。    <br/>
+  </p>
+</div>
+
+        </div>
+    </div>
+    <div class="span4">
+            <div id ="related_topics" class="related_topics">
+    <h4 class="side_article_list_title">相关主题</h4>
+    <ul class="side_topic_list">
+        <li class="side_topic_list_item">
+            <a href="/topics/11060082" target="_blank" style="text-decoration:none;"><img src="http://ttimg2.tuicool.com/11060082.png!small" alt="Underscore.js" /></a><span><a href="/topics/11060082" target="_blank">Underscore.js</a></span>
+ <span><a data-id="11060082" class="btn fo-btn fo-ok" style="display:none;"><img src="http://static0.tuicool.com/images/add.png" class="fo-img"/></a></span>
+        </li>
+    </ul>
+</div>
+
+        <div class="operate_zone">
+            <h4 class="side_article_list_title">安卓/爱疯客户端</h4>
+            <div style="text-align: center;">
+                      <script type="text/javascript">BAIDU_CLB_fillSlot("966989");</script>
+
+            </div>
+            <h4 class="side_article_list_title">分享该文章</h4>
+             <div class="share_zone">
+                <script type="text/javascript" charset="utf-8">
+                    (function(){
+                        var _w = 32, _h = 32;
+                        var param = {
+                            url: location.href,
+                            type: '1',
+                            count: '', /**是否显示分享数，1显示(可选)*/
+                            appkey: '', /**您申请的应用appkey,显示分享来源(可选)*/
+                            title: 'underscore.js学习笔记', /**分享的文字内容(可选，默认为所在页面的title)*/
+                            pic: '', /**分享图片的路径(可选)*/
+                            ralateUid: '2609648351', /**关联用户的UID，分享微博会@该用户(可选)*/
+                            language: 'zh_cn', /**设置语言，zh_cn|zh_tw(可选)*/
+                            rnd: new Date().valueOf()
+                        }
+                        var temp = [];
+                        for (var p in param) {
+                            temp.push(p + '=' + encodeURIComponent(param[p] || ''))
+                        }
+                        document.write('<iframe id="sina_share" allowTransparency="true" frameborder="0" scrolling="no" src="http://hits.sinajs.cn/A1/weiboshare.html?' + temp.join('&') + '" width="' + _w + '" height="' + _h + '"></iframe>')
+                    })()
+                </script>
+                <div id="qqwb_share__" data-appkey="801319615" data-icon="0" data-counter="0" data-content="underscore.js学习笔记 （分享自 @tuicool）" data-pic="http://img0.tuicool.com/nemumi.png">
+                </div>
+                <script src="http://mat1.gtimg.com/app/openjs/openjs.js#autoboot=no&debug=no">
+                </script>
+                <a id="douban_share" target="_blank" href="http://share.baidu.com/s?type=text&amp;searchPic=0&amp;sign=on&amp;to=douban&amp;url=http://www.tuicool.com/articles/rUzya2&amp;title=underscore.js学习笔记" title="分享到豆瓣"></a>
+                <a id="qqzone_share" target="_blank" href="http://share.baidu.com/s?type=text&amp;searchPic=0&amp;sign=on&amp;to=qzone&amp;url=http://www.tuicool.com/articles/rUzya2&amp;title=underscore.js学习笔记 （分享自 @tuicool）" title="分享到QQ空间"></a>
+                <div class="pull-left btn-group">
+                    <button style="height: 32px; font-size:14px" class="btn btn-primary dropdown-toggle pull-right tohide" data-toggle="dropdown">
+                        <i class="icon icon-share-alt icon-white"></i>
+                        分享到 <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a target="_blank" href="http://s.evernote.com/grclip?url=http://www.tuicool.com/articles/rUzya2&amp;title=underscore.js学习笔记">印象笔记</a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="http://share.baidu.com/s?type=text&amp;searchPic=0&amp;sign=on&amp;to=renren&amp;url=http://www.tuicool.com/articles/rUzya2&amp;title=underscore.js学习笔记" title="分享到人人网">人人网</a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="http://share.baidu.com/s?type=text&amp;searchPic=0&amp;sign=on&amp;to=fbook&amp;url=http://www.tuicool.com/articles/rUzya2&amp;title=underscore.js学习笔记" title="分享到Facebook">Facebook</a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="http://share.baidu.com/s?type=text&amp;searchPic=0&amp;sign=on&amp;to=twi&amp;url=http://www.tuicool.com/articles/rUzya2&amp;title=underscore.js学习笔记" title="分享到Twitter">Twitter</a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="http://share.baidu.com/s?type=text&amp;searchPic=0&amp;sign=on&amp;to=linkedin&amp;url=http://www.tuicool.com/articles/rUzya2&amp;title=underscore.js学习笔记" title="分享到Linkedin">Linkedin</a>
+                        </li>
+                        <li>
+                            <a href="https://plus.google.com/share?url={http://www.tuicool.com/articles/rUzya2}" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" title="分享到G+">Google +</a>
+                        </li>
+                        <li class="divider">
+                        </li>
+                        <li>
+                            <a href="mailto:?subject=好文分享：underscore.js学习笔记&amp;body=/articles/rUzya2">E-Mail</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+                      <script type="text/javascript"><!--
+google_ad_client = "ca-pub-7054762349007490";
+google_ad_host = "ca-host-pub-7209811712445461";
+google_ad_slot = "5705695566";
+google_ad_width = 300;
+google_ad_height = 250;
+//-->
+</script>
+<script type="text/javascript"
+src="//pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+        </div>
+    </div>
+</div>
+<div class="row-fluid" style="margin-top:0;">
+    <div class="span8">
+        <div style="text-align: center;">
+                <script type="text/javascript">
+      var cpro_id = "u1665123";
+    </script>
+    <script src="http://cpro.baidustatic.com/cpro/ui/c.js" type="text/javascript"></script>
+
+        </div>
+        <div id="site_articles"></div>
+        <div id="kan_articles"></div>
+        <div id="article_weibo" style="display:none;">
+            <div class='header-title'>
+                <span>相关微博</span>
+                <sub> <a href="/articles/weibo_list/rUzya2" target="_blank">共有(<i></i>)条</a> </sub>
+            </div>
+            <div class="related-weibo-list"></div>
+        </div>
+        <div class="comments">
+    <div class="comments-area">
+    <div class="comments-header">
+        <h5>我来评几句</h5>
+        <div class="alert comment-alert alert-error" style="display:none;">
+            错误
+        </div>
+            <textarea cols="60" rows="5" id="comment-body" placeholder="请输入评论内容..."></textarea>
+            <span class="btn btn-primary btn-medium btn-submit"  id="comment-submit">登录后评论</span>
+        <p style="margin-top: 5px;margin-left:10px;">
+            已发表评论数(<span class="comment_cnt"></span>)
+        </p>
+    </div>
+    <div class="comments-list">
+        <div class="empty-cmts alert alert-success" style="display:none;">
+            没有更多评论了^^
+        </div>
+    </div>
+    <div class="more-comments" style="display:none;">
+        <a href="">更多评论</a>
+    </div>
+    <div class="load-fail" style="display:none;">
+        评论加载失败，<a href="javascript:reload_comments('rUzya2',1,0,-1);">重新加载</a>
+    </div>
+    </div>
+</div>
+
+    </div>
+    <div class="span4"></div>
+</div>
+<div id="myLoginModal" class="modal hide fade">
+	<div class="modal-header">
+		<a class="close" data-dismiss="modal" >&times;</a>
+		<h3>用户登陆</h3>
+	</div>
+	<div class="modal-body">
+		<form method="post" action="/login" class="form-horizontal" id="login-form">
+			<div class="control-group">
+				<span class="control-label" for="xlEmail">邮箱</span>
+				<div class="login-controls">
+					<input class="input-medium" id="xlEmail" name="email" type="text" />
+				</div>
+			</div>
+			<div class="control-group">
+				<span class="control-label">密码</span>
+				<div class="login-controls">
+					<input id="xlPassword" name="password" class="input-medium" type="password" />
+				</div>
+			</div>
+			<div class="form-actions">
+				<button type="submit" class="btn btn-primary">
+					&nbsp;&nbsp;登&nbsp;&nbsp;&nbsp;陆&nbsp;&nbsp;
+				</button>
+			</div>
+		</form>
+	</div>
+</div>
+
+<div class="read-later-alert">
+</div>
+<style type="text/css">
+    #dup-cnt {
+        display: none;
+    }
+    
+    .btn-large {
+        padding: 0;
+    }
+    
+    .load-fail {
+        display: none;
+    }
+    
+    .header-title {
+        margin-bottom: 10px;
+        line-height: 25px;
+    }
+    
+    .header-title span {
+        font-size: 16px;
+        height: 25px;
+    }
+</style>
+<script src="http://static1.tuicool.com//assets/highlight.pack.js"></script>
+<script type="text/javascript">
+            $(document).ready( function() {
+            $.get("/articles/last_article_by_site_async?sid=vQZRB3&aid=rUzya2",function(data){$('#site_articles').append(data)});
+            }); 
+     $(document).ready( function() {
+        $('pre').each(function(i, e) {
+            hljs.highlightBlock(e, "<span class='indent'>  </span>", false)
+        });
+      // 加载相关微
+      get_weibo_async("rUzya2");
+        // 加载相关的推刊
+      related_kan("rUzya2");
+      open_add_article_to_kan("false");
+    	async_do_like2_article(); 
+    	window.page = 0;
+    	window.last = 0;	
+    	window.first = true;	
+    	resize_article_image('#nei', 550);	
+    			load_comments("rUzya2",1,0,-1);
+    			window.uid = -1;				
+    });
+    	  
+</script>
+
+
+  <!-- body end -->
+</div>
+
+      <!--tc_footer start -->
+<div class="footer" style="margin-top:50px;">
+    <p>
+      <a href="/about" target="_blank">关于</a>
+      <a href="/mobile" target="_blank">应用</a>
+      <a href="/bbs/go/issues" target="_blank">反馈</a>
+      <a href="/bbs" target="_blank">讨论</a>
+    </p>
+</div>
+
+<!--   <div class="sept-notify">
+    <a href="javascript:close_sept();" class="close pull-right">&times;</a>
+    <a class="sept-notify-body" href="/septs" target="_blank">有一些书要送给你[第一季]</a>
+  </div> -->
+
+      <!--tc_footer end -->
+
+<div style="display:none;">
+  <script src="http://s22.cnzz.com/stat.php?id=5541078&web_id=5541078&show=pic" language="JavaScript"></script>
+</div>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<html>
+  <head>
+    <title>Informer</title>
+
+    <link rel="stylesheet" type="text/css" href="infowinkit.css" />
+    <script type="text/javascript" src="ajaxkit.js"> </script>
+    <script type="text/javascript" src="domkit.js"> </script>
+    <script type="text/javascript" src="infowinkit.js"> </script>
+  </head>
+
+  <body onload="initInfoWindow(325, 200)">
+    <div id="ajaxState" style="display:none"></div>
+    <br />
+    <h2>Informer - Skateboarding Basics</h2>
+    <p>Skateboarding has increased considerably in the past few years as a major
+      sport among America's youth. Although the equipment involved in
+      skateboarding is fairly straightforward, there is still some degree of
+      education involved for newcomers to the sport. Regardless of what type of
+      skateboarding you plan on doing, you will no doubt need theh core
+      components of a skateboard, which consist of a
+      <a href="#" class="info"
+      onclick="return showInfoWindow('skatedeck.html', event)">deck</a>, <a
+      href="#" class="info" onclick="return showInfoWindow('skatetrucks.html',
+      event)">trucks</a>, and <a href="#" class="info"
+      onclick="return showInfoWindow('skatewheels.html', event)">wheels</a>.
+      Additionally, it's a good idea to consider a <a href="#"
+      class="info" onclick="return showInfoWindow('skatehelmet.html', event)">
+      helmet</a> and <a href="#" class="info"
+      onclick="return showInfoWindow('skatepads.html', event)">pads</a>,
+      especially if you plan on skating any tall obstacles such as vert ramps
+      and concrete bowls.
+    </p>
+  </body>
+</html>

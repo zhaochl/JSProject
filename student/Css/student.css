@@ -1,0 +1,91 @@
+﻿@charset "utf-8";
+/* CSS Document */
+body 
+{
+	font-size:12px
+}
+.inputbtn 
+{
+	border:solid 1px #ccc;
+	background-color:#eee;
+	line-height:18px;
+	font-size:12px
+}
+.inputtxt 
+{
+	border:solid 1px #ccc;
+	line-height:18px;
+	font-size:12px;
+	padding-left:3px
+}
+ul
+{
+	list-style:none;
+	padding:0px;
+	margin:10px 0px 15px 0px;
+	text-align:center
+}
+.input
+{
+	clear:both;
+	padding-top:10px;
+	padding-left:3px;
+	width:457px
+}
+.spanl
+{
+	float:left
+}
+.spanr
+{
+	float:right
+}
+.btn
+{
+	padding-top:10px;
+	clear:both
+}
+#pStatus{
+	display:none;
+	border:1px #ccc solid; 
+	width:158px; 
+	background-color:#eee;
+	padding:6px 12px 6px 12px;
+	margin-left:2px
+}
+#stuManager
+{
+    width:460px;
+}
+#ulMessage
+{
+	width:460px
+}
+#ulMessage span
+{
+    width:90px;
+	float:left;
+	text-align:left
+}
+.show .edit,.editing .disp
+{
+    display:none;
+}
+.show .disp,.editing .edit
+{
+    display:block;
+}
+.li_h
+{
+	border-bottom:solid 1px #666;
+	float:left; 
+	background-color:#eee;
+	padding:5px; 
+	font-weight:bold
+}
+.li_c
+{
+    border-bottom:dashed 1px #ccc;
+	float:left;
+	padding:5px
+}

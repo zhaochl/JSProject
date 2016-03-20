@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+<head>
+<title>Persistence.js Task Demo</title>
+<script src="persistence.js"></script>
+<script src="persistence.store.sql.js"></script>
+<script src="persistence.store.websql.js"></script>
+<script>
+persistence.store.websql.config(persistence, 'ptest', 'A database description', 5 * 1024 * 1024);
+
+var Task = persistence.define('Task', {
+  name: "TEXT",
+  done: "BOOL"
+});
+
+persistence.reset(function(){
+ persistence.schemaSync(function(){
+  for(var i=1;i<=10;i++){
+    var task = new Task();
+    task.name = "Task " + i;
+    task.done = false;
+    persistence.add(task);
+  }
+  persistence.flush(function(){
+   Task.all().list(function(tasks){
+    var taskCounter = tasks.length;
+    tasks.forEach(function(task){
+     task.done = Math.round(Math.random());
+     if(--taskCounter == 0){
+      persistence.flush(function(){
+       Task.all().filter('done','=',true).destroyAll();
+      });
+     }
+    });
+   });
+  });
+ });
+});
+</script>
+</head>
+<body>
+<p style="border:1px solid #ddd;background:#f1f1f1; padding:5px">This demo is intended to be viewed in a WebKit browser (Chrome or Safari). To see that this is working, bring up the inspector. View the console to see the output off the <code>persistence.js</code> calls. See that the local database contains some number of records where done=0.</p>
+<pre>
+//establish local database
+persistence.store.websql.config(persistence, 'ptest', 'A database description', 5 * 1024 * 1024);
+
+//define Entity
+var Task = persistence.define('Task', {
+  name: "TEXT",
+  done: "BOOL"
+});
+
+//wipe local database clean
+persistence.reset(function(){
+
+ //write schema
+ persistence.schemaSync(function(){
+
+  //create ten dummy tasks
+  for(var i=1;i<=10;i++){
+   var task = new Task();
+   task.name = "Task " + i;
+   task.done = false;
+   persistence.add(task);
+  }
+ 
+  //commit dummy tasks to database
+  persistence.flush(function(){
+
+   //retrieve all tasks from database
+   Task.all().list(function(tasks){
+    //callback counter
+    var taskCounter = tasks.length;
+
+    //asynchronously loop through items
+    tasks.forEach(function(task){
+      //randomly set items to done
+      task.done = Math.round(Math.random());
+
+      //decrement callback counter
+      //check if this is last run
+      if(--taskCounter == 0){
+
+       //write all changes back to database
+       persistence.flush(function(){
+
+       //call destroyAll on a collection with the filter done=true
+       Task.all().filter('done','=',true).destroyAll();
+      });
+     }
+    });
+   });
+  });
+ });
+});
+</pre>
+</body>
+</html>

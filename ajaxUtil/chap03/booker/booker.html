@@ -1,0 +1,113 @@
+<html>
+  <head>
+    <title>Booker E-Book Viewer</title>
+
+    <script type="text/javascript" src="ajaxkit.js"> </script>
+    <script type="text/javascript" src="domkit.js"> </script>
+    <script type="text/javascript">
+      var totalChapters = 0, curchapIndex = 0;
+
+      function handleRequest() {
+        if (request.readyState == 4 && request.status == 200) {
+          // Store the XML response data
+          var xmlData = request.responseXML.getElementsByTagName("bookData")[0];
+
+          // Store the total number of chapters
+          totalChapters = getText(xmlData.getElementsByTagName("totalChapters")[0]);
+
+          // Display the chapter info
+          var chapNum = getText(xmlData.getElementsByTagName("chapNum")[0]);
+          var chapTitle = getText(xmlData.getElementsByTagName("chapTitle")[0]);
+          var chapInfo;
+          if (chapNum.length > 0 && chapTitle.length > 0)
+            chapInfo = chapNum + " : " + chapTitle;
+          else
+            chapInfo = chapNum + chapTitle;
+          replaceText(document.getElementById("chapinfo"), chapInfo);
+          
+          // Display the chapter text
+          replaceText(document.getElementById("chaptext"), getText(xmlData.getElementsByTagName("chapText")[0]));
+        }
+        ajaxUpdateState();
+      }
+
+      function loadChapter(title, chapIndex) {
+        // Could be a new book, so initialize the navigation buttons
+        if (chapIndex == 0) {
+          document.getElementById("homeButton").disabled = true;
+          document.getElementById("prevButton").disabled = true;
+          document.getElementById("nextButton").disabled = false;
+          document.getElementById("endButton").disabled = false;
+        }
+
+        // Set the current chapter index
+        curchapIndex = chapIndex;
+
+        // Clear the previous chapter text
+        replaceText(document.getElementById("chaptext"), "Loading...");
+
+        // Send the Ajax request to load the new chapter
+        var bookURL = "booker.php?title=" + encodeURIComponent(title) +
+          "&chapIndex=" + encodeURIComponent(chapIndex);
+        ajaxSendRequest("GET", bookURL, handleRequest);
+      }
+
+      function prevChapter() {
+        if (curchapIndex > 0) {
+          curchapIndex--;
+          document.getElementById("nextButton").disabled = false;
+          document.getElementById("endButton").disabled = false;
+        }
+        if (curchapIndex == 0) {
+          document.getElementById("homeButton").disabled = true;
+          document.getElementById("prevButton").disabled = true;
+        }
+        loadChapter(document.getElementById('book').options[document.getElementById('book').selectedIndex].value,
+          curchapIndex);
+      }
+
+      function nextChapter() {
+        if (curchapIndex < (totalChapters - 1)) {
+          curchapIndex++;
+          document.getElementById("homeButton").disabled = false;
+          document.getElementById("prevButton").disabled = false;
+        }
+        if (curchapIndex == (totalChapters - 1)) {
+          document.getElementById("nextButton").disabled = true;
+          document.getElementById("endButton").disabled = true;
+        }
+        loadChapter(document.getElementById('book').options[document.getElementById('book').selectedIndex].value,
+          curchapIndex);
+      }
+    </script>
+  </head>
+
+  <body style="background:#EEEEEE" onload="document.getElementById('book').selectedIndex = 0;
+    loadChapter(document.getElementById('book').options[document.getElementById('book').selectedIndex].value, 0)">
+    <div id="ajaxState" style="display:none"></div>
+    <br />
+    <div style="margin-left:10%">Select book: 
+      <select id="book" onchange="loadChapter(this.options[this.selectedIndex].value, 0)">
+        <option value="alicewonderland">Alice's Adventure's in Wonderland by Lewis Carroll</option>
+        <option value="frankenstein">Frankenstein by Mary Shelley</option>
+        <option value="mobydick">Moby Dick by Herman Melville</option>
+        <option value="warandpeace">War and Peace by Leo Tolstoy</option>
+        <option value="warofworlds">The War of the Worlds by H.G. Wells</option>
+      </select>
+    </div>
+    <br />
+    <div id="chapinfo" style="margin-left:10%; font-size:large"></div>
+    <br />
+    <div style="margin-left:10%">
+      <input id="homeButton" type="button" value="<<" style="width:60px" onclick="curchapIndex = 1; prevChapter()" />
+      <input id="prevButton" type="button" value="< Previous" style="width:120px" onclick="prevChapter()" />
+    </div>
+    <br />
+    <div id="chaptext" style="margin-left:10%; margin-right:10%; padding:2%; background:#FFFFFF; border:thin solid #333333"></div>
+    <br />
+    <div style="margin-left:10%">
+      <input id="nextButton" type="button" value="Next >" style="width:120px" onclick="nextChapter()" />
+      <input id="endButton" type="button" value=">>" style="width:60px" onclick="curchapIndex = (totalChapters - 2); nextChapter()" />
+    </div>
+  </body>
+</html>
